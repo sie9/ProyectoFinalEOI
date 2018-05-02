@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <PostUser :conver="hola"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import PostUser from './components/PostUser'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      hola:"pruebade nac2ho"
+    };
+  },
   components: {
-    HelloWorld
+    PostUser,
   }
 }
 </script>
