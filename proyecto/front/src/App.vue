@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <PostUser :conver="hola"/>
+    
+    <main-chat></main-chat>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import PostUser from './components/PostUser'
+import MainChat from './components/MainChat'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      hola:"pruebade nac2ho"
+    };
+  },
   components: {
-    HelloWorld
+    PostUser,
+    MainChat,
   }
 }
 </script>
