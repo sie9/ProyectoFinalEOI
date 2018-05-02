@@ -1,2 +1,16 @@
 proyecto/back/node_modules/
 proyecto/front/node_modules/
+
+proyecto/front/.DS_Store
+proyecto/front//dist/
+proyecto/front/npm-debug.log*
+proyecto/front/yarn-debug.log*
+proyecto/front/yarn-error.log*
+
+# Editor directories and files
+proyecto/front/.idea
+proyecto/front/.vscode
+proyecto/front/*.suo
+proyecto/front/*.ntvs*
+proyecto/front/*.njsproj
+proyecto/front/*.sln
