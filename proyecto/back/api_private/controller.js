@@ -5,6 +5,7 @@ module.exports.msgReceived=msgReceived;
 
 function probarGet(req,res) {
     return res.json("Probando get");
+    
 }
 
 function msgReceived (req,res) {
