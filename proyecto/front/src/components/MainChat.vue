@@ -2,7 +2,7 @@
   <div class="container">
       <h1>Titulo chat</h1>
       <languageChoice></languageChoice>
-      <p v-for="mensaje in mensajes">{{mensaje.text}}</p>
+      <PostUser v-for="mensaje in mensajes" :conver="mensaje"/>
       <inputComponent></inputComponent>
   </div>
 </template>
@@ -12,6 +12,7 @@
 import inputComponent from './inputComponent'
 import languageChoice from './languageChoice'
 import firebase from 'firebase'
+import PostUser from './PostUser'
 
 export default {
   name: "MainChat",
@@ -34,19 +35,17 @@ export default {
             });
   },
   components: {
+    PostUser,
     inputComponent,
     languageChoice,
   }
 };
     
+    $(document).ready(function(){
+    $('select').formSelect();
+  });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    languageChoice {
-        background-color:black;
-    }
-    .container {
-        background-color: aqua;
-    }
 </style>
