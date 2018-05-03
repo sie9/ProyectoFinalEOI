@@ -16,24 +16,22 @@
 <script>
 export default {
   name: "PostUser",
-  props: ['conver']
+  props: ["conver"]
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
 
+<style scoped>
+/* ----------------------- Other class ---------------------------- */
 #imagen {
-  margin: 20px;
-  width: auto;
+  margin: 0px;
+  width: 70px;
   height: 50px;
-  border: solid;
-  border-color: silver;
-  border-radius: 100%;
 }
 
 span {
-  height:100px;
+  height: 100px;
   line-height: 100px;
 }
 </style>
