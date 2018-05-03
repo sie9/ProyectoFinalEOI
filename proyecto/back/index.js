@@ -1,7 +1,10 @@
 
 
+
 const express = require("express");
+const axios = require("axios");
 const app = express();
+
 
 //TO-DO: Cuidado con el cors. Permite cualquier petición.Configurar.
 const cors = require("cors");
@@ -10,6 +13,12 @@ const bodyParser = require("body-parser");
 const apiRouter = require('./api_private');
 //Obligatorio para el entendimiento de 
 app.use(express.json());
+
+/* axios.get('https://translation.googleapis.com/language/translate/v2/languages?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ')
+    .then((response) => {
+        console.log(response.data);        
+    })
+    .catch(err => console.log(err)); */
 
 app.use('/api', apiRouter);
 
