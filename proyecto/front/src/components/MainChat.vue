@@ -12,6 +12,8 @@ import inputComponent from "./inputComponent";
 import languageChoice from "./languageChoice";
 import firebase from "firebase";
 import PostUser from "./PostUser";
+import axios from "axios"
+import _ from "lodash"; 
 
 
 export default {
@@ -23,16 +25,20 @@ export default {
     };
   },
   created(){
-    /* firebase.database().ref('Mensajes').remove(); */
-      firebase.database().ref('Mensajes').on('child_added', (data) => {               
-          axios.get('https://translation.googleapis.com/language/translate/v2/languages?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
+      /* firebase.database().ref('Mensajes').remove(); */
+      firebase.database().ref('Mensajes').on('child_added', (data) => {
+        console.log(data.val());               
+          axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :'en',
-	        q :'¿Como te llamas?',
-	        source:'es'
+	        q : data.val().text
       })
       .then((response) => {
-        console.log(response.data.data);
-        this.mensajes.push(data.val())        
+        let traduccion=_.head(response.data.data.translations).translatedText;
+        let txt = {
+            msgTrslated : traduccion
+        }
+        console.log(txt.msgTrslated);
+        this.mensajes.push(txt.msgTrslated);             
     })
     .catch(err => console.log(err))})
   },

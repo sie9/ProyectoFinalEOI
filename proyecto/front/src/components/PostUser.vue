@@ -4,7 +4,7 @@
       <img src="../assets/user.png" alt="" id="imagen" class="col s4">    
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
-          {{conver.text}}
+          {{conver}}
         </span>
       </div>
             

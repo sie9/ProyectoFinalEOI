@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PostUser :conver="hola"/>
+    <PostUser conver="hola"/>
     
     <main-chat></main-chat>
   </div>
