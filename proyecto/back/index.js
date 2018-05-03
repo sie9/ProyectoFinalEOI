@@ -11,7 +11,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const apiRouter = require('./api_private');
-//Obligatorio para el entendimiento de 
+//Obligatorio para el entendimiento de rutas
 app.use(express.json());
 
 /* axios.get('https://translation.googleapis.com/language/translate/v2/languages?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ')
