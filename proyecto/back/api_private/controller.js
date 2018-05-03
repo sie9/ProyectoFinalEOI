@@ -1,4 +1,5 @@
 const axios = require('axios');
+const _= require('lodash');
 
 
 module.exports.probarGet= probarGet;
@@ -10,17 +11,19 @@ function probarGet(req,res) {
 }
 
 function msgReceived (req,res) {
-    let objectReceivedToTraslate = req.body
-    
-    axios.post('https://translation.googleapis.com/language/translate/v2/languages?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
-        target :'en',
-	    q :'¿Como te llamas?',
-	    source:'es'
+    let toTraslate = req.body
+    let traduccion = {};
+    axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
+        target : toTraslate.traslate,
+	    q : toTraslate.msg ,
+	    source : toTraslate.from
     })
     .then((response) => {
-        console.log(response.data.data);        
+        traduccion=_.head(response.data.data.translations).translatedText;        
+        return res.json(traduccion);               
     })
-    .catch(err => console.log(err));
-
-    return res.json("Recibido para traducir: "+ objectReceivedToTraslate.msg);
+    .catch(err => {
+        console.log(err);
+        return res.json(err);        
+    });
 }
