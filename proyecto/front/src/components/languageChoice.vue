@@ -13,19 +13,17 @@
 </template>
 
 <script>
-
 export default {
   name: "languageChoice",
   data() {
     return {
       msg: ""
     };
-  },
-  
+  }
 };
-    $(document).ready(function() {
-        $('select').formSelect();
-    });
+$(document).ready(function() {
+  $("select").formSelect();
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

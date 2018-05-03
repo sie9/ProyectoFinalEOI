@@ -2,17 +2,16 @@
   <div class="container">
       <h1>Titulo chat</h1>
       <languageChoice></languageChoice>
-      <PostUser v-for="mensaje in mensajes" :conver="mensaje"/>
+      <PostUser v-for="mensaje in mensajes" :key="mensaje" :conver="mensaje"/>
       <inputComponent></inputComponent>
   </div>
 </template>
 
 <script>
-
-import inputComponent from './inputComponent'
-import languageChoice from './languageChoice'
-import firebase from 'firebase'
-import PostUser from './PostUser'
+import inputComponent from "./inputComponent";
+import languageChoice from "./languageChoice";
+import firebase from "firebase";
+import PostUser from "./PostUser";
 
 
 export default {
@@ -20,7 +19,7 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
-      mensajes:[]
+      mensajes: []
     };
   },
   created(){
@@ -54,15 +53,16 @@ export default {
   components: {
     PostUser,
     inputComponent,
-    languageChoice,
+    languageChoice
   }
 };
-    
-    $(document).ready(function(){
-    $('select').formSelect();
-  });
+
+$(document).ready(function() {
+  $("select").formSelect();
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>
