@@ -13,6 +13,7 @@
 
 <script>
 import firebase from 'firebase'
+
 export default {
   name: "inputComponent",
   data() {
@@ -25,7 +26,6 @@ export default {
   },
   methods: {
     writetodB: function () {
-
          firebase
           .database()
           .ref('Mensajes')
@@ -33,7 +33,6 @@ export default {
             text: this.msg,
             owner: "Christian"
           })
-      
     }
   }
 };

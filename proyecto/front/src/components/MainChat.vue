@@ -14,6 +14,7 @@ import languageChoice from './languageChoice'
 import firebase from 'firebase'
 import PostUser from './PostUser'
 
+
 export default {
   name: "MainChat",
   data() {
@@ -23,17 +24,33 @@ export default {
     };
   },
   created(){
-      firebase.database().ref('Mensajes').on('child_added', (data) => {
+    /* firebase.database().ref('Mensajes').remove(); */
+      firebase.database().ref('Mensajes').on('child_added', (data) => {               
+          axios.get('https://translation.googleapis.com/language/translate/v2/languages?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
+          target :'en',
+	        q :'¿Como te llamas?',
+	        source:'es'
+      })
+      .then((response) => {
+        console.log(response.data.data);
+        this.mensajes.push(data.val())        
+    })
+    .catch(err => console.log(err))})
+  },
                 
                 
-                this.mensajes.push(data.val())
-                console.log(data.val())
+                
+                
+                
+                
+                /* console.log(data.val()) */
                 /*let objText = {
                     text: data.val().mensaje,
                     language: otherlanguage
                 }*/
-            });
-  },
+  
+      
+  
   components: {
     PostUser,
     inputComponent,
