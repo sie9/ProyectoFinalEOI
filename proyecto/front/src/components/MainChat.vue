@@ -15,7 +15,7 @@ import PostUser from "./PostUser";
 import axios from "axios";
 import _ from "lodash";
 
-
+//hola
 export default {
   name: "MainChat",
 
