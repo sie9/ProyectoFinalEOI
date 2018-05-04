@@ -15,7 +15,7 @@ import PostUser from "./PostUser";
 import axios from "axios";
 import _ from "lodash";
 
-
+//hola
 export default {
   name: "MainChat",
 
@@ -27,13 +27,12 @@ export default {
   },
 
   created() {
-    /* firebase.database().ref('Mensajes').remove(); */
+    //  firebase.database().ref('Mensajes').remove(); 
        firebase.database().ref('Mensajes').on('child_added', (data) => {                       
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :'en',
 	        q : data.val().text
         })
-      })
         .then((response) => {
           let traduccion=_.head(response.data.data.translations).translatedText;
           let txt = {
@@ -43,6 +42,8 @@ export default {
           this.mensajes.push(txt.msgTrslated);
         })
         .catch(err => console.log(err));
+        
+      })
   },
 
   components: {
