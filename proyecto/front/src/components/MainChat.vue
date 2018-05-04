@@ -14,7 +14,7 @@ import firebase from "firebase";
 import PostUser from "./PostUser";
 import axios from "axios";
 import _ from "lodash";
-import axios from "axios";
+
 
 export default {
   name: "MainChat",
