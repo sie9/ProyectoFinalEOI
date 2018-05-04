@@ -1,24 +1,15 @@
 <template>
   <div id="app">
-    <PostUser conver="hola"/>
-    
     <main-chat></main-chat>
   </div>
 </template>
 
 <script>
-import PostUser from './components/PostUser'
 import MainChat from './components/MainChat'
 
 export default {
   name: 'App',
-  data() {
-    return {
-      mensaje:"pruebade nac2ho"
-    };
-  },
   components: {
-    PostUser,
     MainChat,
   }
 }

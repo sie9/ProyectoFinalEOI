@@ -3,7 +3,7 @@
         <div class="row">
            <!-- Input -->
             <div class="input-field col s10">
-                <label for="Texto" v-if="!msg">Mensaje</label>
+                <label for="Texto">Mensaje</label>
                 <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg">
             </div>
             <!-- Boton enviar -->
