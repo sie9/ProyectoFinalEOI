@@ -2,7 +2,7 @@
   <div class="container">
       <h1>Titulo chat</h1>
       <languageChoice></languageChoice>
-      <PostUser v-for="mensaje in mensajes" :key="mensaje" :conver="mensaje"/>
+      <PostUser v-for="mensaje in mensajes" :conver="mensaje"/>
       <inputComponent></inputComponent>
   </div>
 </template>
@@ -12,7 +12,7 @@ import inputComponent from "./inputComponent";
 import languageChoice from "./languageChoice";
 import firebase from "firebase";
 import PostUser from "./PostUser";
-
+import axios from 'axios';
 
 export default {
   name: "MainChat",
@@ -24,17 +24,36 @@ export default {
   },
   created(){
     /* firebase.database().ref('Mensajes').remove(); */
-      firebase.database().ref('Mensajes').on('child_added', (data) => {               
-          axios.get('https://translation.googleapis.com/language/translate/v2/languages?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
+
+    //Esta consulta solo hace falta hacerla una vez.... si veis la consola solo
+    // esta devolviendo la lista de idiomas :S
+
+    //si estais intentando traducir no se para que le pasais ese json de target y tal....
+    // tendria mas sentido hacer un post para traducir no un get :S
+    
+    axios.get('https://translation.googleapis.com/language/translate/v2/languages?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :'en',
 	        q :'¿Como te llamas?',
 	        source:'es'
-      })
-      .then((response) => {
-        console.log(response.data.data);
-        this.mensajes.push(data.val())        
+    }).then((response) => {
+        console.log("idiomas",response.data.data);             
+    }).catch(err => console.log(err))
+
+
+    firebase.database().ref('Mensajes').on('child_added', (data) => {
+        console.log("val", data.val().text)
+        axios.post('https://translation.googleapis.com/language/translate/v2/?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
+          target :'en',
+	        q : data.val().text,
+	        source:'es'
+        }).then((response) => {
+          console.log("traduccion",JSON.stringify(response.data)); 
+          this.mensajes.push(response.data.translations[0].translatedText);
+                      
+        }).catch(err => console.log(err))
+
+        
     })
-    .catch(err => console.log(err))})
   },
                 
                 
