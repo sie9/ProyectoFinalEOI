@@ -1,8 +1,9 @@
 <template>
   <div class="container">
       <h1>Titulo chat</h1>
+      <button v-on:click= "clearAllFirebase">Limpiar Firebase</button>
       <languageChoice></languageChoice>
-      <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje"/>
+      <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       <inputComponent></inputComponent>
   </div>
 </template>
@@ -25,12 +26,18 @@ export default {
       mensajes: []
     };
   },
+  methods: {
+    clearAllFirebase() {
+      console.log("He pasado por aquí");
+      firebase.database().ref('Mensajes').remove();
+      this.mensajes = []; 
+    }
 
-  created() {
-    //  firebase.database().ref('Mensajes').remove(); 
+  },
+  created() {       
        firebase.database().ref('Mensajes').on('child_added', (data) => {                       
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
-          target :'en',
+          target :'es',
 	        q : data.val().text
         })
         .then((response) => {
