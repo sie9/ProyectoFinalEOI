@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
-      <h1>Titulo chat</h1>
-      <languageChoice></languageChoice>
-      <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje"/>
+  <div class="container maindiv">
+      <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       <inputComponent></inputComponent>
   </div>
 </template>
@@ -55,5 +53,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.container.maindiv {
+  overflow-y: hidden;
+  min-height: vmax;
+}
 </style>
