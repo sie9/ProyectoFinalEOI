@@ -35,7 +35,7 @@ export default {
   created() {       
        firebase.database().ref('Mensajes').on('child_added', (data) => {                       
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
-          target :'es',
+          target :'en',
 	        q : data.val().text
         })
         .then((response) => {
