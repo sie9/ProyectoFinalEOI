@@ -65,7 +65,7 @@ export default {
 
 .container.maindiv {
   overflow-y:visible;
-  height: 85vh;
+  height: 80vh;
   display:flex;
   flex-direction: column;
 }

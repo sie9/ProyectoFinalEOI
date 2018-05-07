@@ -2,11 +2,11 @@
 <div>
      <nav>
     <div class="nav">
-      <a href="#" class="brand-logo left">Logo</a>
+      <a href="#" class="left brand-logo">Logo</a>
       <ul id="nav" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+        <li><a href="#">Yeah</a></li>
+        <li><a href="#">Add Users</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -38,6 +38,7 @@ nav{
 }
 .brand-logo{
     margin-left:20px;
+    position:initial;
 }
 span {
   height: 100px;

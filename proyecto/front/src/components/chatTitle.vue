@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Titulo chat</h1>    
+      <h1>Chatslate</h1>    
     </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
 <style scoped>
 
 h1 {
-    font-family: 
+    font-family: 'Amatic SC', cursive;
+    font-weight: 100;
 }
 
 </style>
