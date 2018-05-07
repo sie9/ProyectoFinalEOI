@@ -1,7 +1,9 @@
 <template>
   <div class="container maindiv">
       <button v-on:click= "clearAllFirebase">Limpiar Firebase</button>
-      <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
+      <div class="display">
+        <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
+      </div>
       <inputComponent></inputComponent>
   </div>
 </template>
@@ -43,7 +45,7 @@ export default {
           let txt = {
               msgTrslated : traduccion
           }
-          console.log(txt.msgTrslated);
+          $(".display").stop().animate({ scrollTop: $(".display")[0].scrollHeight}, 500);
           this.mensajes.push(txt.msgTrslated);
         })
         .catch(err => console.log(err));
@@ -60,8 +62,32 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 .container.maindiv {
-  overflow-y: hidden;
-  min-height: vmax;
+  overflow-y:visible;
+  height: 85vh;
+  display:flex;
+  flex-direction: column;
 }
+
+.display{
+  flex:1;
+  background: rgba(184, 184, 184, 0.5);
+  margin-bottom:30px;
+  overflow: auto;
+}
+
+.display::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+.display::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.display::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
 </style>

@@ -60,6 +60,7 @@ function myFunction() {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 #imagen {
   margin: 5px 0px 0px 0px;
   width: 50px;
