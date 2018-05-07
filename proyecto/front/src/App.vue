@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <chatTitle></chatTitle>
-    <main-chat></main-chat>
+    <chat-box></chat-box>
   </div>
 </template>
 
 <script>
-import MainChat from './components/MainChat'
+import chatBox from './components/chatBox'
 import chatTitle from './components/chatTitle'
 
 export default {
   name: 'App',
   components: {
-    MainChat,chatTitle
+    chatBox,chatTitle
   }
 }
 </script>

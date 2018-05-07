@@ -16,7 +16,7 @@ import _ from "lodash";
 
 //hola
 export default {
-  name: "MainChat",
+  name: "chatBox",
 
   data() {
     return {
