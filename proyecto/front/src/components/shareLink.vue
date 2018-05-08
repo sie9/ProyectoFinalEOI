@@ -49,6 +49,7 @@ export default {
 label{
     font-size:1rem;
     color:#fff;
+    
 }
 
 input:not([type]), input[type=text]:not(.browser-default), 
@@ -59,10 +60,12 @@ input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-d
 input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), 
 textarea.materialize-textarea{
     background-color:rgb(255, 255, 255);
-    width:60%;
-    height: 60%;
+    border:none;
+    width:300px;
+    height: 30px;
     position:unset;
     padding:0px 2px;
+    margin-left:5px;
 }
 
 .input-group{
@@ -83,9 +86,8 @@ textarea.materialize-textarea{
 
 
 i{
-    padding:15px 5px 20px;
-    background:rgb(253, 255, 253);
-    line-height: 0;
+    padding:7px 5px 7px;
+    
 }
 
 </style>
