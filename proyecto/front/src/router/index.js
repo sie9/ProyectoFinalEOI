@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/components/login';
-import chatbox from '@/components/chatBox';
+import SalaChat from './../components/SalaChat';
 Vue.use(Router);
 
 export default new Router( {
@@ -12,7 +12,7 @@ export default new Router( {
         },
         {
             path: '/:id',
-            component: chatbox
+            component: SalaChat
         }
     ]
 })
