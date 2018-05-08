@@ -4,7 +4,7 @@
       <div class="display">
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       </div>
-      {{dato}}
+      
       <inputComponent></inputComponent>
 
   </div>
