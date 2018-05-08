@@ -3,6 +3,7 @@
     <navigator></navigator>
     <chatTitle></chatTitle>
     <chat-box></chat-box>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import navigator from './components/navigator'
 import chatBox from './components/chatBox'
 import chatTitle from './components/chatTitle'
+import login from './components/login'
 
 export default {
   name: 'App',
