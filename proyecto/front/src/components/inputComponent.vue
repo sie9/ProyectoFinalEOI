@@ -37,6 +37,7 @@ export default {
           text: this.msg,
           owner: "Christian"
         });
+        this.msg=""; 
     },
     recordtodB: function() {
       firebase
@@ -68,7 +69,7 @@ function myFunction() {
 }
 
 .btn {
-  border-radius: 20% 0 0 20%;
+  border-radius: 10px 0 0 10px;
   background-color: limegreen;
 }
 

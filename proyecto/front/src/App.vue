@@ -1,21 +1,12 @@
 <template>
   <div id="app">
-    <navigator></navigator>
-    <chatTitle></chatTitle>
-    <chat-box></chat-box>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import navigator from './components/navigator'
-import chatBox from './components/chatBox'
-import chatTitle from './components/chatTitle'
-
 export default {
-  name: 'App',
-  components: {
-    chatBox,chatTitle,navigator
-  }
+  name: 'App'
 }
 </script>
 

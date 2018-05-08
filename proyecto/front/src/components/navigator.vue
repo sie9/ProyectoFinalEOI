@@ -1,14 +1,17 @@
 <template>
 <div>
      <nav>
-    <div class="nav">
-      <a href="#" class="left brand-logo">Logo</a>
+       <div class="left brand-logo">
+      <a href="#"><img src="../assets/img/chat.png" alt=""></a>
+       </div>
+      <share-link></share-link>
+      <language-choice @lang="changeLang" ></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><a href="#">Yeah</a></li>
         <li><a href="#">Add Users</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
-    </div>
+    
   </nav>
             
           
@@ -17,31 +20,62 @@
 </template>
 
 <script>
+
+import languageChoice from './languageChoice'
+import shareLink from './shareLink'
+
 export default {
-  name: "PostUser",
-  props: ["conver"]
-};
+  name: "navigator",
+  components: {
+    languageChoice,shareLink
+  },
+  data(){
+    return {
+      /* lang:"" */
+    }
+  },
+  methods: {
+    changeLang(lang) {
+      this.$emit('lang', lang);
+
+      /* this.lang = lang; */
+    }
+  }
+}
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-/* ----------------------- Other class ---------------------------- */
-#imagen {
-  margin: 0px;
-  width: 70px;
-  height: 50px;
-}
 
 nav{
-    background:rgba(110, 240, 240, 0.87);
+    background:rgb(36, 49, 77);
+    display:flex;
+    flex-wrap: nowrap;
 }
+
 .brand-logo{
     margin-left:20px;
     position:initial;
+    width: 10%;
+    text-align:left;
 }
-span {
-  height: 100px;
-  line-height: 100px;
+
+img{
+  width:40%;
+  filter: grayscale(100%);
+  transition:filter .3s ease-out;
+  padding-top:5px
 }
+
+img:hover{
+  transition:filter .5s ease-in;
+  filter: grayscale(0%);
+}
+
+share-link{
+  width:80%
+}
+
 </style>

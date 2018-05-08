@@ -1,12 +1,11 @@
 <template>
   <div class="row">
-       <div class="input-field col s2 offset-s5">
-          <select id="select" class="icons">
-            <option value="" data-icon="https://source.unsplash.com/random" class="circle" selected>Idioma 1</option>
-            <option value="" data-icon="https://source.unsplash.com/random" class="circle">Idioma 2</option>
-            <option value="" data-icon="https://source.unsplash.com/random" class="circle">Idioma 3</option>
+       <div class="input-field  offset-s5">
+          <select id="select" class="icons" @change="cambiarIdioma(idioma)" v-model="idioma">
+            <option value="es" data-icon="https://source.unsplash.com/random" selected class="circle">Idioma 1</option>
+            <option value="en" data-icon="https://source.unsplash.com/random" class="circle">Idioma 2</option>
+            <option value="it" data-icon="https://source.unsplash.com/random" class="circle">Idioma 3</option>
           </select>
-          <label>Idiomas</label>
         </div>
   </div>
 
@@ -17,8 +16,14 @@ export default {
   name: "languageChoice",
   data() {
     return {
-      msg: ""
+      msg: "",
+      idioma: ""
     };
+  },
+  methods: {
+    cambiarIdioma(idioma) {
+      this.$emit("lang",idioma);
+    }
   }
 };
 $(document).ready(function() {
@@ -28,5 +33,7 @@ $(document).ready(function() {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .input-field.offset-s5{
+    background-color: white;
+  }
 </style>
