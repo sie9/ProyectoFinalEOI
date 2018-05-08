@@ -5,7 +5,7 @@
       <a href="#"><img src="../assets/img/chat.png" alt=""></a>
        </div>
       <share-link></share-link>
-      <language-choice></language-choice>
+      <language-choice @lang="changeLang" ></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><a href="#">Yeah</a></li>
         <li><a href="#">Add Users</a></li>
@@ -26,13 +26,24 @@ import shareLink from './shareLink'
 
 export default {
   name: "navigator",
-  
-
   components: {
     languageChoice,shareLink
+  },
+  data(){
+    return {
+      /* lang:"" */
+    }
+  },
+  methods: {
+    changeLang(lang) {
+      this.$emit('lang', lang);
+
+      /* this.lang = lang; */
+    }
   }
-  }
+}
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 

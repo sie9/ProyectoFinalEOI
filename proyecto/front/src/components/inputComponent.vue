@@ -37,6 +37,7 @@ export default {
           text: this.msg,
           owner: "Christian"
         });
+        this.msg=""; 
     },
     recordtodB: function() {
       firebase

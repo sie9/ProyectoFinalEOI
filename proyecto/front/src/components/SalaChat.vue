@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <navigator></navigator>
+    <navigator @lang='changeLang'></navigator>
     <chatTitle></chatTitle>
-    <chat-box></chat-box>
+    <chat-box :dato="lang"></chat-box>
   </div>
 </template>
 
@@ -15,6 +15,16 @@ export default {
   name: 'App',
   components: {
     chatBox,chatTitle,navigator
+  },
+  data(){
+    return {
+      lang: ""
+    }
+  },
+  methods : {
+    changeLang (lang) {
+      this.lang = lang;
+    }
   }
 }
 </script>

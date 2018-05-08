@@ -4,7 +4,9 @@
       <div class="display">
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       </div>
+      {{dato}}
       <inputComponent></inputComponent>
+
   </div>
 </template>
 
@@ -27,6 +29,34 @@ export default {
       mensajes: []
     };
   },
+  watch:{
+    'dato'() {
+      let backUp = [];
+      this.mensajes.forEach(element => {        
+        axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
+          target :this.dato,
+	        q : element
+        })
+        .then((response) => {
+          let traduccion=_.head(response.data.data.translations).translatedText;
+          let txt = {
+          msgTrslated : traduccion
+        }        
+         backUp.push(txt.msgTrslated);
+        })
+        .catch(err => console.log(err));    
+      });
+
+      this.mensajes=[];
+      this.mensajes = backUp;
+
+      
+      
+      
+      }
+    
+
+  },
   methods: {
     clearAllFirebase() {
       console.log("He pasado por aquí");
@@ -36,9 +66,9 @@ export default {
 
   },
   created() {       
-       firebase.database().ref('Mensajes').on('child_added', (data) => {                 
+       firebase.database().ref('Mensajes').on('child_added', (data) => {                     
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
-          target :'it',
+          target :this.dato || "en",
 	        q : data.val().text
         })
         .then((response) => {
@@ -49,14 +79,14 @@ export default {
           $(".display").stop().animate({ scrollTop: $(".display")[0].scrollHeight}, 500);
           this.mensajes.push(txt.msgTrslated);
         })
-        .catch(err => console.log(err));
-        
+        .catch(err => console.log(err));        
       })
+      
   },
-
   components: {
     PostUser, inputComponent, languageChoice, login
-  }
+  },
+  props : ['dato']
 }
 
 </script>
