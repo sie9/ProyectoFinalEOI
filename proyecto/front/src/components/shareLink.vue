@@ -6,13 +6,6 @@
         <a @click="copyToClipboard()" href="#" class="copy"><i class="fas fa-copy"></i></a>   
         </div>
     </div>
-
-    <!-- <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <span class="input-group-text" id="basic-addon2">@example.com</span>
-  </div> -->
-
 </template>
 
 <script>
@@ -64,7 +57,7 @@ textarea.materialize-textarea{
     width:300px;
     height: 30px;
     position:unset;
-    padding:0px 2px;
+    padding:0px 5px;
     margin-left:5px;
 }
 
@@ -86,8 +79,11 @@ textarea.materialize-textarea{
 
 
 i{
-    padding:7px 5px 7px;
-    
+    padding:7px 5px 7px;  
+}
+
+i:hover{
+    font-weight: 100
 }
 
 </style>
