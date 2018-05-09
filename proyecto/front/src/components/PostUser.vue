@@ -4,8 +4,9 @@
       <img src="../assets/user.png" alt="" id="imagen" class="col s4">    
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
-          {{conver}}
+          {{conver.Texto}} , {{fecha}}
         </span>
+        
       </div>
             
           
@@ -14,9 +15,21 @@
 </template>
 
 <script>
+
+
+import moment from "moment";
+
 export default {
   name: "PostUser",
-  props: ["conver"]
+  props: ["conver"],
+  data() {
+    return {
+      fecha: ""
+    };
+  }, 
+  created() {
+    this.fecha = moment(this.conver.Fecha).fromNow();
+  }
 };
 </script>
 

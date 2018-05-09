@@ -20,6 +20,8 @@
 
 <script>
 import firebase from "firebase";
+import moment from "moment";
+
 export default {
   name: "inputComponent",
   data() {
@@ -30,20 +32,34 @@ export default {
   created() {},
   methods: {
     writetodB: function() {
+      var privateId = this.cargarUsuario();
+      if (privateId == null) {
+        privateId == "WTF?";
+      }
+
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+      console.log(res);
       firebase
         .database()
-        .ref("Mensajes")
+        .ref("Sala" + res)
+        .child("Mensajes")
         .push({
           text: this.msg,
-          owner: "Christian"
+          owner: privateId,
+          time: Date()
         });
-        this.msg=""; 
+      this.msg = "";
     },
     recordtodB: function() {
       firebase
         .database()
         .ref("audios")
         .push({});
+    },
+    cargarUsuario: function() {
+      var comoString = localStorage.getItem("usuario");
+      return JSON.parse(comoString);
     }
   }
 };
@@ -61,7 +77,6 @@ function myFunction() {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 #imagen {
   margin: 5px 0px 0px 0px;
   width: 50px;

@@ -4,7 +4,6 @@
       <div class="display">
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       </div>
-      {{dato}}
       <inputComponent></inputComponent>
 
   </div>
@@ -65,8 +64,11 @@ export default {
     }
 
   },
-  created() {       
-       firebase.database().ref('Mensajes').on('child_added', (data) => {                     
+  created() {  
+        var route = this.$route.path; 
+        var res = route.substring(1, route.length);    
+        console.log(res);
+       firebase.database().ref('Sala'+res).child('Mensajes').on('child_added', (data) => {                     
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :this.dato || "en",
 	        q : data.val().text
@@ -77,7 +79,7 @@ export default {
               msgTrslated : traduccion
           }
           $(".display").stop().animate({ scrollTop: $(".display")[0].scrollHeight}, 500);
-          this.mensajes.push(txt.msgTrslated);
+          this.mensajes.push({Texto:txt.msgTrslated, Fecha: data.val().time});
         })
         .catch(err => console.log(err));        
       })
