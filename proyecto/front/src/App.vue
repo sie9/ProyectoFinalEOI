@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <navigator></navigator>
+    <!-- <navigator></navigator>
     <chatTitle></chatTitle>
-    <chat-box></chat-box>
+    <chat-box></chat-box> -->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import navigator from './components/navigator'
 import chatBox from './components/chatBox'
 import chatTitle from './components/chatTitle'
+import login from './components/login'
 
 export default {
   name: 'App',
@@ -20,6 +22,9 @@ export default {
 </script>
 
 <style>
+/* html {
+  background-color: midnightblue;
+} */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

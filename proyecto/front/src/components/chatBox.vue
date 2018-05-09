@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import login from "./login";
 import inputComponent from "./inputComponent";
 import languageChoice from "./languageChoice";
 import firebase from "firebase";
@@ -35,7 +36,7 @@ export default {
 
   },
   created() {       
-       firebase.database().ref('Mensajes').on('child_added', (data) => {                       
+       firebase.database().ref('Mensajes').on('child_added', (data) => {                 
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :'it',
 	        q : data.val().text
@@ -54,7 +55,7 @@ export default {
   },
 
   components: {
-    PostUser, inputComponent, languageChoice
+    PostUser, inputComponent, languageChoice, login
   }
 }
 
