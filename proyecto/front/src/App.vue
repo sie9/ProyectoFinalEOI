@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <!-- <navigator></navigator>
-    <chatTitle></chatTitle>
-    <chat-box></chat-box> -->
     <router-view></router-view>
   </div>
 </template>

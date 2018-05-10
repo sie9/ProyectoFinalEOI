@@ -7,8 +7,7 @@
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
-        <li><a href="#">Yeah</a></li>
-        <li><div @click="show()">Add Users</div></li>
+        <li><div @click="show()" class="addUser">Add Users</div></li>
         <li><a href="#" >Contact</a></li>
       </ul>
     
@@ -115,7 +114,11 @@ nav{
   margin-top:10px;
 }
 
-.select-wrapper input.select-dropdown{
+.select-wrapper .select-dropdown{
+  border-bottom:0px;
+}
+
+.select-wrapper input.select-dropdown:focus{
   border-bottom:none;
 }
 
@@ -133,6 +136,11 @@ img:hover{
 
 share-link {
   width: 80%;
+}
+
+.addUser{
+  cursor: pointer;
+  padding: 0 15px;
 }
 
 /* The Modal (background) */
