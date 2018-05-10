@@ -2,13 +2,11 @@
 <div>
      <nav>
        <div class="left brand-logo">
-      <a href="#"><img src="../assets/img/chat.png" alt=""></a>
+        <a href="#"><img src="../assets/img/chat2.png" alt=""></a>
        </div>
       <share-link></share-link>
       <language-choice @lang="changeLang" ></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
-        <li><a href="#">Yeah</a></li>
-        <li><a href="#">Add Users</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     
@@ -50,7 +48,7 @@ export default {
 <style scoped>
 
 nav{
-    background:rgb(36, 49, 77);
+    background:rgb(169, 170, 173);
     display:flex;
     flex-wrap: nowrap;
 }
@@ -70,7 +68,7 @@ img{
 }
 
 img:hover{
-  transition:filter .5s ease-in;
+  transition:filter .3s ease-in;
   filter: grayscale(0%);
 }
 

@@ -14,9 +14,13 @@ export default {
 </script>
 
 <style>
-/* html {
-  background-color: midnightblue;
-} */
+html {
+  background: url('./assets/img/background.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,4 +29,5 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
 }
+
 </style>

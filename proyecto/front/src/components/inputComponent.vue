@@ -12,7 +12,7 @@
             </a>
             <!-- Boton audio -->
             <a class="btn btn2 col s1" v-on:click="recordtodB">
-                <img src="../assets/audio.png" alt="" id="imagen" class="col s4">
+                <i class="fas fa-microphone"></i>
             </a>
         </div>
     </div>
@@ -64,24 +64,10 @@ export default {
   }
 };
 
-/* function clear_textbox() {
-  if (document.form1.text1.value == "Texto del formulario")
-    document.form1.text1.value = "";
-}
-
-function myFunction() {
-  var x = document.getElementById("Texto");
-  x.value = x.value.toUpperCase();
-} */
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#imagen {
-  margin: 5px 0px 0px 0px;
-  width: 50px;
-  height: 25px;
-}
 
 .btn {
   border-radius: 10px 0 0 10px;

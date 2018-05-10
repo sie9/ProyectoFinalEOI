@@ -97,7 +97,7 @@ export default {
 
 .display{
   flex:1;
-  /* background: rgba(184, 184, 184, 0.5); */
+  background: rgba(184, 184, 184, 0.5);
   margin-bottom:30px;
   overflow: auto;
 }

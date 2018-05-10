@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="main-SalaChat">
     <navigator @lang='changeLang'></navigator>
-    <chatTitle></chatTitle>
+    <chatTitle class="chatTitle"></chatTitle>
     <chat-box :dato="lang"></chat-box>
   </div>
 </template>
@@ -126,27 +126,20 @@ export default {
 </script>
 
 <style scoped>
-#app {
+
+.chatTitle{
+  height: 10vh;
+}
+
+.main-SalaChat {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
+
 }
 
-#app:after {
-  content: "";
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
-  background-image: url('../assets/img/background.jpg');
-  background-repeat: repeat-y;
-  opacity:0.5
-}
 
 </style>
