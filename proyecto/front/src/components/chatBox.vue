@@ -31,7 +31,7 @@ export default {
   watch:{
     'dato'() {
       let backUp = [];
-      this.mensajes.forEach(element => {   
+      this.mensajes.forEach(element => {      
         axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :this.dato,
 	        q : element.Texto
@@ -40,17 +40,11 @@ export default {
           let traduccion=_.head(response.data.data.translations).translatedText;
           let txt = {
             msgTrslated : traduccion
-          } 
+          }
           element.Texto= txt.msgTrslated;
         }).catch(err => console.log(err));    
 
-
-      });
-
-
-      
-      
-      
+      });  
       }
     
 
@@ -64,7 +58,7 @@ export default {
   },
   created() {  
         var route = this.$route.path; 
-        var res = route.substring(1, route.length); 
+        var res = route.substring(1, route.length);    
        firebase.database().ref('Sala'+res).child('Mensajes').on('child_added', (data) => {
 
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
