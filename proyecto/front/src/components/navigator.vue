@@ -9,73 +9,82 @@
       <ul id="nav" class="right hide-on-med-and-down">
         <li><a href="#">Yeah</a></li>
         <li><a href="#">Add Users</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#" @click="show()">Contact</a></li>
       </ul>
     
     </nav>
-            
+    <modal name="hello-world">
+      hello, world!
+    </modal>
           
     </div>
 
 </template>
 
 <script>
+import languageChoice from "./languageChoice";
+import shareLink from "./shareLink";
+import VModal from "vue-js-modal";
 
-import languageChoice from './languageChoice'
-import shareLink from './shareLink'
+Vue.use(VModal);
 
 export default {
   name: "navigator",
   components: {
-    languageChoice,shareLink
+    languageChoice,
+    shareLink
   },
-  data(){
+  data() {
     return {
       /* lang:"" */
-    }
+    };
   },
   methods: {
     changeLang(lang) {
-      this.$emit('lang', lang);
+      this.$emit("lang", lang);
 
       /* this.lang = lang; */
+    },
+    show() {
+      this.$modal.show("hello-world");
+    },
+    hide() {
+      this.$modal.hide("hello-world");
     }
   }
-}
+};
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-
-nav{
-    background:rgb(36, 49, 77);
-    display:flex;
-    flex-wrap: nowrap;
+nav {
+  background: rgb(36, 49, 77);
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.brand-logo{
-    margin-left:20px;
-    position:initial;
-    width: 10%;
-    text-align:left;
+.brand-logo {
+  margin-left: 20px;
+  position: initial;
+  width: 10%;
+  text-align: left;
 }
 
-img{
-  width:40%;
+img {
+  width: 40%;
   filter: grayscale(100%);
-  transition:filter .3s ease-out;
-  padding-top:5px
+  transition: filter 0.3s ease-out;
+  padding-top: 5px;
 }
 
-img:hover{
-  transition:filter .5s ease-in;
+img:hover {
+  transition: filter 0.5s ease-in;
   filter: grayscale(0%);
 }
 
-share-link{
-  width:80%
+share-link {
+  width: 80%;
 }
-
 </style>
