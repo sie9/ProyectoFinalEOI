@@ -91,7 +91,7 @@ export default {
         );
         $("#email").val("");
         this.emails.push(this.email);
-        this.sendMail();
+        this.sendMail();        
       }
     },
     show() {
