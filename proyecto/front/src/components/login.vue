@@ -1,90 +1,88 @@
 <template>
-  <div class="row contenedor">
-    <div class="login-box">
-        <div class="logo-chat">
-            <img src="../assets/chat.png" alt="" class="center-block" id="logo">
-        </div>
-        <section class="grid--wrapper">
-            <div class="grid--quarter-columns">
-                <ul class="lang roundborders large">
-                    <a href="#en">
-                        <li>
-                            <img src="http://i64.tinypic.com/fd60km.png" />
-                        </li>
-                    </a>
-                    <a href="#de">
-                        <li>
-                            <img src="http://i63.tinypic.com/10zmzyb.png" />
-                        </li>
-                    </a>
-                    <a href="#fr">
-                        <li>
-                            <img src="http://i65.tinypic.com/300b30k.png" />
-                        </li>
-                    </a>
-                    <a href="#es">
-                        <li>
-                            <img src="http://i68.tinypic.com/avo5ky.png" />
-                        </li>
-                    </a>
-                    <a href="#it">
-                        <li>
-                            <img src="http://i65.tinypic.com/23jl6bn.png" />
-                        </li>
-                    </a>
-                </ul>
-                <!-- Input -->
-                <div class="login">
-                    <input id="Texto" type="text" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="MiCuenta">
+    <div class="container">
+        <div class="row login-box">
+            <div class="logo-chat">
+                <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
+            </div>
+            <div class="grid--wrapper cabecera">
+                <div class="grid--quarter-columns">
+                    <ul class="lang roundborders large">
+                        <a href="#en">
+                            <li>
+                                <img src="http://i64.tinypic.com/fd60km.png" />
+                            </li>
+                        </a>
+                        <a href="#de">
+                            <li>
+                                <img src="http://i63.tinypic.com/10zmzyb.png" />
+                            </li>
+                        </a>
+                        <a href="#fr">
+                            <li>
+                                <img src="http://i65.tinypic.com/300b30k.png" />
+                            </li>
+                        </a>
+                        <a href="#es">
+                            <li>
+                                <img src="http://i68.tinypic.com/avo5ky.png" />
+                            </li>
+                        </a>
+                        <a href="#it">
+                            <li>
+                                <img src="http://i65.tinypic.com/23jl6bn.png" />
+                            </li>
+                        </a>
+                    </ul>
+                    <!-- Input -->
+                    <div class="login">
+                        <input id="Texto" type="text" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="MiCuenta">
+                    </div>
                 </div>
-                <div>
-                    <button type="button" onclick="copyToClipboard('#msg')" class="btn btn-copy">
-                        <img src="../assets/copy.png" alt="" id="imagen" class="col s4">
-                    </button>
+                <div class="grid--two-columns">
+                    <div></div>
+                    <!-- button -->
+                    <router-link v-bind:to="msg">
+                        <a class="waves-effect waves-light btn col s12">
+                           <strong> CREATE ROOM </strong>
+                        </a>
+                    </router-link>
                 </div>
             </div>
-            <div class="grid--two-columns">
-                <div></div>
-                <!-- button -->
-                <router-link v-bind:to="msg">
-                    <a class="waves-effect waves-light btn col s12">
-                        CREATE ROOM
-                    </a>
-                </router-link>
-            </div>
-            <div class="instrucciones">
-            <h3>Cómo funciona esto:</h3>
+            <div class="texto">
+              <h3>Métodos de uso:</h3>
             <ul class="list-inline">
                 <li>
                   <div class="grid--two-columns">
-                    <i class="icon start-icon"></i>
-                    <h4>
-                        <span>1.</span> Cómo empezar</h4>
+                    <img src="../assets/user.png" alt="" class="icono">
+                    <div>
+                      <h4>1. Cómo empezar</h4>
+                      <p>Haga clic en "Iniciar conversación", inicie sesión e introduzca su nombre y su idioma.</p>
+                    </div>
                   </div>
-                    <p>Introduzca el nombre de la cuenta de "Chatty" que desea y haga clic en "CREATE ROOM".</p>
                 </li>
                 <li>
                   <div class="grid--two-columns">
-                    <i class="icon share-icon"></i>
-                    <h4><span>2.</span> Comparta</h4>
+                    <img src="../assets/user.png" alt="" class="icono">
+                    <div>
+                      <h4>2. Comparta</h4>
+                      <p>Comparta el código de la conversación con otros participantes para que puedan unirse a través de la aplicación Translator o a través del sitio web</p>
+                    </div>
                   </div>
-                    <p>Comparta el código de la conversación con otros participantes para que puedan unirse a través de
-                        la aplicación Translator o a través del sitio web</p>
                 </li>
                 <li>
                   <div class="grid--two-columns">
-                    <i class="icon speak-icon"></i>
-                    <h4>
-                        <span>3.</span> Hable</h4>
+                    <img src="../assets/user.png" alt="" class="icono">
+                    <div>
+                      <h4>3. Hable</h4>
+                      <p>Hable o escriba en su idioma para comunicarse con otros participantes que podrán ver sus mensajes en su propio idioma.</p>
+                    </div>
                   </div>
-                    <p>Hable o escriba en su idioma para comunicarse con otros participantes que podrán ver sus mensajes
-                        en su propio idioma.</p>
                 </li>
             </ul>
-          </div>
-        </section>
+            
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -101,34 +99,57 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+
 <style scoped>
 
-* {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-}
-
-p, h3, h4, #imagen {
+p,
+h3,
+h4,
+#imagen {
   margin: 0;
   padding: 0;
+  color: black;
 }
-.contenedor {
-  background-color: midnightblue;
-  margin: 50px 500px 50px 500px;
+
+h3, h4{
+  font-size: 1em;
+  font-family: 'Signika', sans-serif
+}
+
+p, h4 {
+  text-align: left;
+}
+.texto {
+  margin: 50px 0 0 0;
+  padding: 30px;
+}
+.container {
+  background-image: url("../assets/img/background.jpg");
+  margin: 0;
+  padding: 20px;
+  background-size: cover;
+  height: 100%;
+}
+
+.login-box {
+  background-color: white;
+  padding-top: 10px;
+  width: 50%;
+  height: 800px;
   border-radius: 10px;
+  border-style: solid;
+  border-color: silver;
+  box-shadow: 2px 2px 5px black;
 }
 
-/* .login-box {
-} */
-
-#imagen {
+.icono {
   width: auto;
-  height: 20px;
+  height: 40px;
 }
 
 .instrucciones {
-  color: white;
+  color: black;
 }
 
 .grid--wrapper,
@@ -146,7 +167,7 @@ p, h3, h4, #imagen {
 }
 
 .grid--quarter-columns {
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: 10% 90%;
 }
 
 .grid--two-columns {
@@ -189,11 +210,16 @@ p, h3, h4, #imagen {
 
 .btn {
   border-radius: 5px;
-  background-color: limegreen;
+  background-color: silver;
+  color: blue;
+  font-family: 'Signika', sans-serif;
+  font-size: 1.2em;
+
 }
 
 .btn:hover {
-  background-color: lime;
+  background-color: grey;
+  color: white;
 }
 
 .btn-copy {
