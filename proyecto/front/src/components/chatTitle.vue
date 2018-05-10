@@ -1,13 +1,22 @@
 <template>
     <div>
-      <h1>Chatslate</h1>    
+      <h1>{{title}}</h1>    
     </div>
 </template>
 
 <script>
 
 export default {
- name: "chatTitle"
+ name: "chatTitle",
+ data() {
+    return {
+      title: ""
+    };
+  },
+ created(){
+     var route = this.$route.path;
+     this.title = route.substring(1, route.length);
+ }
 }
 
 </script>

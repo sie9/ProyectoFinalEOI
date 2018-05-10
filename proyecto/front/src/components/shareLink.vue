@@ -2,7 +2,7 @@
     <div class="shareLink">
         <label for="chatLink">Share Me!</label>
         <div class="input-group">
-        <input type="text" value="//chattranslate.com/123123" id="chatLink" class="chatLink" readonly>
+        <input type="text" :value="link" id="chatLink" class="chatLink" readonly>
         <a @click="copyToClipboard()" href="#" class="copy"><i class="fas fa-copy"></i></a>   
         </div>
     </div>
@@ -13,6 +13,16 @@
 export default {
   name: "shareLink",
   props: ["link"],
+  data() {
+    return {
+      link: ""
+    };
+  },
+  created(){
+     var route = this.$route.path;
+     this.link = 'chatty.com'+route;
+     
+  },
 
   methods:{
       copyToClipboard() {
