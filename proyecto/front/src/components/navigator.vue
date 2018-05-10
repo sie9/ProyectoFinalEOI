@@ -40,6 +40,15 @@
         </div>
       </div>
     </div>
+
+    <!-- The Modal exito email -->
+    <div id="myModal2" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" @click="hide2">&times;</span>
+        <h3>Se ha enviado tu email!!</h3>
+      </div>
+    </div>
           
     </div>
 </template>
@@ -87,6 +96,10 @@ export default {
     },
     hide() {
       var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    },
+    hide2() {
+      var modal = document.getElementById("myModal2");
       modal.style.display = "none";
     }
   }
