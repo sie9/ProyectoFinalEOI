@@ -1,5 +1,6 @@
 <template>
   <div class="container maindiv">
+      <chatTitle class="chatTitle"></chatTitle>
       <button v-on:click= "clearAllFirebase">Limpiar Firebase</button>
       <div class="display">
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
@@ -11,6 +12,7 @@
 
 <script>
 import login from "./login";
+import chatTitle from "./chatTitle";
 import inputComponent from "./inputComponent";
 import languageChoice from "./languageChoice";
 import firebase from "firebase";
@@ -101,20 +103,6 @@ export default {
   margin-bottom:30px;
   overflow: auto;
 }
-
-/* .display:after{
-  content: "";
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
-  background-image: url('../assets/img/background.jpg');
-  opacity:0.5
-} */
-
 
 .display::-webkit-scrollbar {
     width: 1em;

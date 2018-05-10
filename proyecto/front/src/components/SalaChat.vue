@@ -2,10 +2,10 @@
   <div id="app" class="main-SalaChat">
     
     <navigator @lang='changeLang'></navigator>
-    <chatTitle class="chatTitle"></chatTitle>
     <div class="row">
       <div class="col s12">
-        <listaUsuarioOnline class="col s3" style="overflow-y:scroll; max-height: 100%;"></listaUsuarioOnline>
+        <listaUsuarioOnline class="col s3"></listaUsuarioOnline>
+    <chatTitle class="chatTitle"></chatTitle>
         <chat-box class="col s9" :dato="lang"></chat-box>       
       </div>   
     </div>
@@ -132,7 +132,17 @@ export default {
 </script>
 
 <style scoped>
+.col.s12{
+  padding:0px;
+}
 
+.col.s3{
+  padding:0px;
+}
+
+.col.s9{
+  padding: 0px;
+}
 .chatTitle{
   height: 10vh;
 }
@@ -146,17 +156,4 @@ export default {
   margin-top: 0px;
 }
 
-.main-SalaChat:after {
-  content: "";
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-  background-image: url("../assets/img/background.jpg");
-  background-repeat: repeat-y;
-  opacity: 0.5;
-}
 </style>

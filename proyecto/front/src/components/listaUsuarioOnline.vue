@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app userList">
       <usuarioOnline v-for="usuario in usuarios" :conver="usuario" :key="usuario.id"/>
   </div>
 </template>
@@ -34,5 +34,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.userList{
+  overflow-y:auto;
+  max-height:90vh;
+  background-color: rgba(240, 240, 240, 0.815);
+}
+
 
 </style>

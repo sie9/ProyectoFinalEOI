@@ -125,7 +125,7 @@ p, h4 {
   padding: 30px;
 }
 .container {
-  background-image: url("../assets/img/background.jpg");
+  /* background-image: url("../assets/img/background.jpg"); */
   margin: 0;
   padding: 20px;
   background-size: cover;
