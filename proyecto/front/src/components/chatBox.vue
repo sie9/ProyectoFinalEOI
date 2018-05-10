@@ -97,12 +97,12 @@ export default {
 
 .display{
   flex:1;
-  background: rgba(184, 184, 184, 0.5);
+  /* background: rgba(184, 184, 184, 0.5); */
   margin-bottom:30px;
   overflow: auto;
 }
 
-.display:after{
+/* .display:after{
   content: "";
   opacity: 0.5;
   top: 0;
@@ -113,7 +113,7 @@ export default {
   z-index: -1;   
   background-image: url('../assets/img/background.jpg');
   opacity:0.5
-}
+} */
 
 
 .display::-webkit-scrollbar {

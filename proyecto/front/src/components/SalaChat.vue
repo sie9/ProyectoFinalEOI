@@ -125,7 +125,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -134,4 +134,19 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
 }
+
+#app:after {
+  content: "";
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+  background-image: url('../assets/img/background.jpg');
+  background-repeat: repeat-y;
+  opacity:0.5
+}
+
 </style>
