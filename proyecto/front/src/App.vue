@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <!-- <navigator></navigator>
+    <chatTitle></chatTitle>
+    <chat-box></chat-box> -->
     <router-view></router-view>
   </div>
 </template>
@@ -11,6 +14,9 @@ export default {
 </script>
 
 <style>
+/* html {
+  background-color: midnightblue;
+} */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
