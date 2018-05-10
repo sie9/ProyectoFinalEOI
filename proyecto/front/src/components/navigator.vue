@@ -39,6 +39,15 @@
         </div>
       </div>
     </div>
+
+    <!-- The Modal exito email -->
+    <div id="myModal2" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" @click="hide2">&times;</span>
+        <h3>Se ha enviado tu email!!</h3>
+      </div>
+    </div>
           
     </div>
 </template>
@@ -46,6 +55,7 @@
 <script>
 import languageChoice from "./languageChoice";
 import shareLink from "./shareLink";
+import { axios } from "axios";
 
 var modal = document.getElementById("myModal");
 window.onclick = function(event) {
@@ -62,7 +72,8 @@ export default {
   },
   data() {
     return {
-      email: ""
+      email: "",
+      emails: []
       /* lang:"" */
     };
   },
@@ -78,6 +89,8 @@ export default {
           `<div class="collection-item">` + this.email + `</div>`
         );
         $("#email").val("");
+        this.emails.push(this.email);
+        this.sendMail();        
       }
     },
     show() {
@@ -87,6 +100,40 @@ export default {
     hide() {
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
+      this.emails = [];
+      this.email = "";
+    },
+    hide2() {
+      var modal = document.getElementById("myModal2");
+      modal.style.display = "none";      
+    },
+
+    sendMail() {
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+
+      let data = {
+        service_id: "pry.chtty@gmail.com",
+        template_id: "chatty",
+        user_id: "user_DeVh4AytZ9lQqdCTn9ODu",
+        template_params: {
+          email : this.email,
+          sala : "http://localhost:8080/#/"+res   
+          
+        }
+      };
+
+      $.ajax("https://api.emailjs.com/api/v1.0/email/send", {
+        type: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json"
+      })
+        .done(function() {
+          alert("Your mail is sent!");
+        })
+        .fail(function(error) {
+          console.log("Oops... " + JSON.stringify(error));
+        });
     }
   }
 };
