@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="main">
         <div class="row login-box">
             <div class="logo-chat">
                 <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
@@ -102,7 +102,6 @@ $(document).ready(function() {
 
 
 <style scoped>
-
 p,
 h3,
 h4,
@@ -112,31 +111,39 @@ h4,
   color: black;
 }
 
-h3, h4{
+h3,
+h4 {
   font-size: 1em;
-  font-family: 'Signika', sans-serif
+  font-family: "Signika", sans-serif;
 }
 
-p, h4 {
+p,
+h4 {
   text-align: left;
 }
 .texto {
   margin: 50px 0 0 0;
   padding: 30px;
 }
-.container {
-  background-image: url("../assets/img/background.jpg");
-  margin: 0;
-  padding: 20px;
-  background-size: cover;
-  height: 100%;
+.main {
+  position: absolute;
+  background-image: url("../assets/img/background-home.jpg");
+  background-repeat: no-repeat;
+  padding: 100px;
+  width: 100vw;
+  height: 150vh;
+
+  -webkit-background-size: 100% 100%; /* Safari 3.0 */
+  -moz-background-size: 100% 100%; /* Gecko 1.9.2 (Firefox 3.6) */
+  -o-background-size: 100% 100%; /* Opera 9.5 */
+  background-size: 100% 100%; /* Gecko 2.0 (Firefox 4.0) and other CSS3-compliant browsers */
 }
 
 .login-box {
   background-color: white;
   padding-top: 10px;
-  width: 50%;
-  height: 800px;
+  width: 500px;
+  /* height: 800px; */
   border-radius: 10px;
   border-style: solid;
   border-color: silver;
@@ -211,10 +218,9 @@ p, h4 {
 .btn {
   border-radius: 5px;
   background-color: silver;
-  color: blue;
-  font-family: 'Signika', sans-serif;
+  color: black;
+  font-family: "Signika", sans-serif;
   font-size: 1.2em;
-
 }
 
 .btn:hover {
