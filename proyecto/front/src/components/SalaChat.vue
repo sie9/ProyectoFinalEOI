@@ -1,8 +1,17 @@
 <template>
   <div id="app">
+    
     <navigator @lang='changeLang'></navigator>
     <chatTitle></chatTitle>
-    <chat-box :dato="lang"></chat-box>
+    <div class="row">
+      <div class="col s12">
+        <listaUsuarioOnline class="col s3" style="overflow-y:scroll; max-height: 100%;"></listaUsuarioOnline>
+        <chat-box class="col s9" :dato="lang"></chat-box>
+        
+      </div>
+      
+    </div>
+    
   </div>
 </template>
 
@@ -10,6 +19,7 @@
 import navigator from "./navigator";
 import chatBox from "./chatBox";
 import chatTitle from "./chatTitle";
+import listaUsuarioOnline from "./listaUsuarioOnline";
 import firebase from "firebase";
 
 export default {
@@ -17,7 +27,8 @@ export default {
   components: {
     chatBox,
     chatTitle,
-    navigator
+    navigator,
+    listaUsuarioOnline
   },
   data() {
     return {
@@ -38,11 +49,8 @@ export default {
         .ref("Sala" + res)
         .child("usuariosOnline")
         .once("value", data => {
-          
-            
           this.usuarios = data.val();
 
-          
           if (this.usuarios !== null) {
             var arrayUsers = Object.values(this.usuarios);
 
@@ -51,7 +59,7 @@ export default {
             if (typeof resultado === "undefined") {
               this.writedbOnlineUsers(pepe);
             }
-          }else{
+          } else {
             this.writedbOnlineUsers(pepe);
           }
         });
@@ -143,10 +151,9 @@ export default {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
-  background-image: url('../assets/img/background.jpg');
+  z-index: -1;
+  background-image: url("../assets/img/background.jpg");
   background-repeat: repeat-y;
-  opacity:0.5
+  opacity: 0.5;
 }
-
 </style>
