@@ -9,7 +9,6 @@
 </template>
 
 <script>
-
 export default {
   name: "shareLink",
   props: ["link"],
@@ -24,76 +23,76 @@ export default {
      
   },
 
-  methods:{
-      copyToClipboard() {
-        event.preventDefault();
-        console.log('entre')
-        var copyText = document.getElementById("chatLink");
-        copyText.select();
-        document.execCommand("Copy");
-        alert("Copied the text: " + copyText.value);
-
-        }
+  methods: {
+    copyToClipboard() {
+      event.preventDefault();
+      console.log("entre");
+      var copyText = document.getElementById("chatLink");
+      copyText.select();
+      document.execCommand("Copy");
+      alert("Copied the text: " + copyText.value);
     }
-}
-
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
 /* ----------------------- Other class ---------------------------- */
-.shareLink{
-    display:flex;
-    flex-wrap: nowrap;
-    
+.shareLink {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-label{
-    font-size:1rem;
-    color:#fff;
-    
+label {
+  font-size: 1rem;
+  color: #fff;
 }
 
-input:not([type]), input[type=text]:not(.browser-default), 
-input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), 
-input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), 
-input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), 
-input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), 
-input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), 
-textarea.materialize-textarea{
-    background-color:rgb(255, 255, 255);
-    border:none;
-    width:300px;
-    height: 30px;
-    position:unset;
-    padding:0px 5px;
-    margin-left:5px;
+input:not([type]),
+input[type="text"]:not(.browser-default),
+input[type="password"]:not(.browser-default),
+input[type="email"]:not(.browser-default),
+input[type="url"]:not(.browser-default),
+input[type="time"]:not(.browser-default),
+input[type="date"]:not(.browser-default),
+input[type="datetime"]:not(.browser-default),
+input[type="datetime-local"]:not(.browser-default),
+input[type="tel"]:not(.browser-default),
+input[type="number"]:not(.browser-default),
+input[type="search"]:not(.browser-default),
+textarea.materialize-textarea {
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 300px;
+  height: 30px;
+  position: unset;
+  padding: 0px 5px;
+  margin-left: 5px;
 }
 
-.input-group{
-    display:flex;
-    border-collapse: collapse;
-    justify-content: center;
-    align-items: center;
-    width:70%;
+.input-group {
+  display: flex;
+  border-collapse: collapse;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
 }
 
-.chatLink{
-    padding:0px;
+.chatLink {
+  padding: 0px;
 }
 
-.copy{
-    font-weight: 300;
+.copy {
+  font-weight: 300;
 }
 
-
-i{
-    padding:7px 5px 7px;  
+i {
+  padding: 7px 5px 7px;
 }
 
-i:hover{
-    font-weight: 100
+i:hover {
+  font-weight: 100;
 }
-
 </style>
