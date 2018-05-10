@@ -29,7 +29,10 @@ h1 {
     font-weight: 100;
     font-size: 3rem;
     color:#fff;
-    margin-top:20px;
+    margin:0px;
+    padding-top:20px;
+    padding-bottom:5px;
+    background-color: rgba(105, 105, 105, 0.795);
 }
 
 </style>

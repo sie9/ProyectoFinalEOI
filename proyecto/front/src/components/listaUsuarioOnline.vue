@@ -8,6 +8,7 @@
 import firebase from "firebase";
 import UsuarioOnline from "./UsuarioOnline";
 
+
 //hola
 export default {
   name: "listaUsuarioOnline",
@@ -37,7 +38,7 @@ export default {
 
 .userList{
   overflow-y:auto;
-  max-height:90vh;
+  max-height:92vh;
   background-color: rgba(240, 240, 240, 0.815);
 }
 

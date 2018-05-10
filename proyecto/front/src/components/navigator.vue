@@ -1,6 +1,6 @@
 <template>
 <div>
-     <nav>
+     <nav class="nav">
        <div class="left brand-logo">
         <a href="#"><img src="../assets/img/chat2.png" alt=""></a>
        </div>
@@ -75,8 +75,6 @@ export default {
   methods: {
     changeLang(lang) {
       this.$emit("lang", lang);
-
-      /* this.lang = lang; */
     },
     onSubmit() {
       if (this.email.includes("@")) {
@@ -103,10 +101,11 @@ export default {
 
 <style scoped>
 
-nav{
-    background:rgb(169, 170, 173);
+.nav{
+    background:#fca331;
     display:flex;
     flex-wrap: nowrap;
+    box-shadow:0 4px 2px 1px rgba(61, 61, 61,0.5);
 }
 
 .brand-logo{

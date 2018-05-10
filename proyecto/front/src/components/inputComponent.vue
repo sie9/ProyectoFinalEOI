@@ -1,19 +1,18 @@
 <template>
-    <div class="container">
-        <div class="row">
-           <!-- Input -->
-            <div class="input-field col s10">
+    <div class="inputCont">
+        <div class="row grid">
+            <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
                 <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg">
             </div>
-            <!-- Boton enviar -->
+            <div>
             <a class="waves-effect waves-light btn col s1" v-on:click="writetodB">
                 <i class="material-icons">send</i>
             </a>
-            <!-- Boton audio -->
             <a class="btn btn2 col s1" v-on:click="recordtodB">
                 <i class="fas fa-microphone"></i>
             </a>
+            </div>
         </div>
     </div>
 </template>
@@ -68,14 +67,32 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.inputCont{
+
+  background: #fff;
+}
+.grid{
+  display: grid;
+  grid-template-columns:repeat(2,1000px) 1fr;
+}
+
+.grid-input{
+  grid-column: 1/2
+}
+.row.flex{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,255,255,0.95)
+}
 
 .btn {
   border-radius: 10px 0 0 10px;
-  background-color: limegreen;
+  background-color: #fca331;
 }
 
 .btn:hover {
-  background-color: lime;
+  background-color: #fca331;
 }
 
 .btn2 {

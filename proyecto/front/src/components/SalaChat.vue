@@ -1,14 +1,10 @@
 <template>
-  <div id="app" class="main-SalaChat">
+  <div id="app" class="main-SalaChat grid">
     
-    <navigator @lang='changeLang'></navigator>
-    <div class="row">
-      <div class="col s12">
-        <listaUsuarioOnline class="col s3"></listaUsuarioOnline>
-    <chatTitle class="chatTitle"></chatTitle>
-        <chat-box class="col s9" :dato="lang"></chat-box>       
-      </div>   
-    </div>
+    <navigator @lang='changeLang' class="grid-fullview"></navigator>
+        <listaUsuarioOnline class="grid-aside"></listaUsuarioOnline>
+        <chat-box :dato="lang" class="grid-contentview"></chat-box>  
+   
   </div>
   
 </template>
@@ -18,6 +14,7 @@ import navigator from "./navigator";
 import chatBox from "./chatBox";
 import chatTitle from "./chatTitle";
 import listaUsuarioOnline from "./listaUsuarioOnline";
+import inputComponent from "./inputComponent";
 import firebase from "firebase";
 
 export default {
@@ -26,7 +23,8 @@ export default {
     chatBox,
     chatTitle,
     navigator,
-    listaUsuarioOnline
+    listaUsuarioOnline,
+    inputComponent
   },
   data() {
     return {
@@ -132,6 +130,31 @@ export default {
 </script>
 
 <style scoped>
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+
+}
+
+.grid-contentview{
+grid-column: 2/5
+}
+
+.grid-aside{
+  grid-column: 1/2;
+  grid-row: 2/4
+
+}
+
+.grid-fullview{
+grid-column: 1/5
+}
+
+.container.maindiv.col.s12{
+  display:flex;
+justify-content: flex-end;
+}
 .col.s12{
   padding:0px;
 }

@@ -1,8 +1,7 @@
 <template>
 <div class="userCard">
-      <div class=" card darken-1 col s4 valign-wrapper " >
+      <div class=" card darken-1 valign-wrapper " >
       <div class="userimage-border">
-        <!-- <img src="../assets/img/user_ex2.jpg" alt="" class="userimg col s4"> -->
       </div>         
         <span>
           Id: {{conver.id}}
@@ -32,7 +31,7 @@ display:flex;
   border:1px solid grey;
   width: 50px;
   height: 50px;
-  background-image: url('../assets/img/user_ex2.jpg');
+  background-image: url('https://source.unsplash.com/1600x900/?face');
   background-position:center;
   background-size: cover;
 }
@@ -46,7 +45,7 @@ display:flex;
 
 }
 
- .card.darken-1.col.s4.valign-wrapper{
+ .card.darken-1.valign-wrapper{
   margin:0px;
   width:100%
  }

@@ -1,12 +1,10 @@
 <template>
-  <div class="container maindiv">
+  <div class="maindiv">
       <chatTitle class="chatTitle"></chatTitle>
-      <button v-on:click= "clearAllFirebase">Limpiar Firebase</button>
       <div class="display">
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       </div>
       <inputComponent></inputComponent>
-
   </div>
 </template>
 
@@ -80,7 +78,7 @@ export default {
       
   },
   components: {
-    PostUser, inputComponent, languageChoice, login
+    PostUser, inputComponent, languageChoice, login, chatTitle
   },
   props : ['dato']
 }
@@ -90,18 +88,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.container.maindiv {
+.maindiv {
   overflow-y:visible;
   height: 80vh;
   display:flex;
   flex-direction: column;
+  background: rgba(184, 184, 184, 0.5);
 }
 
+.chatTitle{
+border-bottom:1px solid #fff;
+box-shadow:0 4px 2px -2px rgb(65, 64, 64);
+}
 .display{
   flex:1;
-  background: rgba(184, 184, 184, 0.5);
-  margin-bottom:30px;
+  padding-top:10px;
   overflow: auto;
+  max-height: 100%
 }
 
 .display::-webkit-scrollbar {
@@ -116,5 +119,6 @@ export default {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
 
 </style>
