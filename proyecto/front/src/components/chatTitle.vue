@@ -27,6 +27,9 @@ export default {
 h1 {
     font-family: 'Amatic SC', cursive;
     font-weight: 100;
+    font-size: 3rem;
+    color:#fff;
+    margin-top:20px;
 }
 
 </style>

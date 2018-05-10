@@ -1,18 +1,16 @@
 <template>
-  <div id="app">
+  <div id="app" class="main-SalaChat">
     
     <navigator @lang='changeLang'></navigator>
-    <chatTitle></chatTitle>
+    <chatTitle class="chatTitle"></chatTitle>
     <div class="row">
       <div class="col s12">
         <listaUsuarioOnline class="col s3" style="overflow-y:scroll; max-height: 100%;"></listaUsuarioOnline>
-        <chat-box class="col s9" :dato="lang"></chat-box>
-        
-      </div>
-      
+        <chat-box class="col s9" :dato="lang"></chat-box>       
+      </div>   
     </div>
-    
   </div>
+  
 </template>
 
 <script>
@@ -134,7 +132,12 @@ export default {
 </script>
 
 <style scoped>
-#app {
+
+.chatTitle{
+  height: 10vh;
+}
+
+.main-SalaChat {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -143,7 +146,7 @@ export default {
   margin-top: 0px;
 }
 
-#app:after {
+.main-SalaChat:after {
   content: "";
   opacity: 0.5;
   top: 0;

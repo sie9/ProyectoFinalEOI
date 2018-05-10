@@ -2,10 +2,10 @@
 <div>
      <nav>
        <div class="left brand-logo">
-      <a href="#"><img src="../assets/img/chat.png" alt=""></a>
+        <a href="#"><img src="../assets/img/chat2.png" alt=""></a>
        </div>
       <share-link></share-link>
-      <language-choice @lang="changeLang" ></language-choice>
+      <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><a href="#">Yeah</a></li>
         <li><div @click="show()">Add Users</div></li>
@@ -42,7 +42,6 @@
     </div>
           
     </div>
-
 </template>
 
 <script>
@@ -98,28 +97,37 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-nav {
-  background: rgb(36, 49, 77);
-  display: flex;
-  flex-wrap: nowrap;
+
+nav{
+    background:rgb(169, 170, 173);
+    display:flex;
+    flex-wrap: nowrap;
 }
 
-.brand-logo {
-  margin-left: 20px;
-  position: initial;
-  width: 10%;
-  text-align: left;
+.brand-logo{
+    margin-left:20px;
+    position:initial;
+    width: 15%;
+    text-align:left;
 }
 
-img {
-  width: 40%;
+.language-choice{
+  margin-top:10px;
+}
+
+.select-wrapper input.select-dropdown{
+  border-bottom:none;
+}
+
+img{
+  width:40%;
   filter: grayscale(100%);
   transition: filter 0.3s ease-out;
   padding-top: 5px;
 }
 
-img:hover {
-  transition: filter 0.5s ease-in;
+img:hover{
+  transition:filter .3s ease-in;
   filter: grayscale(0%);
 }
 

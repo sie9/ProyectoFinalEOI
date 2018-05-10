@@ -2,9 +2,10 @@
   <div class="row">
        <div class="input-field  offset-s5">
           <select id="select" class="icons" @change="cambiarIdioma(idioma)" v-model="idioma">
-            <option value="es" data-icon="https://source.unsplash.com/random" selected class="circle">Español</option>
-            <option value="en" data-icon="https://source.unsplash.com/random" class="circle">Ingles</option>
-            <option value="it" data-icon="https://source.unsplash.com/random" class="circle">Italiano</option>
+            <option value="" disable selected>Language</option>
+            <option value="es" data-icon="http://i68.tinypic.com/avo5ky.png" selected class="circle">Spanish</option>
+            <option value="en" data-icon="http://i64.tinypic.com/fd60km.png" class="circle">English</option>
+            <option value="it" data-icon="http://i65.tinypic.com/23jl6bn.png" class="circle">Italian</option>
           </select>
         </div>
   </div>
