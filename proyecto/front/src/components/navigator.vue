@@ -8,14 +8,38 @@
       <language-choice @lang="changeLang" ></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><a href="#">Yeah</a></li>
-        <li><a href="#">Add Users</a></li>
-        <li><a href="#" @click="show()">Contact</a></li>
+        <li><div @click="show()">Add Users</div></li>
+        <li><a href="#" >Contact</a></li>
       </ul>
     
     </nav>
-    <modal name="hello-world">
-      hello, world!
-    </modal>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" @click="hide">&times;</span>
+        <h3>Añade a tus amigos a la sala!</h3>
+        
+        <div id= "Container" class="collection">
+          <div class="collection-item" style="background-color: #f0f0f0;">Amigos añadidos:</div>
+        </div>
+            
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="email" >
+            <label for="email" >Email</label>
+          </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="card-panel teal lighten-3 flow-text  offset-s2 col s4" style= "background-color: #000;">Cancelar</div>
+            <div class="card-panel teal lighten-1 flow-text col s5 " style= "background-color: #111;">Enviar</div>
+          
+        </div>
+      </div>
+    </div>
           
     </div>
 
@@ -24,9 +48,13 @@
 <script>
 import languageChoice from "./languageChoice";
 import shareLink from "./shareLink";
-import VModal from "vue-js-modal";
 
-Vue.use(VModal);
+var modal = document.getElementById("myModal");
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 export default {
   name: "navigator",
@@ -36,6 +64,7 @@ export default {
   },
   data() {
     return {
+      email: ""
       /* lang:"" */
     };
   },
@@ -45,11 +74,21 @@ export default {
 
       /* this.lang = lang; */
     },
+    onSubmit() {
+      if (this.email.includes("@")) {
+        $("#Container").append(
+          `<div class="collection-item">` + this.email + `</div>`
+        );
+        $("#email").val("");
+      }
+    },
     show() {
-      this.$modal.show("hello-world");
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
     },
     hide() {
-      this.$modal.hide("hello-world");
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
     }
   }
 };
@@ -86,5 +125,37 @@ img:hover {
 
 share-link {
   width: 80%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  z-index: 1;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 100%;
+  height: 100%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>
