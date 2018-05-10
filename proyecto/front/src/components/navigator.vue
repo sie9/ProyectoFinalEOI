@@ -5,16 +5,12 @@
         <a href="#"><img src="../assets/img/chat2.png" alt=""></a>
        </div>
       <share-link></share-link>
-      <language-choice @lang="changeLang" ></language-choice>
+      <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><a href="#">Contact</a></li>
       </ul>
-    
-    </nav>
-            
-          
+    </nav>    
     </div>
-
 </template>
 
 <script>
@@ -29,14 +25,11 @@ export default {
   },
   data(){
     return {
-      /* lang:"" */
     }
   },
   methods: {
     changeLang(lang) {
       this.$emit('lang', lang);
-
-      /* this.lang = lang; */
     }
   }
 }
@@ -56,8 +49,16 @@ nav{
 .brand-logo{
     margin-left:20px;
     position:initial;
-    width: 10%;
+    width: 15%;
     text-align:left;
+}
+
+.language-choice{
+  margin-top:10px;
+}
+
+.select-wrapper input.select-dropdown{
+  border-bottom:none;
 }
 
 img{
