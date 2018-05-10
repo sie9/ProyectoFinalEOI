@@ -41,7 +41,7 @@ export default {
           
             
           this.usuarios = data.val();
-          //console.log("obj.valu",JSON.stringify(Object.values(this.usuarios)));
+
           
           if (this.usuarios !== null) {
             var arrayUsers = Object.values(this.usuarios);
@@ -49,7 +49,6 @@ export default {
             const resultado = arrayUsers.find(usuario => usuario.id === pepe);
 
             if (typeof resultado === "undefined") {
-              console.log("estoy aqui");
               this.writedbOnlineUsers(pepe);
             }
           }else{

@@ -31,23 +31,22 @@ export default {
   watch:{
     'dato'() {
       let backUp = [];
-      this.mensajes.forEach(element => {        
+      this.mensajes.forEach(element => {   
         axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :this.dato,
-	        q : element
+	        q : element.Texto
         })
         .then((response) => {
           let traduccion=_.head(response.data.data.translations).translatedText;
           let txt = {
-          msgTrslated : traduccion
-        }        
-         backUp.push(txt.msgTrslated);
-        })
-        .catch(err => console.log(err));    
+            msgTrslated : traduccion
+          } 
+          element.Texto= txt.msgTrslated;
+        }).catch(err => console.log(err));    
+
+
       });
 
-      this.mensajes=[];
-      this.mensajes = backUp;
 
       
       
@@ -58,7 +57,6 @@ export default {
   },
   methods: {
     clearAllFirebase() {
-      console.log("He pasado por aquí");
       firebase.database().ref('Mensajes').remove();
       this.mensajes = []; 
     }
@@ -66,9 +64,9 @@ export default {
   },
   created() {  
         var route = this.$route.path; 
-        var res = route.substring(1, route.length);    
-        console.log(res);
-       firebase.database().ref('Sala'+res).child('Mensajes').on('child_added', (data) => {                     
+        var res = route.substring(1, route.length); 
+       firebase.database().ref('Sala'+res).child('Mensajes').on('child_added', (data) => {
+
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :this.dato || "en",
 	        q : data.val().text

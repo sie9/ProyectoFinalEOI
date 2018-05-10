@@ -2,9 +2,9 @@
   <div class="row">
        <div class="input-field  offset-s5">
           <select id="select" class="icons" @change="cambiarIdioma(idioma)" v-model="idioma">
-            <option value="es" data-icon="https://source.unsplash.com/random" selected class="circle">Idioma 1</option>
-            <option value="en" data-icon="https://source.unsplash.com/random" class="circle">Idioma 2</option>
-            <option value="it" data-icon="https://source.unsplash.com/random" class="circle">Idioma 3</option>
+            <option value="es" data-icon="https://source.unsplash.com/random" selected class="circle">Español</option>
+            <option value="en" data-icon="https://source.unsplash.com/random" class="circle">Ingles</option>
+            <option value="it" data-icon="https://source.unsplash.com/random" class="circle">Italiano</option>
           </select>
         </div>
   </div>
@@ -27,7 +27,7 @@ export default {
   }
 };
 $(document).ready(function() {
-  $("select").formSelect();
+  $("#select").formSelect();
 });
 </script>
 
