@@ -64,15 +64,6 @@ export default {
   }
 };
 
-/* function clear_textbox() {
-  if (document.form1.text1.value == "Texto del formulario")
-    document.form1.text1.value = "";
-}
-
-function myFunction() {
-  var x = document.getElementById("Texto");
-  x.value = x.value.toUpperCase();
-} */
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
