@@ -25,15 +25,14 @@
         </div>
             
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field col s12" >
             <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="email" >
             <label for="email" >Email</label>
           </div>
         </div>
        
-        <div class="row">
-            <div class="card-panel teal lighten-3 flow-text  offset-s2 col s4" style= "background-color: #000;">Cancelar</div>
-            <div class="card-panel teal lighten-1 flow-text col s5 " style= "background-color: #111;">Enviar</div>
+        <div class="row" v-if="email!=''">
+            <div class="card-panel flow-text email-button">Enviar</div>
           
         </div>
       </div>
@@ -267,12 +266,17 @@ share-link {
   padding: 0 15px;
 }
 
+.addUser:hover{
+  background-color: #a56b20;
+}
+
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   z-index: 1;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  height: 200%;
+  width:50%;
+  background-color: rgba(0, 0, 0, 0.4); 
 }
 
 /* Modal Content */
@@ -280,8 +284,10 @@ share-link {
   background-color: #fefefe;
   margin: auto;
   border: 1px solid #888;
-  width: 80%;
-  height: 100%;
+  width: 50%;
+  min-height: 60%;
+  height: auto;;
+  padding-bottom:50px;
 }
 
 /* The Modal (background) */
@@ -299,6 +305,25 @@ share-link {
   border: 1px solid #888;
   width: 100px;
   height: auto;
+}
+
+.email-button{
+  cursor: pointer;
+  background-color: rgb(37, 231, 118);
+}
+.email-button:hover{
+  background-color: rgb(26, 148, 77);
+  color:white
+}
+
+.cancel-button{
+  cursor: pointer;
+  background-color: rgb(231, 60, 37);
+}
+
+.cancel-button:hover{
+  background-color: rgb(138, 36, 23);
+  color:white;
 }
 
 /* The Close Button */
