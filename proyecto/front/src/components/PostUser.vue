@@ -7,7 +7,7 @@
         <span>
           {{conver.Texto}}
         </span>
-        <small><a href="#" title="See the original message"><i class="fas fa-redo"></i></a> {{fecha}} </small>       
+        <small><div title="See the original message" @click="undo()"><i class="fas fa-redo"></i></div> {{fecha}} </small>       
       </div>         
     </div>
 </div>
@@ -35,6 +35,12 @@ export default {
       var comoString = localStorage.getItem("usuario");
       return JSON.parse(comoString);
     },
+    undo() {
+
+      console.log(this.conver.Texto);
+      this.conver.Texto ="juan";
+      console.log(this.conver.Texto);
+    }
   }
 };
 </script>
