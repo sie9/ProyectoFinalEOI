@@ -224,7 +224,7 @@ export default {
     background:#fca331;
     display:flex;
     flex-wrap: nowrap;
-    box-shadow:0 4px 2px 1px rgba(61, 61, 61,0.5);
+    border-bottom:1px solid rgb(61, 61, 61);
 }
 
 .brand-logo {

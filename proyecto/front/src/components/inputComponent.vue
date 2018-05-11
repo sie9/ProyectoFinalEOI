@@ -92,6 +92,8 @@ export default {
 }
 .input-container {
   padding: 10px 50px 10px 50px;
+  border:1px solid rgb(110, 110, 110);
+  box-shadow:10px 1px 20px 5px rgba(14, 14, 14, 0.815)
 }
 .flex-button {
   display: flex;
