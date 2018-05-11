@@ -129,6 +129,9 @@ export default {
     show() {
       var modal = document.getElementById("myModal");
       modal.style.display = "block";
+
+
+      
     },
     show2() {
       var modal = document.getElementById("myModal2");

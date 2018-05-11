@@ -22,22 +22,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script>
 
-    window.onbeforeunload = closingCode;
-    function closingCode() {
-      // do something...
-      alert(1);
-      /*var existeUsuario = this.cargarUsuario("key");
+  </script>
 
+  <script>
 
-        var key = firebase
-        .database()
-        .ref("Sala" + res)
-        .child("usuariosOnline").child(existeUsuario)
-        .set({}).key;
-
-      console.log(key);*/
-      return null;
-    }
+window.event.returnValue="hola"
+    document.addEventListener("beforeunload", function(e) {
+      var confirmationMessage = "o/";
+      (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+      return confirmationMessage; //Webkit, Safari, Chrome
+    });
+}
   </script>
 </body>
 

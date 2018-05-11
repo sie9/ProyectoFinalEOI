@@ -18,23 +18,7 @@ import inputComponent from "./inputComponent";
 import firebase from "firebase";
 
 
- window.onbeforeunload = closingCode;
-    function closingCode() {
-      // do something...
-      alert(1);
-      /*var existeUsuario = this.cargarUsuario("key");
 
-
-        var key = firebase
-        .database()
-        .ref("Sala" + res)
-        .child("usuariosOnline").child(existeUsuario)
-        .set({}).key;
-
-      console.log(key);*/
-      return null;
-    }
-    
 export default {
   name: "App",
   components: {
@@ -124,14 +108,10 @@ export default {
       var comoString = JSON.stringify(value);
 
       localStorage.setItem(key, comoString);
-    },
-    handler: function handler(event) {
-      console.log('beforePageDestroyed')
     }
   },
   created() {
-    document.addEventListener('beforeunload', this.handler)
-
+    
     var existeUsuario = this.cargarUsuario("usuario");
 
     console.log("existe?", existeUsuario);
