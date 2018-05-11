@@ -5,12 +5,14 @@
                 <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
             </div>
             <div class="grid--wrapper cabecera">
-                <div>
                     <!-- Input -->
-                    <div class="login">
-                        <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="MiCuenta">
-                    </div>
-                </div>
+                  <div class="grid--quarter-columns login">
+                        <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
+                        <div>
+                          <i class="check_circle"></i>
+                          <i class="do_not_disturb_alt" value="El nombre de la sala existe"></i>
+                        </div>
+                  </div>
                 <div>
                     <!-- button -->
                     <router-link v-bind:to="msg">
@@ -34,7 +36,6 @@ export default {
       msg: ""
     };
   },
-created() {},
   methods: {
     writetodB: function() {
       var salaName = this.cargarSala();
@@ -47,23 +48,10 @@ created() {},
       console.log(res);
       firebase
         .database()
-        .ref("Sala" + res)
-        .child("Mensajes")
-        .push({
-          text: this.msg,
-          owner: privateId,
-          time: Date()
-        });
       this.msg = "";
     },
-    recordtodB: function() {
-      firebase
-        .database()
-        .ref("audios")
-        .push({});
-    },
     cargarSala: function() {
-      var comoString = localStorage.getItem("usuario");
+      var comoString = localStorage.getItem("sala");
       return JSON.parse(comoString);
     }
   }
@@ -77,7 +65,7 @@ $(document).ready(function() {
 
 
 <style scoped>
-#imagen {
+#imagen, .check_circle {
   margin: 0;
   padding: 0;
   color: black;
@@ -124,7 +112,7 @@ $(document).ready(function() {
 }
 
 .grid--quarter-columns {
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 90% 10%;
 }
 
 .grid--two-columns {
