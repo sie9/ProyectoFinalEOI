@@ -40,6 +40,7 @@ export default {
   overflow-y:auto;
   max-height:93vh;
   background-color: rgba(240, 240, 240, 0.815);
+  box-shadow: 2px 10px 10px 5px rgba(14, 14, 14, 0.815)
 }
 
 
