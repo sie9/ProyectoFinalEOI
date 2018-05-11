@@ -64,8 +64,7 @@ export default {
   created() {  
         var route = this.$route.path; 
         var res = route.substring(1, route.length);    
-       firebase.database().ref('Sala'+res).child('Mensajes').on('child_added', (data) => { 
-    
+       firebase.database().ref('Sala'+res).child('Mensajes').on('child_added', (data) => {    
           axios.post('https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ',{
           target :this.dato || "en",
 	        q : data.val().text
@@ -76,9 +75,15 @@ export default {
               msgTrslated : traduccion
           }
         
-
           $(".display").stop().animate({ scrollTop: $(".display")[0].scrollHeight}, 500);
           this.mensajes.push({Texto:txt.msgTrslated, Fecha: data.val().time, owner:data.val().owner});
+          this.mensajes.sort(function(a, b){
+          var keyA = new Date(a.Fecha),
+          keyB = new Date(b.Fecha);
+          if(keyA < keyB) return -1;
+          if(keyA > keyB) return 1;
+          return 0;
+          });
         })
         .catch(err => console.log(err));        
       })
@@ -104,8 +109,6 @@ export default {
   background: rgba(184, 184, 184, 0.5);
 }
 
-
-
 .chatTitle{
 border-bottom:1px solid #fff;
 box-shadow:0 4px 2px -2px rgb(65, 64, 64);
@@ -128,15 +131,5 @@ box-shadow:0 4px 2px -2px rgb(65, 64, 64);
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
-.right{
-  position:absolute;
-  right:0;
-}
-
-.left{
-  position:absolute;
-  left:0;
-}
-
 
 </style>

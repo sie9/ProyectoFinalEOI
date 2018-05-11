@@ -1,8 +1,7 @@
 <template>
 <div class="container">
-    <div class="row" v-bind:class="{'right': conver.owner== 'Guest-b7c7d3507920'}">
+    <div class="row" v-bind:class="{'rightMsg': conver.owner== this.cargarUsuario()}">
       <div class="userimage-border">
-        <!-- <img src="../assets/img/user_ex2.jpg" alt="" class="userimg col s4"> -->
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
@@ -24,11 +23,18 @@ export default {
   props: ["conver"],
   data() {
     return {
-      fecha: ""
+      fecha: "",
+      
     };
   }, 
   created() {
     this.fecha = moment(this.conver.Fecha).fromNow();
+  },
+  methods:{
+    cargarUsuario() {
+      var comoString = localStorage.getItem("usuario");
+      return JSON.parse(comoString);
+    },
   }
 };
 </script>
@@ -93,6 +99,11 @@ small a{
 small a:hover{
   text-decoration: none;
   color:#808080
+}
+
+.rightMsg{
+ float:none;
+ justify-content: flex-end;
 }
 
 </style>
