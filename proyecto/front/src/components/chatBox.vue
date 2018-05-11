@@ -90,7 +90,7 @@ export default {
 
 .maindiv {
   overflow-y:visible;
-  height: 93vh;
+  height: 90vh;
   display:flex;
   flex-direction: column;
   background: rgba(184, 184, 184, 0.5);
