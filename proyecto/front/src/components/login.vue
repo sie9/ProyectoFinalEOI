@@ -1,85 +1,30 @@
 <template>
-    <div class="container">
+    <div class="main">
         <div class="row login-box">
             <div class="logo-chat">
                 <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
             </div>
             <div class="grid--wrapper cabecera">
-                <div class="grid--quarter-columns">
-                    <ul class="lang roundborders large">
-                        <a href="#en">
-                            <li>
-                                <img src="http://i64.tinypic.com/fd60km.png" />
-                            </li>
-                        </a>
-                        <a href="#de">
-                            <li>
-                                <img src="http://i63.tinypic.com/10zmzyb.png" />
-                            </li>
-                        </a>
-                        <a href="#fr">
-                            <li>
-                                <img src="http://i65.tinypic.com/300b30k.png" />
-                            </li>
-                        </a>
-                        <a href="#es">
-                            <li>
-                                <img src="http://i68.tinypic.com/avo5ky.png" />
-                            </li>
-                        </a>
-                        <a href="#it">
-                            <li>
-                                <img src="http://i65.tinypic.com/23jl6bn.png" />
-                            </li>
-                        </a>
-                    </ul>
                     <!-- Input -->
-                    <div class="login">
-                        <input id="Texto" type="text" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="MiCuenta">
-                    </div>
-                </div>
-                <div class="grid--two-columns">
-                    <div></div>
+                  <div class="grid--quarter-columns login">
+                        <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
+                        <div>
+                          <i class="check_circle"></i>
+                          <i class="do_not_disturb_alt" value="El nombre de la sala existe"></i>
+                        </div>
+                  </div>
+                <div>
                     <!-- button -->
                     <router-link v-bind:to="msg">
+<<<<<<< HEAD
                         <div class="waves-effect waves-light btn col s12">
+=======
+                        <a class="waves-effect waves-light btn col s12" v-on:click="writetodB">
+>>>>>>> front-perfect-login
                            <strong> CREATE ROOM </strong>
                         </div>
                     </router-link>
                 </div>
-            </div>
-            <div class="texto">
-              <h3>Métodos de uso:</h3>
-            <ul class="list-inline">
-                <li>
-                  <div class="grid--two-columns">
-                    <img src="../assets/user.png" alt="" class="icono">
-                    <div>
-                      <h4>1. Cómo empezar</h4>
-                      <p>Haga clic en "Iniciar conversación", inicie sesión e introduzca su nombre y su idioma.</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="grid--two-columns">
-                    <img src="../assets/user.png" alt="" class="icono">
-                    <div>
-                      <h4>2. Comparta</h4>
-                      <p>Comparta el código de la conversación con otros participantes para que puedan unirse a través de la aplicación Translator o a través del sitio web</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="grid--two-columns">
-                    <img src="../assets/user.png" alt="" class="icono">
-                    <div>
-                      <h4>3. Hable</h4>
-                      <p>Hable o escriba en su idioma para comunicarse con otros participantes que podrán ver sus mensajes en su propio idioma.</p>
-                    </div>
-                  </div>
-                </li>
-            </ul>
-            
             </div>
         </div>
     </div>
@@ -95,6 +40,7 @@ export default {
       msg: ""
     };
   },
+<<<<<<< HEAD
   beforeRouteLeave(to, from, next) {
     console.log("hola");
     console.log("Sala"+this.msg);
@@ -112,8 +58,29 @@ export default {
           console.log("No existe esta sala!");
         }
       });
+=======
+  methods: {
+    writetodB: function() {
+      var salaName = this.cargarSala();
+      if (privateId == null) {
+        privateId == "El nombre de la sala existe";
+      }
+
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+      console.log(res);
+      firebase
+        .database()
+      this.msg = "";
+    },
+    cargarSala: function() {
+      var comoString = localStorage.getItem("sala");
+      return JSON.parse(comoString);
+    }
+>>>>>>> front-perfect-login
   }
 };
+
 $(document).ready(function() {
   $("select").formSelect();
 });
@@ -122,15 +89,20 @@ $(document).ready(function() {
 
 
 <style scoped>
+<<<<<<< HEAD
 p,
 h3,
 h4,
 #imagen {
+=======
+#imagen, .check_circle {
+>>>>>>> front-perfect-login
   margin: 0;
   padding: 0;
   color: black;
 }
 
+<<<<<<< HEAD
 h3,
 h4 {
   font-size: 1em;
@@ -151,26 +123,32 @@ h4 {
   padding: 20px;
   background-size: cover;
   height: 100%;
+=======
+.main {
+  position: absolute;
+  background-image: url("../assets/img/background.png");
+  background-repeat: no-repeat;
+  padding: 100px;
+  width: 100vw;
+  height: 150vh;
+
+  -webkit-background-size: 100% 100%; /* Safari 3.0 */
+  -moz-background-size: 100% 100%; /* Gecko 1.9.2 (Firefox 3.6) */
+  -o-background-size: 100% 100%; /* Opera 9.5 */
+  background-size: 100% 100%; /* Gecko 2.0 (Firefox 4.0) and other CSS3-compliant browsers */
+>>>>>>> front-perfect-login
 }
 
 .login-box {
   background-color: white;
   padding-top: 10px;
-  width: 50%;
-  height: 800px;
+  padding-bottom: 20px;
+  width: 500px;
+  /* height: 800px; */
   border-radius: 10px;
   border-style: solid;
   border-color: silver;
   box-shadow: 2px 2px 5px black;
-}
-
-.icono {
-  width: auto;
-  height: 40px;
-}
-
-.instrucciones {
-  color: black;
 }
 
 .grid--wrapper,
@@ -188,43 +166,11 @@ h4 {
 }
 
 .grid--quarter-columns {
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 90% 10%;
 }
 
 .grid--two-columns {
   grid-template-columns: 10% 90%;
-}
-
-/* button flags */
-
-.lang {
-  background-color: silver;
-  height: 40px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  margin: 0 10px 10px 0;
-}
-
-.lang li {
-  line-height: 40px;
-  border-top: 1px solid #eee;
-}
-
-.lang li:hover {
-  background-color: #eee;
-}
-
-.lang a:first-child li {
-  border: none;
-  background: silver;
-}
-
-.roundborders {
-  border-radius: 5px;
-}
-
-.large:hover {
-  height: 205px;
 }
 
 /* botones */
@@ -232,7 +178,11 @@ h4 {
 .btn {
   border-radius: 5px;
   background-color: silver;
+<<<<<<< HEAD
   color: blue;
+=======
+  color: black;
+>>>>>>> front-perfect-login
   font-family: "Signika", sans-serif;
   font-size: 1.2em;
 }
