@@ -1,15 +1,14 @@
 <template>
 <div>
-     <nav>
+     <nav class="nav">
        <div class="left brand-logo">
         <a href="#"><img src="../assets/img/chat2.png" alt=""></a>
        </div>
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
-        <li><a href="#">Yeah</a></li>
-        <li><div @click="show()">Add Users</div></li>
-        <li><div @click="show3()" >Contact</div></li>
+        <li><div @click="show()" class="addUser">Add Users</div></li>
+        <li><a href="#" >Contact</a></li>
       </ul>
     
     </nav>
@@ -31,8 +30,7 @@
             <label for="email" >Email</label>
           </div>
         </div>
-
-        
+       
         <div class="row">
             <div class="card-panel teal lighten-3 flow-text  offset-s2 col s4" style= "background-color: #000;">Cancelar</div>
             <div class="card-panel teal lighten-1 flow-text col s5 " style= "background-color: #111;">Enviar</div>
@@ -40,9 +38,8 @@
         </div>
       </div>
     </div>
-
-    <!-- The Modal exito email -->
-    <div id="myModal2" class="modal2">
+          <!-- The Modal exito email -->
+    <div id="myModal2" class="modal">
       <!-- Modal content -->
       <div class="modal-content2">
         <span class="close" @click="hide2">&times;</span>
@@ -85,7 +82,6 @@
 <script>
 import languageChoice from "./languageChoice";
 import shareLink from "./shareLink";
-import { axios } from "axios";
 
 var modal = document.getElementById("myModal");
 window.onclick = function(event) {
@@ -114,8 +110,6 @@ export default {
   methods: {
     changeLang(lang) {
       this.$emit("lang", lang);
-
-      /* this.lang = lang; */
     },
     onSubmit() {
       if (this.email.includes("@")) {
@@ -225,10 +219,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-nav {
-  background: rgb(169, 170, 173);
-  display: flex;
-  flex-wrap: nowrap;
+
+.nav{
+    background:#fca331;
+    display:flex;
+    flex-wrap: nowrap;
+    box-shadow:0 4px 2px 1px rgba(61, 61, 61,0.5);
 }
 
 .brand-logo {
@@ -242,8 +238,12 @@ nav {
   margin-top: 10px;
 }
 
-.select-wrapper input.select-dropdown {
-  border-bottom: none;
+.select-wrapper .select-dropdown{
+  border-bottom:0px;
+}
+
+.select-wrapper input.select-dropdown:focus{
+  border-bottom:none;
 }
 
 img {
@@ -262,6 +262,11 @@ share-link {
   width: 80%;
 }
 
+.addUser{
+  cursor: pointer;
+  padding: 0 15px;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -275,7 +280,7 @@ share-link {
   background-color: #fefefe;
   margin: auto;
   border: 1px solid #888;
-  width: 100%;
+  width: 80%;
   height: 100%;
 }
 

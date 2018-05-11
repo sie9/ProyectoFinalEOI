@@ -1,14 +1,10 @@
 <template>
-  <div id="app" class="main-SalaChat">
+  <div id="app" class="main-SalaChat grid">    
+    <navigator @lang='changeLang' class="grid-fullview"></navigator>
     
-    <navigator @lang='changeLang'></navigator>
-    <chatTitle class="chatTitle"></chatTitle>
-    <div class="row">
-      <div class="col s12">
-        <listaUsuarioOnline class="col s3" style="overflow-y:scroll; max-height: 100%;"></listaUsuarioOnline>
-        <chat-box class="col s9" :dato="lang"></chat-box>       
-      </div>   
-    </div>
+    <listaUsuarioOnline class=""></listaUsuarioOnline>
+    <chat-box :dato="lang" class="grid-contentview"></chat-box>
+    
   </div>
   
 </template>
@@ -18,6 +14,7 @@ import navigator from "./navigator";
 import chatBox from "./chatBox";
 import chatTitle from "./chatTitle";
 import listaUsuarioOnline from "./listaUsuarioOnline";
+import inputComponent from "./inputComponent";
 import firebase from "firebase";
 
 export default {
@@ -26,7 +23,8 @@ export default {
     chatBox,
     chatTitle,
     navigator,
-    listaUsuarioOnline
+    listaUsuarioOnline,
+    inputComponent
   },
   data() {
     return {
@@ -132,8 +130,53 @@ export default {
 </script>
 
 <style scoped>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
 
-.chatTitle{
+.subgrid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.col-aside {
+  grid-column: 1/2;  
+}
+.col-chatbox {
+  grid-column: 2/3;
+}
+
+.grid-contentview {
+  grid-column: 2/5; 
+  
+}
+
+.grid-aside {
+  grid-column: 1/2;
+  
+}
+
+.grid-fullview {
+  grid-column: 1/5;
+}
+
+.container.maindiv.col.s12 {
+  display: flex;
+  justify-content: flex-end;
+}
+.col.s12 {
+  padding: 0px;
+}
+
+.col.s3 {
+  padding: 0px;
+}
+
+.col.s9 {
+  padding: 0px;
+}
+.chatTitle {
   height: 10vh;
 }
 
@@ -144,19 +187,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
-}
-
-.main-SalaChat:after {
-  content: "";
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-  background-image: url("../assets/img/background.jpg");
-  background-repeat: repeat-y;
-  opacity: 0.5;
 }
 </style>

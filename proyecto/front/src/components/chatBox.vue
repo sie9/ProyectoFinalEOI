@@ -1,16 +1,16 @@
 <template>
-  <div class="container maindiv">
-      <button v-on:click= "clearAllFirebase">Limpiar Firebase</button>
+  <div class="maindiv">
+      <chatTitle class="chatTitle"></chatTitle>
       <div class="display">
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       </div>
-      <inputComponent></inputComponent>
-
+      <inputComponent class="alinear"></inputComponent>
   </div>
 </template>
 
 <script>
 import login from "./login";
+import chatTitle from "./chatTitle";
 import inputComponent from "./inputComponent";
 import languageChoice from "./languageChoice";
 import firebase from "firebase";
@@ -78,7 +78,7 @@ export default {
       
   },
   components: {
-    PostUser, inputComponent, languageChoice, login
+    PostUser, inputComponent, languageChoice, login, chatTitle
   },
   props : ['dato']
 }
@@ -88,33 +88,25 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.container.maindiv {
+.maindiv {
   overflow-y:visible;
-  height: 80vh;
+  height: 93vh;
   display:flex;
   flex-direction: column;
+  background: rgba(184, 184, 184, 0.5);
 }
 
+
+
+.chatTitle{
+border-bottom:1px solid #fff;
+box-shadow:0 4px 2px -2px rgb(65, 64, 64);
+}
 .display{
   flex:1;
-  background: rgba(184, 184, 184, 0.5);
-  margin-bottom:30px;
-  overflow: auto;
+  padding-top:10px;  
+  overflow: auto;  
 }
-
-/* .display:after{
-  content: "";
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
-  background-image: url('../assets/img/background.jpg');
-  opacity:0.5
-} */
-
 
 .display::-webkit-scrollbar {
     width: 1em;
@@ -128,5 +120,6 @@ export default {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
 
 </style>

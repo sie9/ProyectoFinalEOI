@@ -1,19 +1,14 @@
 <template>
-<div class="container">
-    <div class="row">
+<div class="userCard">
+      <div class=" card darken-1 valign-wrapper " >
       <div class="userimage-border">
-        <!-- <img src="../assets/img/user_ex2.jpg" alt="" class="userimg col s4"> -->
       </div>         
-      <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
           Id: {{conver.id}}
-        </span>
-        
-      </div>
-            
-          
+        </span>     
+      </div>    
     </div>
-</div>
+
 </template>
 
 <script>
@@ -27,22 +22,34 @@ export default {
 
 <style scoped>
 /* ----------------------- Other class ---------------------------- */
+
+.userCard {
+display:flex;
+}
 .userimage-border{
   border-radius: 50%;
   border:1px solid grey;
   width: 50px;
   height: 50px;
-  background-image: url('../assets/img/user_ex2.jpg');
+  background-image: url('https://source.unsplash.com/1600x900/?face');
   background-position:center;
   background-size: cover;
 }
 
-/* .userimg {
+.card{
+  padding:15px 5px;
   margin: 0px;
-  width: 70px;
-  height: 50px;
-  border-radius: 50%
-} */
+  border-collapse:collapse;
+  border-radius:0px;
+  width:100%
+
+}
+
+ .card.darken-1.valign-wrapper{
+  margin:0px;
+  width:100%
+ }
+
 .row{
   display:flex;
   justify-content: flex-start;
@@ -50,8 +57,7 @@ export default {
 }
 
 .row .col.s4 {
-  max-width: 66%;
-  min-width: 25%;
+  max-width: 100%;
   text-align:initial;
   margin-left:10px;
   width:auto;
