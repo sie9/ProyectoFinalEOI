@@ -38,7 +38,7 @@ export default {
 
 .userList{
   overflow-y:auto;
-  max-height:92vh;
+  max-height:93vh;
   background-color: rgba(240, 240, 240, 0.815);
 }
 

@@ -4,7 +4,7 @@
       <div class="display">
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
       </div>
-      <inputComponent></inputComponent>
+      <inputComponent class="alinear"></inputComponent>
   </div>
 </template>
 
@@ -90,11 +90,13 @@ export default {
 
 .maindiv {
   overflow-y:visible;
-  height: 80vh;
+  height: 93vh;
   display:flex;
   flex-direction: column;
   background: rgba(184, 184, 184, 0.5);
 }
+
+
 
 .chatTitle{
 border-bottom:1px solid #fff;
@@ -102,9 +104,8 @@ box-shadow:0 4px 2px -2px rgb(65, 64, 64);
 }
 .display{
   flex:1;
-  padding-top:10px;
-  overflow: auto;
-  max-height: 100%
+  padding-top:10px;  
+  overflow: auto;  
 }
 
 .display::-webkit-scrollbar {

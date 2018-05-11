@@ -1,17 +1,17 @@
 <template>
     <div class="inputCont">
-        <div class="row grid">
+        <div class="input-container">
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
                 <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg">
             </div>
-            <div>
-            <a class="waves-effect waves-light btn col s1" v-on:click="writetodB">
-                <i class="material-icons">send</i>
-            </a>
-            <a class="btn btn2 col s1" v-on:click="recordtodB">
-                <i class="fas fa-microphone"></i>
-            </a>
+            <div class="flex-button">
+                <a class="waves-effect waves-light btn " v-on:click="writetodB">
+                    <i class="material-icons">send</i>
+                </a>
+                <a class="btn btn2 " v-on:click="recordtodB">
+                    <i class="fas fa-microphone"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -68,17 +68,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .inputCont{
-
   background: #fff;
 }
-.grid{
-  display: grid;
-  grid-template-columns:repeat(2,1000px) 1fr;
-}
 
-.grid-input{
-  grid-column: 1/2
-}
 .row.flex{
   display:flex;
   justify-content: center;
@@ -97,5 +89,13 @@ export default {
 
 .btn2 {
   border-radius: 0 20% 20% 0;
+}
+.input-container {
+  padding: 10px 50px 10px 50px;
+}
+.flex-button {
+  display: flex;
+  justify-content: flex-end;
+  
 }
 </style>

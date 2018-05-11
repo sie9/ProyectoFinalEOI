@@ -1,10 +1,10 @@
 <template>
-  <div id="app" class="main-SalaChat grid">
-    
+  <div id="app" class="main-SalaChat grid">    
     <navigator @lang='changeLang' class="grid-fullview"></navigator>
-        <listaUsuarioOnline class="grid-aside"></listaUsuarioOnline>
-        <chat-box :dato="lang" class="grid-contentview"></chat-box>  
-   
+    
+    <listaUsuarioOnline class=""></listaUsuarioOnline>
+    <chat-box :dato="lang" class="grid-contentview"></chat-box>
+    
   </div>
   
 </template>
@@ -130,43 +130,53 @@ export default {
 </script>
 
 <style scoped>
-
-.grid{
+.grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.grid-contentview{
-grid-column: 2/5
+.subgrid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 }
 
-.grid-aside{
+.col-aside {
+  grid-column: 1/2;  
+}
+.col-chatbox {
+  grid-column: 2/3;
+}
+
+.grid-contentview {
+  grid-column: 2/5; 
+  
+}
+
+.grid-aside {
   grid-column: 1/2;
-  grid-row: 2/4
-
+  
 }
 
-.grid-fullview{
-grid-column: 1/5
+.grid-fullview {
+  grid-column: 1/5;
 }
 
-.container.maindiv.col.s12{
-  display:flex;
-justify-content: flex-end;
+.container.maindiv.col.s12 {
+  display: flex;
+  justify-content: flex-end;
 }
-.col.s12{
-  padding:0px;
-}
-
-.col.s3{
-  padding:0px;
-}
-
-.col.s9{
+.col.s12 {
   padding: 0px;
 }
-.chatTitle{
+
+.col.s3 {
+  padding: 0px;
+}
+
+.col.s9 {
+  padding: 0px;
+}
+.chatTitle {
   height: 10vh;
 }
 
@@ -178,5 +188,4 @@ justify-content: flex-end;
   color: #2c3e50;
   margin-top: 0px;
 }
-
 </style>
