@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <div class="row">
+    <div class="row" v-bind:class="{'right': conver.owner== 'Guest-b7c7d3507920'}">
       <div class="userimage-border">
         <!-- <img src="../assets/img/user_ex2.jpg" alt="" class="userimg col s4"> -->
       </div>         
@@ -8,11 +8,8 @@
         <span>
           {{conver.Texto}}
         </span>
-        <small><a href="#" title="See the original message"><i class="fas fa-redo"></i></a> {{fecha}} </small>
-        
-      </div>
-            
-          
+        <small><a href="#" title="See the original message"><i class="fas fa-redo"></i></a> {{fecha}} </small>       
+      </div>         
     </div>
 </div>
 </template>
