@@ -42,9 +42,9 @@
                     <div></div>
                     <!-- button -->
                     <router-link v-bind:to="msg">
-                        <a class="waves-effect waves-light btn col s12">
+                        <div class="waves-effect waves-light btn col s12">
                            <strong> CREATE ROOM </strong>
-                        </a>
+                        </div>
                     </router-link>
                 </div>
             </div>

@@ -14,5 +14,6 @@ export default new Router( {
             path: '/:id',
             component: SalaChat
         }
-    ]
+    ],
+    mode: 'history'
 })

@@ -8,7 +8,7 @@
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><div @click="show()" class="addUser">Add Users</div></li>
-        <li><a href="#" >Contact</a></li>
+        <li><div @click="show3()" class="addUser">Contact</div></li>
       </ul>
     
     </nav>
