@@ -86,12 +86,32 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "login",
   data() {
     return {
       msg: ""
     };
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log("hola");
+    console.log("Sala"+this.msg);
+    firebase
+      .database()
+      .ref("Sala" +this.msg)
+      .once("value", data => {
+        console.log(data.val());
+        if (data.val() != null){
+          this.isActive = false 
+          next()
+        }else{
+          //Cambiar el orden del if (Ya que si no existe una sala, te lleva a ella y te la crea)
+          //Ahora esta como que si existe entra a la sala
+          console.log("No existe esta sala!");
+        }
+      });
   }
 };
 $(document).ready(function() {
@@ -102,7 +122,6 @@ $(document).ready(function() {
 
 
 <style scoped>
-
 p,
 h3,
 h4,
@@ -112,12 +131,14 @@ h4,
   color: black;
 }
 
-h3, h4{
+h3,
+h4 {
   font-size: 1em;
-  font-family: 'Signika', sans-serif
+  font-family: "Signika", sans-serif;
 }
 
-p, h4 {
+p,
+h4 {
   text-align: left;
 }
 .texto {
@@ -212,9 +233,8 @@ p, h4 {
   border-radius: 5px;
   background-color: silver;
   color: blue;
-  font-family: 'Signika', sans-serif;
+  font-family: "Signika", sans-serif;
   font-size: 1.2em;
-
 }
 
 .btn:hover {

@@ -17,6 +17,24 @@ import listaUsuarioOnline from "./listaUsuarioOnline";
 import inputComponent from "./inputComponent";
 import firebase from "firebase";
 
+
+ window.onbeforeunload = closingCode;
+    function closingCode() {
+      // do something...
+      alert(1);
+      /*var existeUsuario = this.cargarUsuario("key");
+
+
+        var key = firebase
+        .database()
+        .ref("Sala" + res)
+        .child("usuariosOnline").child(existeUsuario)
+        .set({}).key;
+
+      console.log(key);*/
+      return null;
+    }
+    
 export default {
   name: "App",
   components: {
@@ -64,14 +82,23 @@ export default {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
 
-      firebase
+      var key = firebase
         .database()
         .ref("Sala" + res)
         .child("usuariosOnline")
         .push({
           Conexion: Date(),
           id: usuario
-        });
+        }).key;
+
+      console.log(key);
+
+      var existekey = this.cargarUsuario("key");
+      console.log("existekey?", existekey);
+
+      if (existekey == null) {
+        this.guardarUsuario("key", key);
+      }
     },
     updatedbOnlineUsers: function(usuario) {
       var route = this.$route.path;
@@ -84,8 +111,8 @@ export default {
           id: usuario
         });
     },
-    cargarUsuario: function() {
-      var comoString = localStorage.getItem("usuario");
+    cargarUsuario: function(key) {
+      var comoString = localStorage.getItem(key);
       return JSON.parse(comoString);
     },
     s4: function() {
@@ -93,34 +120,26 @@ export default {
         .toString(16)
         .substring(1);
     },
-    guardarUsuario: function(usuario) {
-      var comoString = JSON.stringify(usuario);
+    guardarUsuario: function(key, value) {
+      var comoString = JSON.stringify(value);
 
-      localStorage.setItem("usuario", comoString);
+      localStorage.setItem(key, comoString);
     },
-    cargarUsuario: function() {
-      var comoString = localStorage.getItem("usuario");
-      return JSON.parse(comoString);
+    handler: function handler(event) {
+      console.log('beforePageDestroyed')
     }
   },
   created() {
-    var existeUsuario = this.cargarUsuario();
+    document.addEventListener('beforeunload', this.handler)
 
+    var existeUsuario = this.cargarUsuario("usuario");
+
+    console.log("existe?", existeUsuario);
     if (existeUsuario == null) {
-      this.privateId =
-        this.s4() +
-        this.s4() +
-        "-" +
-        this.s4() +
-        "-" +
-        this.s4() +
-        "-" +
-        this.s4() +
-        "-" +
-        this.s4() +
-        this.s4() +
-        this.s4();
-      this.guardarUsuario(this.privateId);
+      console.log("entra?");
+      this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
+      this.guardarUsuario("usuario", this.privateId);
+      existeUsuario = this.privateId;
     }
 
     this.getUsers(existeUsuario);
@@ -141,20 +160,18 @@ export default {
 }
 
 .col-aside {
-  grid-column: 1/2;  
+  grid-column: 1/2;
 }
 .col-chatbox {
   grid-column: 2/3;
 }
 
 .grid-contentview {
-  grid-column: 2/5; 
-  
+  grid-column: 2/5;
 }
 
 .grid-aside {
   grid-column: 1/2;
-  
 }
 
 .grid-fullview {
