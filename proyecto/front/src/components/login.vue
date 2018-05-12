@@ -72,11 +72,11 @@ $(document).ready(function() {
 
 .main {
   position: absolute;
-  background-image: url("../assets/img/background.png");
+  background-image: url("../assets/img/background2.png");
   background-repeat: no-repeat;
   padding: 100px;
   width: 100vw;
-  height: 150vh;
+  height: 110vh;
 
   -webkit-background-size: 100% 100%; /* Safari 3.0 */
   -moz-background-size: 100% 100%; /* Gecko 1.9.2 (Firefox 3.6) */
