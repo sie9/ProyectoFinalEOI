@@ -7,7 +7,7 @@
             <div class="grid--wrapper cabecera">
                     <!-- Input -->
                   <div class="grid--quarter-columns login">
-                        <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
+                        <input id="Texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
                         <div>
                           <i class="check_circle"></i>
                           <i class="do_not_disturb_alt" value="El nombre de la sala existe"></i>
@@ -36,12 +36,15 @@ export default {
       msg: ""
     };
   },
+  watch:{
+    'msg'() {
+      this.msg=this.msg.toLowerCase();
+    }  
+  },
   beforeRouteLeave(to, from, next) {
-    console.log("hola");
-    console.log("Sala"+this.msg);
     firebase
       .database()
-      .ref("Sala" +this.msg)
+      .ref("Sala" + this.msg)
       .once("value", data => {
         console.log(data.val());
         if (data.val() != null){

@@ -2,7 +2,8 @@
   <div class="maindiv">
       <chatTitle class="chatTitle"></chatTitle>
       <div class="display">
-        <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
+        <loaders :conver="this.cond"></loaders>
+        <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
       </div>
       <inputComponent class="alinear"></inputComponent>
   </div>
@@ -15,6 +16,7 @@ import inputComponent from "./inputComponent";
 import languageChoice from "./languageChoice";
 import firebase from "firebase";
 import PostUser from "./PostUser";
+import loaders from "./loaders";
 import axios from "axios";
 import _ from "lodash";
 
@@ -25,7 +27,8 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
-      mensajes: []
+      mensajes: [],
+      cond: false
     };
   },
   watch:{
@@ -83,7 +86,10 @@ export default {
           if(keyA < keyB) return -1;
           if(keyA > keyB) return 1;
           return 0;
+
+          
           });
+          this.cond=true;
         })
         .catch(err => console.log(err));        
       })
@@ -91,7 +97,12 @@ export default {
   },
 
   components: {
-    PostUser, inputComponent, languageChoice, login, chatTitle
+    PostUser, 
+    inputComponent,
+    languageChoice,
+    login, 
+    chatTitle,
+    loaders
   },
   props : ['dato']
 }

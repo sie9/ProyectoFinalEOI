@@ -3,6 +3,7 @@
     <navigator @lang='changeLang' class="grid-fullview"></navigator>
     
     <listaUsuarioOnline class=""></listaUsuarioOnline>
+    
     <chat-box :dato="lang" class="grid-contentview"></chat-box>
     
   </div>
