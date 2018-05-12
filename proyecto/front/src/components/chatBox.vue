@@ -76,7 +76,7 @@ export default {
           }
         
           $(".display").stop().animate({ scrollTop: $(".display")[0].scrollHeight}, 500);
-          this.mensajes.push({Texto:txt.msgTrslated, Fecha: data.val().time, owner:data.val().owner});
+          this.mensajes.push({Texto:txt.msgTrslated, Fecha: data.val().time, owner:data.val().owner, original: data.val().text});
           this.mensajes.sort(function(a, b){
           var keyA = new Date(a.Fecha),
           keyB = new Date(b.Fecha);

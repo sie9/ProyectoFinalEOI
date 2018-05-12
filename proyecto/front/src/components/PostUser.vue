@@ -38,7 +38,7 @@ export default {
     undo() {
 
       console.log(this.conver.Texto);
-      this.conver.Texto ="juan";
+      this.conver.Texto = this.conver.original;
       console.log(this.conver.Texto);
     }
   }
