@@ -78,26 +78,35 @@ export default {
   background-color: rgba(255,255,255,0.95)
 }
 
+.input-container {
+  padding: 10px 50px 30px 50px;
+  border:1px solid rgb(110, 110, 110);
+  box-shadow:10px 1px 20px 5px rgba(14, 14, 14, 0.815);
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.input-field{
+  width: 90%
+}
+.flex-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-left:5px;
+  
+}
+
 .btn {
   border-radius: 10px 0 0 10px;
   background-color: #fca331;
 }
 
 .btn:hover {
-  background-color: #fca331;
+  background-color: #ce8c35;
 }
 
 .btn2 {
   border-radius: 0 20% 20% 0;
-}
-.input-container {
-  padding: 10px 50px 10px 50px;
-  border:1px solid rgb(110, 110, 110);
-  box-shadow:10px 1px 20px 5px rgba(14, 14, 14, 0.815)
-}
-.flex-button {
-  display: flex;
-  justify-content: flex-end;
-  
 }
 </style>
