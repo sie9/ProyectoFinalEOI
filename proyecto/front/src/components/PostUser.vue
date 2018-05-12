@@ -9,7 +9,7 @@
         </span>
         <small>
           <div title="Talk to me!" @click="talk()">
-            <i class="fas fa-microphone"></i>
+            <i class="fas fa-volume-up"></i>
           </div>
           <div title="See the original message" @click="undo()">
             <i class="fas fa-redo"></i>
