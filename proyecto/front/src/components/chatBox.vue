@@ -5,7 +5,9 @@
         <loaders :conver="this.cond"></loaders>
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
       </div>
+      {{dato}}
       <inputComponent class="alinear"></inputComponent>
+      
   </div>
 </template>
 
@@ -32,6 +34,8 @@ export default {
   },
   watch: {
     'dato'() {
+
+      console.log("entro", dato);
       let backUp = [];
       this.mensajes.forEach(element => {
         axios
@@ -132,7 +136,7 @@ export default {
     chatTitle,
     loaders
   },
-  props: ["dato"]
+  props: ['dato']
 };
 </script>
 

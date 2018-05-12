@@ -7,7 +7,15 @@
         <span>
           {{mensaje}}
         </span>
-        <small><div title="See the original message" @click="undo()"><i class="fas fa-redo"></i></div> {{fecha}} </small>       
+        <small>
+          <div title="Talk to me!" @click="talk()">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <div title="See the original message" @click="undo()">
+            <i class="fas fa-redo"></i>
+          </div>
+           {{fecha}} 
+        </small>       
       </div>         
     </div>
 </div>
@@ -46,6 +54,14 @@ export default {
         this.mensaje= this.conver.Texto;
         this.conver.cond = true;
       }  
+    },
+    talk() {
+      
+      var h = new SpeechSynthesisUtterance();
+      h.lang = "es-ES";
+      h.text = this.mensaje;
+    
+      speechSynthesis.speak(h);
     }
   }
 };
