@@ -52,13 +52,6 @@ export default {
           })
           .catch(err => console.log(err));
       });
-    },
-    'mensajes': () => {
-      this.mensajes.sort(function(a, b) {
-        var c = new Date(a.time);
-        var d = new Date(b.time);
-        return c - d;
-      });
     }
   },
   methods: {
@@ -119,6 +112,15 @@ export default {
             this.cond = true;
           })
           .catch(err => console.log(err));
+
+
+          if(this.mensajes.length > 0){
+            this.mensajes.sort(function(a, b) {
+            var c = new Date(a.time);
+            var d = new Date(b.time);
+            return c - d;
+          });
+      }
       });
   },
 
