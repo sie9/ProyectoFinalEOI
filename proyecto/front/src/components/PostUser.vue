@@ -75,7 +75,7 @@ export default {
       
       var h = new SpeechSynthesisUtterance();
       h.lang = "es-ES";
-      h.text = this.mensaje;
+      h.text = this.conver.Texto;
     
       speechSynthesis.speak(h);
     }
