@@ -35,7 +35,6 @@ export default {
   watch: {
     'dato'() {
 
-      console.log("entro", dato);
       let backUp = [];
       this.mensajes.forEach(element => {
         axios
