@@ -11,7 +11,7 @@
           <div title="Talk to me!" @click="talk()">
             <i class="fas fa-microphone"></i>
           </div>
-          <div title="See the original message" @click="undo()">
+          <div class="reverse" title="See the original message" @click="undo()">
             <i class="fas fa-redo"></i>
           </div>
            {{fecha}} 
@@ -67,7 +67,7 @@ export default {
       }  
       
     this.angle -= -180;
-    $('small div').css ({
+    $('.reverse').css ({
         'transform': 'rotate(' + this.angle + 'deg)',
     });
     },
