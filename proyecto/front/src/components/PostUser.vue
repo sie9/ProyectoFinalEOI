@@ -5,7 +5,7 @@
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
-          {{conver.Texto}}
+          {{mensaje}}
         </span>
         <small><div title="See the original message" @click="undo()"><i class="fas fa-redo"></i></div> {{fecha}} </small>       
       </div>         
@@ -24,11 +24,13 @@ export default {
   data() {
     return {
       fecha: "",
+      mensaje:"",
       
     };
   }, 
   created() {
     this.fecha = moment(this.conver.Fecha).fromNow();
+    this.mensaje= this.conver.Texto;
   },
   methods:{
     cargarUsuario() {
@@ -37,9 +39,13 @@ export default {
     },
     undo() {
 
-      console.log(this.conver.Texto);
-      this.conver.Texto = this.conver.original;
-      console.log(this.conver.Texto);
+      if ( this.conver.cond ){
+        this.mensaje = this.conver.original;
+        this.conver.cond = false;
+      }else{
+        this.mensaje= this.conver.Texto;
+        this.conver.cond = true;
+      }  
     }
   }
 };
