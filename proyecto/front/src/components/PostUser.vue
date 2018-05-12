@@ -49,6 +49,10 @@ export default {
 
 <style scoped>
 /* ----------------------- Other class ---------------------------- */
+
+.container{
+  font-family: 'Montserrat', sans-serif;
+}
 .userimage-border{
   border-radius: 50%;
   border:1px solid grey;
@@ -59,12 +63,6 @@ export default {
   background-size: cover;
 }
 
-/* .userimg {
-  margin: 0px;
-  width: 70px;
-  height: 50px;
-  border-radius: 50%
-} */
 .row{
   display:flex;
   justify-content: flex-start;
@@ -88,6 +86,8 @@ span {
 }
 
 small{
+  display:flex;
+  justify-content: space-around;
   position:absolute;
   bottom:0;
   right:0;
@@ -96,13 +96,14 @@ small{
   
 }
 
-small a{
+small div{
   text-decoration: none;
   color:#80808096;
   margin-right: 5px;
+  cursor: pointer;
 }
 
-small a:hover{
+small div:hover{
   text-decoration: none;
   color:#808080
 }

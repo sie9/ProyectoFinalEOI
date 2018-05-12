@@ -77,13 +77,14 @@ export default {
         
           $(".display").stop().animate({ scrollTop: $(".display")[0].scrollHeight}, 500);
           this.mensajes.push({Texto:txt.msgTrslated, Fecha: data.val().time, owner:data.val().owner});
-          this.mensajes.sort(function(a, b){
-          var keyA = new Date(a.Fecha),
-          keyB = new Date(b.Fecha);
-          if(keyA < keyB) return -1;
-          if(keyA > keyB) return 1;
-          return 0;
+          this.mensajes = this.mensajes.sort(function(a, b){
+            var keyA = new Date(a.Fecha),
+            keyB = new Date(b.Fecha);
+            if(keyA < keyB) return -1;
+            if(keyA > keyB) return 1;
+            return 0;
           });
+          console.log(this.mensajes)
         })
         .catch(err => console.log(err));        
       })
