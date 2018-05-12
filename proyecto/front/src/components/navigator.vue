@@ -2,7 +2,7 @@
 <div>
      <nav class="nav">
        <div class="left brand-logo">
-        <a href="#"><img src="../assets/img/chat2.png" alt=""></a>
+        <a href="#"><img src="../assets/img/chat.png" alt="Logo Chatty"></a>
        </div>
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
@@ -22,6 +22,7 @@
         
         <div id= "Container" class="collection">
           <div class="collection-item" style="background-color: #f0f0f0;">Amigos añadidos:</div>
+          <div class="collection-item" v-for="(email,index) in emails">  {{email}} <span @click='borrarEmail(index)' > x </span></div>
         </div>
             
         <div class="row">
@@ -31,9 +32,8 @@
           </div>
         </div>
        
-        <div class="row" v-if="email!=''">
-            <div class="card-panel flow-text email-button">Enviar</div>
-          
+        <div class="row" v-if="emails.length>0">
+            <div class="card-panel flow-text email-button" @click="sendMail()">Enviar</div>
         </div>
       </div>
     </div>
@@ -68,8 +68,7 @@
         </div>
        
         <div class="row">
-            <div class="card-panel teal lighten-3 flow-text  offset-s2 col s4" style= "background-color: #000;">Cancelar</div>
-            <div class="card-panel teal lighten-1 flow-text col s5 " style= "background-color: #111;" @click="onSubmit2()">Enviar</div>
+            <div class="card-panel teal lighten-1 flow-text col s5 " style= "background-color: #111;" @click="onSubmit2()" v-if="contacto.email!='' && contacto.asunto!=''">Enviar</div>
           
         </div>
       </div>
@@ -106,18 +105,26 @@ export default {
       /* lang:"" */
     };
   },
+  created() {
+    $(document).ready(function() {
+      M.updateTextFields();
+    });
+  },
   methods: {
+    borrarEmail(index){
+      console.log(index);
+      this.emails.splice(index, 1);
+    },
     changeLang(lang) {
       this.$emit("lang", lang);
     },
     onSubmit() {
       if (this.email.includes("@")) {
-        $("#Container").append(
-          `<div class="collection-item">` + this.email + `</div>`
-        );
-        $("#email").val("");
+        
         this.emails.push(this.email);
-        this.sendMail();
+        this.email="";
+        $("#email").val("");
+        //this.sendMail();
       }
     },
     onSubmit2() {
@@ -128,7 +135,8 @@ export default {
     show() {
       var modal = document.getElementById("myModal");
       modal.style.display = "block";
-
+      this.hide2();
+      this.hide3();
 
       
     },
@@ -144,6 +152,8 @@ export default {
     show3() {
       var modal = document.getElementById("myModal3");
       modal.style.display = "block";
+      this.hide();
+      this.hide2();
     },
     hide() {
       var modal = document.getElementById("myModal");
@@ -249,7 +259,7 @@ export default {
 }
 
 img {
-  width: 40%;
+  width: 50%;
   filter: grayscale(100%);
   transition: filter 0.3s ease-out;
   padding-top: 5px;
@@ -275,11 +285,19 @@ share-link {
 
 /* The Modal (background) */
 .modal {
-  display: none;
+  /* display: none;
   z-index: 1;
-  height: 200%;
+  height: 100vh;
   width:50%;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);  */
+  position: absolute;
+    top:0;
+    background:rgba(0,0,0,0.6);
+    z-index:5;
+    width:100vw;
+    height:100vh;
+    display:none;
+    padding:10% 0;
 }
 
 /* Modal Content */

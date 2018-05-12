@@ -3,7 +3,7 @@
         <div class="input-container">
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
-                <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg">
+                <input id="Texto" type="text" v-on:keyup.enter="writetodB" value="" class="validate" v-model="msg">
             </div>
             <div class="flex-button">
                 <a class="waves-effect waves-light btn " v-on:click="writetodB">
@@ -78,26 +78,35 @@ export default {
   background-color: rgba(255,255,255,0.95)
 }
 
+.input-container {
+  padding: 10px 50px 30px 50px;
+  border:1px solid rgb(110, 110, 110);
+  box-shadow:10px 1px 20px 5px rgba(14, 14, 14, 0.815);
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.input-field{
+  width: 90%
+}
+.flex-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-left:5px;
+  
+}
+
 .btn {
   border-radius: 10px 0 0 10px;
   background-color: #fca331;
 }
 
 .btn:hover {
-  background-color: #fca331;
+  background-color: #ce8c35;
 }
 
 .btn2 {
   border-radius: 0 20% 20% 0;
-}
-.input-container {
-  padding: 10px 50px 10px 50px;
-  border:1px solid rgb(110, 110, 110);
-  box-shadow:10px 1px 20px 5px rgba(14, 14, 14, 0.815)
-}
-.flex-button {
-  display: flex;
-  justify-content: flex-end;
-  
 }
 </style>

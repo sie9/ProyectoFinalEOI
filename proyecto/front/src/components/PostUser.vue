@@ -1,18 +1,22 @@
 <template>
 <div class="container">
-    <div class="row">
+    <div class="row" v-bind:class="{'rightMsg': conver.owner== this.cargarUsuario()}">
       <div class="userimage-border">
-        <!-- <img src="../assets/img/user_ex2.jpg" alt="" class="userimg col s4"> -->
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
           {{conver.Texto}}
         </span>
-        <small><a href="#" title="See the original message"><i class="fas fa-redo"></i></a> {{fecha}} </small>
-        
-      </div>
-            
-          
+        <small>
+          <div title="Talk to me!" @click="talk()">
+            <i class="fas fa-volume-up"></i>
+          </div>
+          <div class="reverse" title="See the original message" @click="undo()">
+            <i class="fas fa-redo"></i>
+          </div>
+           {{fecha}} 
+        </small>       
+      </div>         
     </div>
 </div>
 </template>
@@ -24,14 +28,57 @@ import moment from "moment";
 
 export default {
   name: "PostUser",
-  props: ["conver"],
+  props: ['conver'],
   data() {
     return {
-      fecha: ""
+      fecha: "",
+      mensaje:"",
+      angle:""
+      
     };
+  },
+  watch:{
+    'conver'(){
+      console.log("cambio", this.conver);
+    }
+
   }, 
   created() {
     this.fecha = moment(this.conver.Fecha).fromNow();
+    //this.mensaje= this.conver.Texto;
+  },
+  methods:{
+    cargarUsuario() {
+      var comoString = localStorage.getItem("usuario");
+      return JSON.parse(comoString);
+    },
+    undo() {
+      
+      if ( this.conver.cond ){
+        var aux = this.conver.Texto;
+        this.conver.Texto= this.conver.original;
+        this.conver.original = aux;
+        this.conver.cond = false;
+      }else{
+        var aux = this.conver.Texto;
+        this.conver.Texto= this.conver.original;
+        this.conver.original = aux;
+        this.conver.cond = true;
+      }  
+      
+    this.angle -= -180;
+    $('.reverse').css ({
+        'transform': 'rotate(' + this.angle + 'deg)',
+    });
+    },
+    talk() {
+      
+      var h = new SpeechSynthesisUtterance();
+      h.lang = "es-ES";
+      h.text = this.mensaje;
+    
+      speechSynthesis.speak(h);
+    }
   }
 };
 </script>
@@ -40,6 +87,10 @@ export default {
 
 <style scoped>
 /* ----------------------- Other class ---------------------------- */
+
+.container{
+  font-family: 'Montserrat', sans-serif;
+}
 .userimage-border{
   border-radius: 50%;
   border:1px solid grey;
@@ -50,12 +101,6 @@ export default {
   background-size: cover;
 }
 
-/* .userimg {
-  margin: 0px;
-  width: 70px;
-  height: 50px;
-  border-radius: 50%
-} */
 .row{
   display:flex;
   justify-content: flex-start;
@@ -79,6 +124,8 @@ span {
 }
 
 small{
+  display:flex;
+  justify-content: space-around;
   position:absolute;
   bottom:0;
   right:0;
@@ -87,15 +134,23 @@ small{
   
 }
 
-small a{
+small div{
   text-decoration: none;
   color:#80808096;
   margin-right: 5px;
+  cursor: pointer;
+  transition:transform .3s ease-in;
 }
 
-small a:hover{
+small div:hover{
   text-decoration: none;
   color:#808080
 }
+
+.rightMsg{
+ float:none;
+ justify-content: flex-end;
+}
+
 
 </style>

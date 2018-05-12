@@ -25,6 +25,9 @@ export default {
 
 .userCard {
 display:flex;
+font-family: 'Amatic SC', cursive;
+font-weight: 700;
+font-size:1.5rem;
 }
 .userimage-border{
   border-radius: 50%;
@@ -37,12 +40,14 @@ display:flex;
 }
 
 .card{
-  padding:15px 5px;
+  padding:15px 5px 10px 5px;
   margin: 0px;
   border-collapse:collapse;
   border-radius:0px;
-  width:100%
-
+  width:100%;
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
  .card.darken-1.valign-wrapper{
@@ -67,28 +72,10 @@ span {
   line-height: 30px;
   margin-bottom:15px;
   margin-right:50px;
+  margin-left:10px;
   word-break:break-all;
   
 }
 
-small{
-  position:absolute;
-  bottom:0;
-  right:0;
-  padding-right:5px;
-  color:#808080d8; 
-  
-}
-
-small a{
-  text-decoration: none;
-  color:#80808096;
-  margin-right: 5px;
-}
-
-small a:hover{
-  text-decoration: none;
-  color:#808080
-}
 
 </style>

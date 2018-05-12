@@ -1,11 +1,11 @@
 <template>
   <div class="row">
-       <div class="input-field  offset-s5">
+       <div class="input-field">
           <select id="select" class="icons" @change="cambiarIdioma(idioma)" v-model="idioma">
             <option value="" disable selected>Language</option>
-            <option value="es" data-icon="http://i68.tinypic.com/avo5ky.png" selected class="circle">Spanish</option>
-            <option value="en" data-icon="http://i64.tinypic.com/fd60km.png" class="circle">English</option>
-            <option value="it" data-icon="http://i65.tinypic.com/23jl6bn.png" class="circle">Italian</option>
+            <option value="es" data-icon="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Spain_flag_icon.svg/600px-Spain_flag_icon.svg.png" selected class="circle">Spanish</option>
+            <option value="en" data-icon="https://media.schemeserve.com/user_images/ACCOUNT_ID_15040/GB_Flag.png" class="circle">English</option>
+            <option value="it" data-icon="http://iconbug.com/download/size/256/icon/7949/button-flag-italy/" class="circle">Italian</option>
           </select>
         </div>
   </div>
@@ -34,7 +34,13 @@ $(document).ready(function() {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .input-field.offset-s5{
+  .input-field{
     background-color: white;
+    border:none;
+  }
+
+  .select-wrapper .select-dropdown{
+    border:none;
+    border-bottom:none;
   }
 </style>
