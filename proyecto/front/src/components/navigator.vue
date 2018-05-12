@@ -285,11 +285,19 @@ share-link {
 
 /* The Modal (background) */
 .modal {
-  display: none;
+  /* display: none;
   z-index: 1;
-  height: 200%;
+  height: 100vh;
   width:50%;
-  background-color: rgba(0, 0, 0, 0.4); 
+  background-color: rgba(0, 0, 0, 0.4);  */
+  position: absolute;
+    top:0;
+    background:rgba(0,0,0,0.6);
+    z-index:5;
+    width:100vw;
+    height:100vh;
+    display:none;
+    padding:10% 0;
 }
 
 /* Modal Content */
