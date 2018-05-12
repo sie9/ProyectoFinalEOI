@@ -92,12 +92,14 @@ $(document).ready(function() {
   padding-top: 10px;
   padding-bottom: 20px;
   width: 500px;
-  /* height: 800px; */
+ 
   border-radius: 10px;
   border-style: solid;
   border-color: silver;
   box-shadow: 2px 2px 5px black;
 }
+
+
 
 .grid--wrapper,
 .grid--quarter-columns,
