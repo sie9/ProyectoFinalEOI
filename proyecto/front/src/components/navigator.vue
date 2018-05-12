@@ -2,7 +2,7 @@
 <div>
      <nav class="nav">
        <div class="left brand-logo">
-        <a href="#"><img src="../assets/img/chat2.png" alt=""></a>
+        <a href="#"><img src="../assets/img/chat.png" alt="Logo Chatty"></a>
        </div>
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
@@ -259,7 +259,7 @@ export default {
 }
 
 img {
-  width: 40%;
+  width: 50%;
   filter: grayscale(100%);
   transition: filter 0.3s ease-out;
   padding-top: 5px;

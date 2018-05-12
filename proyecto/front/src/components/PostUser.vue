@@ -25,6 +25,7 @@ export default {
     return {
       fecha: "",
       mensaje:"",
+      angle:""
       
     };
   }, 
@@ -38,7 +39,7 @@ export default {
       return JSON.parse(comoString);
     },
     undo() {
-
+      
       if ( this.conver.cond ){
         this.mensaje = this.conver.original;
         this.conver.cond = false;
@@ -46,6 +47,11 @@ export default {
         this.mensaje= this.conver.Texto;
         this.conver.cond = true;
       }  
+      
+    this.angle -= -180;
+    $('small div').css ({
+        'transform': 'rotate(' + this.angle + 'deg)',
+    });
     }
   }
 };
@@ -107,6 +113,7 @@ small div{
   color:#80808096;
   margin-right: 5px;
   cursor: pointer;
+  transition:transform .3s ease-in;
 }
 
 small div:hover{
@@ -118,5 +125,6 @@ small div:hover{
  float:none;
  justify-content: flex-end;
 }
+
 
 </style>

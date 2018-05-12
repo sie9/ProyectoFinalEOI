@@ -2,7 +2,7 @@
   <div class="maindiv">
       <chatTitle class="chatTitle"></chatTitle>
       <div class="display">
-        <loaders :conver="this.cond"></loaders>
+        <loaders class="loaders" :conver="this.cond"></loaders>
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
       </div>
       <inputComponent class="alinear"></inputComponent>
@@ -109,13 +109,7 @@ export default {
               original: data.val().text,
               cond: true
             });
-            /*this.mensajes.sort(function(a, b){
-          var keyA = new Date(a.Fecha),
-          keyB = new Date(b.Fecha);
-          if(keyA < keyB) return -1;
-          if(keyA > keyB) return 1;
-          return 0;        
-          });*/
+
             this.cond = true;
           })
           .catch(err => console.log(err));
@@ -144,10 +138,17 @@ export default {
   background: rgba(184, 184, 184, 0.5);
 }
 
+
 .chatTitle {
   border-bottom: 1px solid #fff;
   box-shadow: 0 4px 2px -2px rgb(65, 64, 64);
 }
+
+.loaders{
+  padding-top:15%;
+  margin:auto;
+}
+
 .display {
   flex: 1;
   padding-top: 10px;

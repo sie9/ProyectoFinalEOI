@@ -3,7 +3,7 @@
         <div class="input-container">
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
-                <input id="Texto" type="text" v-on:keyup.enter="writetodB" onfocus="this.value=''" value="" class="validate" v-model="msg">
+                <input id="Texto" type="text" v-on:keyup.enter="writetodB" value="" class="validate" v-model="msg">
             </div>
             <div class="flex-button">
                 <a class="waves-effect waves-light btn " v-on:click="writetodB">
