@@ -5,7 +5,7 @@
         <loaders class="loaders" :conver="this.cond"></loaders>
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
       </div>
-      {{dato}}
+      
       <inputComponent class="alinear"></inputComponent>
       
   </div>
