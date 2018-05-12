@@ -5,7 +5,9 @@
         <loaders class="loaders" :conver="this.cond"></loaders>
         <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
       </div>
+      {{dato}}
       <inputComponent class="alinear"></inputComponent>
+      
   </div>
 </template>
 
@@ -32,6 +34,7 @@ export default {
   },
   watch: {
     'dato'() {
+
       let backUp = [];
       this.mensajes.forEach(element => {
         axios
@@ -51,13 +54,6 @@ export default {
             element.Texto = txt.msgTrslated;
           })
           .catch(err => console.log(err));
-      });
-    },
-    'mensajes': () => {
-      this.mensajes.sort(function(a, b) {
-        var c = new Date(a.time);
-        var d = new Date(b.time);
-        return c - d;
       });
     }
   },
@@ -113,6 +109,15 @@ export default {
             this.cond = true;
           })
           .catch(err => console.log(err));
+
+
+          if(this.mensajes.length > 0){
+            this.mensajes.sort(function(a, b) {
+            var c = new Date(a.time);
+            var d = new Date(b.time);
+            return c - d;
+          });
+      }
       });
   },
 
@@ -124,7 +129,7 @@ export default {
     chatTitle,
     loaders
   },
-  props: ["dato"]
+  props: ['dato']
 };
 </script>
 

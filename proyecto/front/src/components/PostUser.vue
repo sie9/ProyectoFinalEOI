@@ -5,9 +5,17 @@
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
-          {{mensaje}}
+          {{conver.Texto}}
         </span>
-        <small><div title="See the original message" @click="undo()"><i class="fas fa-redo"></i></div> {{fecha}} </small>       
+        <small>
+          <div title="Talk to me!" @click="talk()">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <div title="See the original message" @click="undo()">
+            <i class="fas fa-redo"></i>
+          </div>
+           {{fecha}} 
+        </small>       
       </div>         
     </div>
 </div>
@@ -20,7 +28,7 @@ import moment from "moment";
 
 export default {
   name: "PostUser",
-  props: ["conver"],
+  props: ['conver'],
   data() {
     return {
       fecha: "",
@@ -28,10 +36,16 @@ export default {
       angle:""
       
     };
+  },
+  watch:{
+    'conver'(){
+      console.log("cambio", this.conver);
+    }
+
   }, 
   created() {
     this.fecha = moment(this.conver.Fecha).fromNow();
-    this.mensaje= this.conver.Texto;
+    //this.mensaje= this.conver.Texto;
   },
   methods:{
     cargarUsuario() {
@@ -41,10 +55,14 @@ export default {
     undo() {
       
       if ( this.conver.cond ){
-        this.mensaje = this.conver.original;
+        var aux = this.conver.Texto;
+        this.conver.Texto= this.conver.original;
+        this.conver.original = aux;
         this.conver.cond = false;
       }else{
-        this.mensaje= this.conver.Texto;
+        var aux = this.conver.Texto;
+        this.conver.Texto= this.conver.original;
+        this.conver.original = aux;
         this.conver.cond = true;
       }  
       
@@ -52,6 +70,14 @@ export default {
     $('small div').css ({
         'transform': 'rotate(' + this.angle + 'deg)',
     });
+    },
+    talk() {
+      
+      var h = new SpeechSynthesisUtterance();
+      h.lang = "es-ES";
+      h.text = this.mensaje;
+    
+      speechSynthesis.speak(h);
     }
   }
 };
