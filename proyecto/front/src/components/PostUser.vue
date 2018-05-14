@@ -5,7 +5,7 @@
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
-          <emoji emoji="cualquier"></emoji>
+          <emoji emoji=":dog:"></emoji>
           {{conver.Texto}}
         </span>
         <small>
