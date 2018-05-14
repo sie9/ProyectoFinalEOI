@@ -1,9 +1,9 @@
 <template>
 <div class="container">
-    <div class="row" v-bind:class="{'rightMsg': conver.owner== this.cargarUsuario()}">
+    <div class="row" v-bind:class="{'rightMsg': conver.owner== this.cargarUsuario()}" >
       <div class="userimage-border">
       </div>         
-      <div class=" card darken-1 col s4 valign-wrapper " >
+      <div class=" card darken-1 col s4 valign-wrapper" v-bind:class="{'userMsg': conver.owner== this.cargarUsuario()}" >
         <span>
           {{conver.Texto}}
         </span>
@@ -115,6 +115,10 @@ export default {
   width:auto;
 }
 
+.card{
+  margin-right:5px;
+}
+
 span {
   line-height: 30px;
   margin-bottom:15px;
@@ -149,8 +153,15 @@ small div:hover{
 
 .rightMsg{
  float:none;
- justify-content: flex-end;
+ justify-content: flex-start;
+ flex-direction: row-reverse;
+ 
 }
+
+.userMsg{
+background-color:#facf97;
+}
+
 
 
 </style>
