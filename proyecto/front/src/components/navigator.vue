@@ -2,7 +2,7 @@
 <div>
      <nav class="nav">
        <div class="left brand-logo">
-        <a href="#"><img src="../assets/img/chat.png" alt="Logo Chatty"></a>
+        <!-- <a href="#"><img src="" alt="Logo Chatty"></a> -->
        </div>
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
@@ -244,6 +244,7 @@ export default {
   position: initial;
   width: 15%;
   text-align: left;
+  background-image: url('../assets/img/chat.png');
 }
 
 .language-choice {
