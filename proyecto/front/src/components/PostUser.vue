@@ -1,17 +1,18 @@
 <template>
-<div class="container">
+<div class="container" >
     <div class="row" v-bind:class="{'rightMsg': conver.owner== this.cargarUsuario()}">
       <div class="userimage-border">
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper " >
         <span>
+          <emoji emoji="cualquier"></emoji>
           {{conver.Texto}}
         </span>
         <small>
           <div title="Talk to me!" @click="talk()">
             <i class="fas fa-volume-up"></i>
           </div>
-          <div class="reverse" title="See the original message" @click="undo()">
+          <div class="reverse" title="See the original message" @click="undo(conver.id)" :id="conver.id">
             <i class="fas fa-redo"></i>
           </div>
            {{fecha}} 
@@ -25,7 +26,7 @@
 
 
 import moment from "moment";
-
+import {Emoji} from 'emoji-mart-vue';
 export default {
   name: "PostUser",
   props: ['conver'],
@@ -47,13 +48,16 @@ export default {
     this.fecha = moment(this.conver.Fecha).fromNow();
     //this.mensaje= this.conver.Texto;
   },
+  components: {
+    Emoji
+  },
   methods:{
     cargarUsuario() {
       var comoString = localStorage.getItem("usuario");
       return JSON.parse(comoString);
     },
-    undo() {
-      
+    undo(id) {
+      console.log(id);
       if ( this.conver.cond ){
         var aux = this.conver.Texto;
         this.conver.Texto= this.conver.original;
@@ -67,7 +71,7 @@ export default {
       }  
       
     this.angle -= -180;
-    $('.reverse').css ({
+    $('#'+id).css ({
         'transform': 'rotate(' + this.angle + 'deg)',
     });
     },

@@ -1,6 +1,7 @@
 <template>
     <div class="inputCont">
-        <div class="input-container">
+        <div class="input-container" style="position: relative;">
+            <picker set="twitter" style="position: absolute; bottom: 20px; left: 20px;"></picker>
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
                 <input id="Texto" type="text" v-on:keyup.enter="writetodB" value="" class="validate" v-model="msg">
@@ -20,9 +21,13 @@
 <script>
 import firebase from "firebase";
 import moment from "moment";
+import {Picker} from 'emoji-mart-vue';
 
 export default {
   name: "inputComponent",
+  components: {
+    Picker
+  },
   data() {
     return {
       msg: ""
@@ -46,9 +51,15 @@ export default {
         .push({
           text: this.msg,
           owner: privateId,
-          time: Date()
+          time: Date(),
+          id: (this.s4() + "-" + this.s4())
         });
       this.msg = "";
+    },
+    s4: function() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
     },
     recordtodB: function() {
       firebase

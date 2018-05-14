@@ -80,44 +80,37 @@ export default {
       .ref("Sala" + res)
       .child("Mensajes")
       .on("child_added", data => {
-        axios
-          .post(
-            "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ",
+        axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ",
             {
               target: this.dato || "en",
               q: data.val().text
             }
-          )
-          .then(response => {
-            let traduccion = _.head(response.data.data.translations)
-              .translatedText;
-            let txt = {
-              msgTrslated: traduccion
-            };
+          ).then(response => {
+              let traduccion = _.head(response.data.data.translations).translatedText;
+              let txt = {
+                msgTrslated: traduccion
+              };
 
-            $(".display")
-              .stop()
-              .animate({ scrollTop: $(".display")[0].scrollHeight }, 500);
-            this.mensajes.push({
-              Texto: txt.msgTrslated,
-              Fecha: data.val().time,
-              owner: data.val().owner,
-              original: data.val().text,
-              cond: true
-            });
-
-            this.cond = true;
-          })
-          .catch(err => console.log(err));
-
+              $(".display").stop().animate({ scrollTop: $(".display")[0].scrollHeight }, 500);
+              this.mensajes.push({
+                Texto: txt.msgTrslated,
+                Fecha: data.val().time,
+                owner: data.val().owner,
+                original: data.val().text,
+                id: data.val().id,
+                cond: true
+              });
+              this.cond = true;
+          }).catch(err => console.log(err));
 
           if(this.mensajes.length > 0){
-            this.mensajes.sort(function(a, b) {
-            var c = new Date(a.time);
-            var d = new Date(b.time);
-            return c - d;
-          });
-      }
+            this.mensajes=this.mensajes.sort(function(a, b) {
+              var c = new Date(a.time);
+              var d = new Date(b.time);
+              return c - d;
+            });
+            console.log(this.mensajes);
+          }
       });
   },
 
