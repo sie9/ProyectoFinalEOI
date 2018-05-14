@@ -72,13 +72,19 @@ export default {
   },
 
   created() {
+    
     var route = this.$route.path;
     var res = route.substring(1, route.length);
+    var prueba = true;
     firebase
       .database()
       .ref("Sala" + res)
       .child("Mensajes")
       .on("child_added", data => {
+        var prueba = false;
+        if (data.val() == null) {
+          
+        }
         axios.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ",
             {
               target: this.dato || "en",
@@ -111,6 +117,14 @@ export default {
             console.log(this.mensajes);
           }
       });
+      setTimeout(() => { 
+        if (prueba == true){
+          this.cond=true;
+        }
+      }, 3000);
+      
+  
+  
   },
 
   components: {
