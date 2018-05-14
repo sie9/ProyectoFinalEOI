@@ -1,27 +1,61 @@
 <template>
     <div class="main">
         <div class="row login-box">
+          <div>
             <div class="logo-chat">
                 <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
             </div>
             <div class="grid--wrapper cabecera">
                     <!-- Input -->
-                  <div class="grid--quarter-columns login">
-                        <input id="Texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
-                        <div>
-                          <i class="check_circle"></i>
-                          <i class="do_not_disturb_alt" value="El nombre de la sala existe"></i>
-                        </div>
+                  <div class="login">
+                        <input id="texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
                   </div>
                 <div>
                     <!-- button -->
                     <router-link v-bind:to="msg">
                         <div class="waves-effect waves-light btn col s12">
-                           <strong> CREATE ROOM </strong>
+                           CREATE A NEW ROOM 
                         </div>
                     </router-link>
                 </div>
             </div>
+          </div>
+        </div>
+        <div class="row barra">
+          <div class="grid-wrapper">
+            <div class="grid--three-columns texto">
+              <div class="grid--quarter-min-columns">
+                <div class="icono"></div>
+                <div>
+                  <h3>CREATE A ROOM LINK</h3>
+                  <p>It can be whatever you want (like your name or company name)</p>
+                </div>
+              </div>
+              <div class="grid--quarter-min-columns">
+                <div class="icono2"></div>
+                <div>
+                  <h3>SHARE THE LINK</h3>
+                  <p>By email, chat. However you'd like really</p>
+                </div>
+              </div>
+              <div class="grid--quarter-min-columns">
+                <div class="icono3"></div>
+                <div>
+                  <h3>... THAT'S IT!</h3>
+                  <p>Guests join instantly in the browser by clicking the link.</p>
+                </div>
+              </div>
+            <div class="texto centrado">
+              <a href="http://">Terms of Service</a>
+            </div>
+            <div class="texto centrado">
+              <a href="http://">Cookies</a>
+            </div>
+            <div class="texto centrado">
+              <a href="http://">©chatty</a>
+            </div>
+            </div>
+          </div>
         </div>
     </div>
 </template>
@@ -36,10 +70,10 @@ export default {
       msg: ""
     };
   },
-  watch:{
-    'msg'() {
-      this.msg=this.msg.toLowerCase();
-    }  
+  watch: {
+    msg() {
+      this.msg = this.msg.toLowerCase();
+    }
   },
   beforeRouteLeave(to, from, next) {
     firebase
@@ -47,10 +81,10 @@ export default {
       .ref("Sala" + this.msg)
       .once("value", data => {
         console.log(data.val());
-        if (data.val() != null){
-          this.isActive = false 
-          next()
-        }else{
+        if (data.val() != null) {
+          this.isActive = false;
+          next();
+        } else {
           //Cambiar el orden del if (Ya que si no existe una sala, te lleva a ella y te la crea)
           //Ahora esta como que si existe entra a la sala
           console.log("No existe esta sala!");
@@ -67,19 +101,60 @@ $(document).ready(function() {
 
 
 <style scoped>
-#imagen, .check_circle {
-  margin: 0;
-  padding: 0;
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.texto {
+  padding-top: 30px;
+}
+
+a {
+  text-decoration: none;
   color: black;
+}
+
+a:hover {
+  color: rgb(73, 73, 73);
+}
+
+.centrado {
+  text-align: center;
+}
+
+.icono {
+  background-size: 80% 100%;
+  background-image: url("../assets/img/icon.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.icono2 {
+  background-size: 80% 100%;
+  background-image: url("../assets/img/icon2.jpg");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.icono3 {
+  background-size: 80% 100%;
+  background-image: url("../assets/img/icon7.png");
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 .main {
   position: absolute;
-  background-image: url("../assets/img/background2.png");
+  background-image: url("../assets/img/background3.jpg");
   background-repeat: no-repeat;
-  padding: 100px;
-  width: 100vw;
-  height: 110vh;
+  /* z-index: -999; */
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
 
   -webkit-background-size: 100% 100%; /* Safari 3.0 */
   -moz-background-size: 100% 100%; /* Gecko 1.9.2 (Firefox 3.6) */
@@ -89,21 +164,29 @@ $(document).ready(function() {
 
 .login-box {
   background-color: white;
-  padding-top: 10px;
+  margin-top: 150px;
   padding-bottom: 20px;
   width: 500px;
- 
   border-radius: 10px;
   border-style: solid;
   border-color: silver;
   box-shadow: 2px 2px 5px black;
 }
 
-
+.barra {
+  background-color: #fff;
+  height: 200px;
+  width: auto;
+  margin: 250px 0px 0px 0px;
+  padding: 0;
+  box-shadow: 0px -6px 9px 0px rgba(0, 0, 0, 0.5);
+}
 
 .grid--wrapper,
 .grid--quarter-columns,
-.grid--two-columns {
+.grid--quarter-min-columns,
+.grid--two-columns,
+.grid--three-columns {
   display: grid;
 }
 
@@ -119,22 +202,30 @@ $(document).ready(function() {
   grid-template-columns: 90% 10%;
 }
 
+.grid--quarter-min-columns {
+  grid-template-columns: 30% 70%;
+  grid-gap: 10px;
+}
+
 .grid--two-columns {
   grid-template-columns: 10% 90%;
 }
 
+.grid--three-columns {
+  grid-template-columns: repeat(3, calc(100%/3));
+  margin: 50px;
+}
 /* botones */
 
 .btn {
   border-radius: 5px;
-  background-color: silver;
-  color: black;
-  font-family: "Signika", sans-serif;
-  font-size: 1.2em;
+  background-color: #fca331;
+  color: white;
+  font-size: 1.3em;
 }
 
 .btn:hover {
-  background-color: grey;
+  background-color: #ce8c35;
   color: white;
 }
 
@@ -144,9 +235,22 @@ $(document).ready(function() {
   height: 40px;
 }
 
+h3 {
+  font-size: 1.5em;
+  margin: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
 /* logo */
 
 .logo-chat img {
   height: 200px;
+}
+
+input {
+border-bottom: 10px solid red;
 }
 </style>

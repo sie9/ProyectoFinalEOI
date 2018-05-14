@@ -93,7 +93,7 @@ export default {
 }
 .userimage-border{
   border-radius: 50%;
-  border:1px solid grey;
+  border: 1px solid grey;
   width: 50px;
   height: 50px;
   background-image: url('../assets/img/user_ex2.jpg');
