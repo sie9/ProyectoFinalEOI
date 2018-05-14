@@ -34,13 +34,28 @@ $(document).ready(function() {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .input-field{
+.input-field{
     background-color: white;
-    border:none;
-  }
-
-  .select-wrapper .select-dropdown{
-    border:none;
     border-bottom:none;
   }
+  
+.input-field select{
+    background-color: white;
+    border-color:orange;
+    border-bottom:none;
+  }
+
+.select-wrapper input.select-dropdown.dropdown-trigger{
+  border-bottom:0px solid orange;
+}
+
+.select-wrapper input.select-dropdown:focus{
+  border-bottom:none;
+}
+
+select{
+  border:none;
+}
+
+
 </style>

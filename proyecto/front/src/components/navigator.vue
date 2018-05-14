@@ -2,13 +2,13 @@
 <div>
      <nav class="nav">
        <div class="left brand-logo">
-        <!-- <a href="#"><img src="" alt="Logo Chatty"></a> -->
+        <a href="#"><img src="../assets/img/chat.png" alt="Logo Chatty"></a>
        </div>
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
-        <li><div @click="show()" class="addUser">Add Users</div></li>
-        <li><div @click="show3()" class="addUser">Contact</div></li>
+        <li><div @click="show()" class="addUser nav-btn">Add Users</div></li>
+        <li><div @click="show3()" class="contact nav-btn">Contact</div></li>
       </ul>
     
     </nav>
@@ -28,7 +28,7 @@
         <div class="row">
           <div class="input-field col s12" >
             <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="email" >
-            <label for="email" >Email</label>
+            <label for="email">Email</label>
           </div>
         </div>
        
@@ -57,13 +57,13 @@
         <div class="row">
           <div class="input-field col s12">
             <input id="email" type="email" class="validate"  v-model="contacto.email" >
-            <label for="email" >Email</label>
+            <label for="email">Email</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <input id="asunto" type="text" class="validate" v-model="contacto.asunto" >
-            <label for="asunto" >Asunto</label>
+            <label for="asunto">Asunto</label>
           </div>
         </div>
        
@@ -81,12 +81,21 @@
 import languageChoice from "./languageChoice";
 import shareLink from "./shareLink";
 
-var modal = document.getElementById("myModal");
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+$(document).click(function(event) { 
+  if($("#myModal").css("display")=="block"){
+    if (!$(event.target).closest(".modal-content,.addUser").length) {
+      $('#myModal').hide()
   }
-};
+  }
+});
+
+$(document).click(function(event) {
+  if($("#myModal3").css("display")=="block"){
+    if (!$(event.target).closest(".modal-content,.contact").length) {
+      $('#myModal3').hide()
+    }
+  }
+});
 
 export default {
   name: "navigator",
@@ -138,7 +147,6 @@ export default {
       this.hide2();
       this.hide3();
 
-      
     },
     show2() {
       var modal = document.getElementById("myModal2");
@@ -239,12 +247,16 @@ export default {
     border-bottom:1px solid rgb(61, 61, 61);
 }
 
+.row{
+  margin-right: 10px;
+}
+
 .brand-logo {
   margin-left: 20px;
+  margin-right: 50px;
   position: initial;
-  width: 15%;
+  width: 6%;
   text-align: left;
-  background-image: url('../assets/img/chat.png');
 }
 
 .language-choice {
@@ -260,7 +272,7 @@ export default {
 }
 
 img {
-  width: 50%;
+  width: 100%;
   filter: grayscale(100%);
   transition: filter 0.3s ease-out;
   padding-top: 5px;
@@ -275,12 +287,12 @@ share-link {
   width: 80%;
 }
 
-.addUser{
+.nav-btn{
   cursor: pointer;
   padding: 0 15px;
 }
 
-.addUser:hover{
+.nav-btn:hover{
   background-color: #a56b20;
 }
 
@@ -299,6 +311,7 @@ share-link {
     height:100vh;
     display:none;
     padding:10% 0;
+    max-height: 100%;
 }
 
 /* Modal Content */
@@ -306,10 +319,12 @@ share-link {
   background-color: #fefefe;
   margin: auto;
   border: 1px solid #888;
-  width: 50%;
+  width: 35%;
   min-height: 60%;
   height: auto;;
   padding-bottom:50px;
+  border: 2px inset #fca331;
+  box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
 }
 
 /* The Modal (background) */
@@ -361,5 +376,10 @@ share-link {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.collection-item span{
+  color:rgba(175, 11, 11, 0.836);
+  cursor:pointer;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="inputCont">
-        <div class="input-container" style="position: relative;">
-            <picker set="twitter" style="position: absolute; bottom: 20px; left: 20px;"></picker>
+        <div class="input-container">
+            <picker set="twitter" ></picker>
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
                 <input id="Texto" type="text" v-on:keyup.enter="writetodB" value="" class="validate" v-model="msg">
@@ -96,6 +96,13 @@ export default {
   display:flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
+}
+
+.emoji-mart{
+position: absolute; 
+bottom: 20px; 
+left: 20px;
 }
 
 .input-field{
