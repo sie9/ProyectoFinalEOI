@@ -14,7 +14,7 @@ export default {
 
 <style>
 
-*{
+/* *{
   box-sizing: border-box;
 }
 
@@ -22,8 +22,9 @@ html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; 
-}
+  background-size: cover;
+  
+} */
 
 body{
 font-family: 'Amatic SC', cursive;

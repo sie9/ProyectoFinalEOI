@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <div class="row login-box">
+        <section class="row login-box">
           <div>
             <div class="logo-chat">
                 <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
@@ -20,8 +20,8 @@
                 </div>
             </div>
           </div>
-        </div>
-        <div class="row barra">
+        </section>
+        <section class="row barra">
           <div class="grid-wrapper">
             <div class="grid--three-columns texto">
               <div class="grid--quarter-min-columns">
@@ -35,7 +35,7 @@
                 <div class="icono2"></div>
                 <div>
                   <h3>SHARE THE LINK</h3>
-                  <p>By email, chat. However you'd like really</p>
+                  <p>By email, chat, in Slack. However you'd like really</p>
                 </div>
               </div>
               <div class="grid--quarter-min-columns">
@@ -45,18 +45,14 @@
                   <p>Guests join instantly in the browser by clicking the link.</p>
                 </div>
               </div>
-            <div class="texto centrado">
-              <a href="http://">Terms of Service</a>
             </div>
-            <div class="texto centrado">
-              <a href="http://">Cookies</a>
-            </div>
-            <div class="texto centrado">
-              <a href="http://">©chatty</a>
-            </div>
-            </div>
+              <div class="centrado">
+                <a href="http://">Terms of Service</a>
+                <a href="http://">Cookies</a>
+                <a href="http://">©chatty</a>
+              </div>
           </div>
-        </div>
+        </section>
     </div>
 </template>
 
@@ -101,12 +97,11 @@ $(document).ready(function() {
 
 
 <style scoped>
+
+
+/* general   */
 * {
   font-family: "Montserrat", sans-serif;
-}
-
-.texto {
-  padding-top: 30px;
 }
 
 a {
@@ -119,46 +114,20 @@ a:hover {
 }
 
 .centrado {
-  text-align: center;
-}
-
-.icono {
-  background-size: 80% 100%;
-  background-image: url("../assets/img/icon.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.icono2 {
-  background-size: 80% 100%;
-  background-image: url("../assets/img/icon2.jpg");
-  background-repeat: no-repeat;
-  background-position: right;
-}
-
-.icono3 {
-  background-size: 80% 100%;
-  background-image: url("../assets/img/icon7.png");
-  background-repeat: no-repeat;
-  background-position: right;
+  position: relative;
 }
 
 .main {
   position: absolute;
   background-image: url("../assets/img/background3.jpg");
   background-repeat: no-repeat;
-  /* z-index: -999; */
   width: 100%;
-  height: auto;
+  height: 100%;
   top: 0;
   left: 0;
   background-position: center center;
-  background-size: cover;
+  /* background-size: cover; */
   background-attachment: fixed;
-
-  -webkit-background-size: 100% 100%; /* Safari 3.0 */
-  -moz-background-size: 100% 100%; /* Gecko 1.9.2 (Firefox 3.6) */
-  -o-background-size: 100% 100%; /* Opera 9.5 */
   background-size: 100% 100%; /* Gecko 2.0 (Firefox 4.0) and other CSS3-compliant browsers */
 }
 
@@ -174,12 +143,14 @@ a:hover {
 }
 
 .barra {
-  background-color: #fff;
-  height: 200px;
-  width: auto;
-  margin: 250px 0px 0px 0px;
+  background-color: white;
+  /* height: 150px; */
+  width: 100%;
+  height: auto;
   padding: 0;
   box-shadow: 0px -6px 9px 0px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: -20px;
 }
 
 .grid--wrapper,
@@ -215,6 +186,33 @@ a:hover {
   grid-template-columns: repeat(3, calc(100%/3));
   margin: 50px;
 }
+
+/* imagenes */
+
+.logo-chat img {
+  height: 200px;
+  min-height: 50px;
+}
+
+.icono, .icono2, .icono3 {
+  padding: 50px;
+  background-size: 80% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.icono {
+  background-image: url("../assets/img/icon.jpg");
+}
+
+.icono2 {
+  background-image: url("../assets/img/icon2.png");
+}
+
+.icono3 {
+  background-image: url("../assets/img/icon7.png");
+}
+
 /* botones */
 
 .btn {
@@ -244,11 +242,6 @@ p {
   margin: 0px;
 }
 
-/* logo */
-
-.logo-chat img {
-  height: 200px;
-}
 
 input {
 border-bottom: 10px solid red;

@@ -185,6 +185,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
-  background: url('../assets/img/background.png') no-repeat center center fixed;
+  background: url('../assets/img/background.png') no-repeat center center fixed; 
 }
 </style>
