@@ -2,9 +2,9 @@
   <div id="app" class="main-SalaChat grid">    
     <navigator @lang='changeLang' class="grid-fullview"></navigator>
     
-    <listaUsuarioOnline class=""></listaUsuarioOnline>
+    <listaUsuarioOnline class="listaUsuarioOnline"></listaUsuarioOnline>
     
-    <chat-box :dato="lang" class="grid-contentview"></chat-box>
+    <chat-box :dato="lang" class="grid-contentview chatBox"></chat-box>
     
   </div>
   
@@ -186,5 +186,17 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   background: url('../assets/img/background.png') no-repeat center center fixed; 
+}
+
+@media only screen and (min-device-width : 180px) and (max-device-width : 720px){
+  .listaUsuarioOnline{
+    display:none;
+  }
+
+  .grid-contentview.chatBox{
+    grid-column: 1/5;
+  }
+
+
 }
 </style>

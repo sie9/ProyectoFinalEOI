@@ -120,7 +120,10 @@ export default {
 }
 
 .card{
-  margin-right:5px;
+  margin-right:10px;
+  box-shadow:7px 7px 5px 0px rgba(94, 94, 94, 0.75);
+  background-color:#ffffffe7;
+  border:1px solid rgba(49, 49, 49, 0.651);
 }
 
 span {
@@ -138,13 +141,13 @@ small{
   bottom:0;
   right:0;
   padding-right:5px;
-  color:#808080d8; 
+  color:#616060fd; 
   
 }
 
 small div{
   text-decoration: none;
-  color:#80808096;
+  color:#616060fd;
   margin-right: 5px;
   cursor: pointer;
   transition:transform .3s ease-in;
@@ -163,7 +166,10 @@ small div:hover{
 }
 
 .userMsg{
-background-color:#facf97;
+background-color:#ff9100c4;
+color:#fff;
+border:1px solid rgba(255, 255, 255, 0.534);
+box-shadow: 7px 7px 5px 0px rgba(94, 94, 94, 0.75);
 }
 
 

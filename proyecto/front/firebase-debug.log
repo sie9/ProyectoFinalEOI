@@ -1,0 +1,132 @@
+[debug] [2018-05-15T15:23:27.571Z] ----------------------------------------------------------------------
+[debug] [2018-05-15T15:23:27.573Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init front
+[debug] [2018-05-15T15:23:27.573Z] CLI Version:   3.18.4
+[debug] [2018-05-15T15:23:27.573Z] Platform:      win32
+[debug] [2018-05-15T15:23:27.573Z] Node Version:  v9.2.0
+[debug] [2018-05-15T15:23:27.574Z] Time:          Tue May 15 2018 16:23:27 GMT+0100 (Hora de verano GMT)
+[debug] [2018-05-15T15:23:27.574Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-15T15:23:27.580Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2018-05-15T15:23:27.580Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Yoel\Desktop\Full-Stack\Proyecto Final\ProyectoFinalEOI\proyecto\front
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2018-05-15T15:23:28.774Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-05-15T15:23:28.775Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/HJzmIreLrD5J5yWDs23ZoGlze0tJWp54keYW1DkvWGcQR6DUXO_QQ30y21HZz9ZZ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue May 15 2018 16:23:28 GMT+0100 (Hora de verano GMT)
+[debug] [2018-05-15T15:23:29.120Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-15T15:23:29.178Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+  
+ Tue May 15 2018 16:23:29 GMT+0100 (Hora de verano GMT)
+[debug] [2018-05-15T15:23:30.492Z] <<< HTTP RESPONSE 200
+[info] 
+=== Front Setup
+[debug] [2018-05-15T15:23:35.579Z] TypeError: features[nextFeature] is not a function
+    at init (C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:13:49)
+    at C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:14:14
+    at <anonymous>
+    at process._tickDomainCallback (internal/process/next_tick.js:228:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2018-05-15T15:23:58.462Z] ----------------------------------------------------------------------
+[debug] [2018-05-15T15:23:58.464Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init .\dist\
+[debug] [2018-05-15T15:23:58.464Z] CLI Version:   3.18.4
+[debug] [2018-05-15T15:23:58.464Z] Platform:      win32
+[debug] [2018-05-15T15:23:58.464Z] Node Version:  v9.2.0
+[debug] [2018-05-15T15:23:58.465Z] Time:          Tue May 15 2018 16:23:58 GMT+0100 (Hora de verano GMT)
+[debug] [2018-05-15T15:23:58.465Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-15T15:23:58.472Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2018-05-15T15:23:58.472Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Yoel\Desktop\Full-Stack\Proyecto Final\ProyectoFinalEOI\proyecto\front
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2018-05-15T15:24:00.000Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+  
+ Tue May 15 2018 16:24:00 GMT+0100 (Hora de verano GMT)
+[debug] [2018-05-15T15:24:00.833Z] <<< HTTP RESPONSE 200
+[info] 
+=== .\dist\ Setup
+[debug] [2018-05-15T15:24:02.523Z] TypeError: features[nextFeature] is not a function
+    at init (C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:13:49)
+    at C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:14:14
+    at <anonymous>
+    at process._tickDomainCallback (internal/process/next_tick.js:228:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2018-05-15T15:24:21.380Z] ----------------------------------------------------------------------
+[debug] [2018-05-15T15:24:21.382Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init .\dist\index
+[debug] [2018-05-15T15:24:21.382Z] CLI Version:   3.18.4
+[debug] [2018-05-15T15:24:21.382Z] Platform:      win32
+[debug] [2018-05-15T15:24:21.382Z] Node Version:  v9.2.0
+[debug] [2018-05-15T15:24:21.383Z] Time:          Tue May 15 2018 16:24:21 GMT+0100 (Hora de verano GMT)
+[debug] [2018-05-15T15:24:21.383Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-15T15:24:21.391Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2018-05-15T15:24:21.391Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Yoel\Desktop\Full-Stack\Proyecto Final\ProyectoFinalEOI\proyecto\front
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2018-05-15T15:24:23.378Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+  
+ Tue May 15 2018 16:24:23 GMT+0100 (Hora de verano GMT)
+[debug] [2018-05-15T15:24:24.170Z] <<< HTTP RESPONSE 200
+[info] 
+=== .\dist\index Setup
+[debug] [2018-05-15T15:24:27.267Z] TypeError: features[nextFeature] is not a function
+    at init (C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:13:49)
+    at C:\Users\Yoel\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:14:14
+    at <anonymous>
+    at process._tickDomainCallback (internal/process/next_tick.js:228:7)
+[error] 
+[error] Error: An unexpected error has occurred.

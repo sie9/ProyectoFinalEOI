@@ -3,7 +3,7 @@
       <chatTitle class="chatTitle"></chatTitle>
       <div class="display">
         <loaders class="loaders" :conver="this.cond"></loaders>
-        <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
+        <PostUser class="postUser" v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
       </div>      
       <inputComponent class="alinear"></inputComponent>
       
@@ -178,4 +178,13 @@ export default {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+@media only screen and (min-device-width : 180px) and (max-device-width : 720px){
+
+  .postUser{
+    min-width:700px
+  }
+
+}
+
 </style>
