@@ -11,6 +11,7 @@
                   </div>
                 <div>
                     <router-link v-bind:to="msg">
+                      <alert dato="Esta sala existe" v-if="(aux==false)"></alert>
                         <div class="btn col s12">
                            CREATE A NEW ROOM 
                         </div>
@@ -56,17 +57,22 @@
 
 <script>
 import firebase from "firebase";
+import alert from "./alert";
 
 export default {
   name: "login",
   data() {
     return {
-      msg: ""
+      msg: "",
+      aux: true
     };
   },
   watch: {
     msg() {
       this.msg = this.msg.toLowerCase();
+      if ( this.msg == ""){
+        this.aux=true;
+      }
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -76,14 +82,20 @@ export default {
       .once("value", data => {
         console.log(data.val());
         if (data.val() != null) {
-          this.isActive = false;
-          next();
+          this.aux = false;
+          
         } else {
-          //Cambiar el orden del if (Ya que si no existe una sala, te lleva a ella y te la crea)
-          //Ahora esta como que si existe entra a la sala
+          firebase.database().ref("Sala" + this.msg).child("creada").set({x:"holita"}).then(()=> {
+          this.isActive = false;
           console.log("No existe esta sala!");
+          next();
+          });
+          
         }
       });
+  },
+  components: {
+    alert
   }
 };
 
@@ -95,8 +107,6 @@ $(document).ready(function() {
 
 
 <style scoped>
-
-
 /* general   */
 * {
   font-family: "Montserrat", sans-serif;
@@ -188,7 +198,9 @@ a:hover {
   min-height: 50px;
 }
 
-.icono, .icono2, .icono3 {
+.icono,
+.icono2,
+.icono3 {
   padding: 50px;
   background-repeat: no-repeat;
   background-position: center;
