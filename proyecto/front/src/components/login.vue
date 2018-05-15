@@ -1,19 +1,17 @@
 <template>
     <div class="main">
         <section class="row login-box">
-          <div>
+          <div class="grid--wrapper">
             <div class="logo-chat">
                 <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
             </div>
-            <div class="grid--wrapper cabecera">
-                    <!-- Input -->
+            <div class="cabecera">
                   <div class="login">
                         <input id="texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
                   </div>
                 <div>
-                    <!-- button -->
                     <router-link v-bind:to="msg">
-                        <div class="waves-effect waves-light btn col s12">
+                        <div class="btn col s12">
                            CREATE A NEW ROOM 
                         </div>
                     </router-link>
@@ -113,10 +111,6 @@ a:hover {
   color: rgb(73, 73, 73);
 }
 
-.centrado {
-  position: relative;
-}
-
 .main {
   position: absolute;
   background-image: url("../assets/img/background3.jpg");
@@ -196,7 +190,7 @@ a:hover {
 
 .icono, .icono2, .icono3 {
   padding: 50px;
-  background-size: 80% 100%;
+  background-size: 90% 90%;
   background-repeat: no-repeat;
   background-position: center;
 }
