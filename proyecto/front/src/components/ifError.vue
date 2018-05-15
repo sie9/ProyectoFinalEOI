@@ -1,8 +1,13 @@
 <template>
     <div class="main">
-        <section class="row">
+        <nav class="navegador">
+            <ul>
+                <li>HOME</li>
+            </ul>
+        </nav>
+        <section class="row texto">
             <div class="grid--wrapper">
-                <div class="texto grid--two-columns">
+                <div class="grid--two-columns">
                     <div>
                         <h1>Oops!</h1>
                         <h2>WE CAN'T SEEM TO FIND THE PAGE YOU'RE LOOKING FOR.</h2>
@@ -47,18 +52,42 @@ export default {
 /* Clases propias */
 * {
   font-family: "Montserrat", sans-serif;
-  background-color: #fca331;
   color: white;
 }
 
-.main {
-    display: block;
-    padding-top:250px;
+nav {
+    background-color: #fff;
+    height: 80px;
 }
+
+nav ul li {
+    /* background-color: #fff; */
+    padding: 10px;
+}
+
+.main {
+  background-color: #fca331;
+  height: 100vh;
+}
+
+li {
+    color: #fca331;
+    padding: 10px;
+    text-align: center;
+}
+
+li:hover {
+    color: #ce8c35;
+}
+
+.texto {
+    padding-top:150px;
+}
+
 .imagen {
     background-image: url("../assets/img/icon8.png");
     /* background-image: url("icon8.png"); */
-    background-size: 70% 100%;
+    background-size: 50% 100%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -68,4 +97,5 @@ export default {
 hr {
     border: 2px solid white;
 }
+
 </style>

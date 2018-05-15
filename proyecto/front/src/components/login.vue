@@ -46,8 +46,10 @@
               </div>
             </div>
               <div class="links">
-                <a href="http://">Terms of Service</a>
-                <a href="http://">Cookies</a>
+                <a href="http://">Terms of Service</a> 
+                |
+                <a href="http://">Cookies</a> 
+                |
                 <a href="http://">©chatty</a>
               </div>
           </div>
@@ -249,7 +251,6 @@ h3 {
 .links {
   text-align: center;
   background-color: #fca331;
-  color: white;
   border-top: solid 1px black;
 }
 </style>

@@ -196,7 +196,8 @@ export default {
 }
 
 .main-SalaChat {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

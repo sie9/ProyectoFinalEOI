@@ -36,7 +36,6 @@ $(document).ready(function() {
 <style scoped>
 .input-field{
     background-color: white;
-    border-bottom:none;
   }
   
 .input-field select{

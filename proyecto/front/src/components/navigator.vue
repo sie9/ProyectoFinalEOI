@@ -314,14 +314,6 @@ export default {
   margin-top: 10px;
 }
 
-.select-wrapper .select-dropdown {
-  border-bottom: 0px;
-}
-
-.select-wrapper input.select-dropdown:focus {
-  border-bottom: none;
-}
-
 img {
   width: 100%;
   filter: grayscale(100%);
