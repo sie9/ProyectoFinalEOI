@@ -7,15 +7,16 @@
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
+        <li><div @click="showLogin()" class="contact nav-btn">Login</div></li>
         <li><div @click="show()" class="addUser nav-btn">Add Users</div></li>
         <li><div @click="show3()" class="contact nav-btn">Contact</div></li>
       </ul>
     
     </nav>
-    <!-- The Modal enviar email -->
+    <!--------------------------------- The Modal enviar email ---------------------------------------->
+      
     <div id="myModal" class="modal">
 
-      <!-- Modal content -->
       <div class="modal-content">
         <span class="close" @click="hide">&times;</span>
         <h3>Añade a tus amigos a la sala!</h3>
@@ -37,7 +38,29 @@
         </div>
       </div>
     </div>
-          <!-- The Modal exito email -->
+
+    <!------------------------------------- MODAL LOGIN ---------------------------------->
+    <div id="loginModal" class="modal">
+
+      <div class="modal-content">
+        <span class="close" @click="hideLogin">&times;</span>
+        <h3>Log in</h3>
+        <div class="input-field col s12" >
+            <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="usuario" >
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s12" >
+            <input id="pass" type="password" class="validate" @keyup.enter="onSubmit()" v-model="pass" >
+            <label for="pass">Password</label>
+          </div>
+        
+       
+        <div class="row">
+            <div class="card-panel flow-text email-button" @click="logIn()">Log in</div>
+        </div>
+      </div>
+    </div>
+     <!--------------------------------- The Modal exito email ---------------------------------------->
     <div id="myModal2" class="modal">
       <!-- Modal content -->
       <div class="modal-content2">
@@ -45,8 +68,7 @@
         <h3>Se ha enviado tu email!!</h3>
       </div>
     </div>
-
-    <!-- The Modal contacto -->
+      <!--------------------------------- The Modal contacto  ---------------------------------------->
     <div id="myModal3" class="modal">
 
       <!-- Modal content -->
@@ -80,19 +102,20 @@
 <script>
 import languageChoice from "./languageChoice";
 import shareLink from "./shareLink";
+import firebase from "firebase";
 
-$(document).click(function(event) { 
-  if($("#myModal").css("display")=="block"){
+$(document).click(function(event) {
+  if ($("#myModal").css("display") == "block") {
     if (!$(event.target).closest(".modal-content,.addUser").length) {
-      $('#myModal').hide()
-  }
+      $("#myModal").hide();
+    }
   }
 });
 
 $(document).click(function(event) {
-  if($("#myModal3").css("display")=="block"){
+  if ($("#myModal3").css("display") == "block") {
     if (!$(event.target).closest(".modal-content,.contact").length) {
-      $('#myModal3').hide()
+      $("#myModal3").hide();
     }
   }
 });
@@ -108,9 +131,13 @@ export default {
       email: "",
       emails: [],
       contacto: {
-        email:"",
-        asunto:""
-      }
+        email: "",
+        asunto: "",
+        pass: ""
+      },
+      usuario: "",
+      pass: ""
+
       /* lang:"" */
     };
   },
@@ -120,7 +147,7 @@ export default {
     });
   },
   methods: {
-    borrarEmail(index){
+    borrarEmail(index) {
       console.log(index);
       this.emails.splice(index, 1);
     },
@@ -129,9 +156,8 @@ export default {
     },
     onSubmit() {
       if (this.email.includes("@")) {
-        
         this.emails.push(this.email);
-        this.email="";
+        this.email = "";
         $("#email").val("");
         //this.sendMail();
       }
@@ -146,7 +172,6 @@ export default {
       modal.style.display = "block";
       this.hide2();
       this.hide3();
-
     },
     show2() {
       var modal = document.getElementById("myModal2");
@@ -163,19 +188,46 @@ export default {
       this.hide();
       this.hide2();
     },
+    showLogin() {
+      var modal = document.getElementById("loginModal");
+      modal.style.display = "block";
+      this.hide();
+      this.hide2();
+    },
+    logIn() {
+      firebase.auth().signInWithEmailAndPassword(this.usuario, this.pass)
+        .then(()=>{
+          alert("Logeado");
+          this.hideLogin();
+        })
+        .catch(function(error) {         
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+          if (errorCode === "auth/wrong-password") {
+            alert("Wrong password.");
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        });
+    },
     hide() {
       var modal = document.getElementById("myModal");
       modal.style.display = "none";
       this.emails = [];
       this.email = "";
     },
-
     hide2() {
       var modal = document.getElementById("myModal2");
       modal.style.display = "none";
     },
     hide3() {
       var modal = document.getElementById("myModal3");
+      modal.style.display = "none";
+    },
+    hideLogin() {
+      var modal = document.getElementById("loginModal");
       modal.style.display = "none";
     },
 
@@ -213,7 +265,7 @@ export default {
         service_id: "pry.chtty@gmail.com",
         template_id: "prueba",
         user_id: "user_DeVh4AytZ9lQqdCTn9ODu",
-        template_params: { 
+        template_params: {
           contacto: this.contacto.email,
           asunto: this.contacto.asunto
         }
@@ -239,15 +291,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-
-.nav{
-    background:#fca331;
-    display:flex;
-    flex-wrap: nowrap;
-    border-bottom:1px solid rgb(61, 61, 61);
+.nav {
+  background: #fca331;
+  display: flex;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid rgb(61, 61, 61);
 }
 
-.row{
+.row {
   margin-right: 10px;
 }
 
@@ -263,12 +314,12 @@ export default {
   margin-top: 10px;
 }
 
-.select-wrapper .select-dropdown{
-  border-bottom:0px;
+.select-wrapper .select-dropdown {
+  border-bottom: 0px;
 }
 
-.select-wrapper input.select-dropdown:focus{
-  border-bottom:none;
+.select-wrapper input.select-dropdown:focus {
+  border-bottom: none;
 }
 
 img {
@@ -287,48 +338,47 @@ share-link {
   width: 80%;
 }
 
-.nav-btn{
+.nav-btn {
   cursor: pointer;
   padding: 0 15px;
 }
 
-.nav-btn:hover{
+.nav-btn:hover {
   background-color: #a56b20;
 }
 
 /* The Modal (background) */
 .modal {
   position: absolute;
-  top:0;
-  background:rgba(0,0,0,0.6);
-  z-index:5;
-  width:100vw;
-  height:100vh;
-  display:none;
-  padding:10% 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  padding: 10% 0;
   max-height: 100%;
 }
 
 /* Modal Content */
 .modal-content {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #fefefe;
   margin: auto;
   border: 1px solid #888;
   width: 35%;
   min-height: 60%;
-  height: auto;;
-  padding-bottom:10px;
+  height: auto;
+  padding-bottom: 10px;
   border: 2px inset #fca331;
   box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
 }
 
-.modal-content h3{
-  font-family: 'Amatic SC', cursive;
-
+.modal-content h3 {
+  font-family: "Amatic SC", cursive;
 }
 
-.added-friends{
+.added-friends {
   background-color: #f0f0f0;
 }
 
@@ -349,13 +399,13 @@ share-link {
   height: auto;
 }
 
-.email-button{
+.email-button {
   cursor: pointer;
   background-color: rgb(37, 231, 118);
 }
-.email-button:hover{
+.email-button:hover {
   background-color: rgb(26, 148, 77);
-  color:white
+  color: white;
 }
 
 /* The Close Button */
@@ -373,8 +423,8 @@ share-link {
   cursor: pointer;
 }
 
-.collection-item span{
-  color:rgba(175, 11, 11, 0.836);
-  cursor:pointer;
+.collection-item span {
+  color: rgba(175, 11, 11, 0.836);
+  cursor: pointer;
 }
 </style>
