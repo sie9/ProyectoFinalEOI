@@ -44,7 +44,7 @@
                 </div>
               </div>
             </div>
-              <div class="centrado">
+              <div class="links">
                 <a href="http://">Terms of Service</a>
                 <a href="http://">Cookies</a>
                 <a href="http://">©chatty</a>
@@ -178,7 +178,7 @@ a:hover {
 
 .grid--three-columns {
   grid-template-columns: repeat(3, calc(100%/3));
-  margin: 50px;
+  margin: 20px 20px 0px 20px;
 }
 
 /* imagenes */
@@ -190,20 +190,22 @@ a:hover {
 
 .icono, .icono2, .icono3 {
   padding: 50px;
-  background-size: 90% 90%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .icono {
+  background-size: 80% 90%;
   background-image: url("../assets/img/icon.jpg");
 }
 
 .icono2 {
+  background-size: 65% 90%;
   background-image: url("../assets/img/icon2.png");
 }
 
 .icono3 {
+  background-size: 60% 90%;
   background-image: url("../assets/img/icon7.png");
 }
 
@@ -232,12 +234,10 @@ h3 {
   margin: 0px;
 }
 
-p {
-  margin: 0px;
-}
-
-
-input {
-border-bottom: 10px solid red;
+.links {
+  text-align: center;
+  background-color: #fca331;
+  color: white;
+  border-top: solid 1px black;
 }
 </style>
