@@ -21,7 +21,7 @@
         <h3>Añade a tus amigos a la sala!</h3>
         
         <div id= "Container" class="collection">
-          <div class="collection-item" style="background-color: #f0f0f0;">Amigos añadidos:</div>
+          <div class="collection-item added-friends">Amigos añadidos:</div>
           <div class="collection-item" v-for="(email,index) in emails">  {{email}} <span @click='borrarEmail(index)' > x </span></div>
         </div>
             
@@ -68,7 +68,7 @@
         </div>
        
         <div class="row">
-            <div class="card-panel teal lighten-1 flow-text col s5 " style= "background-color: #111;" @click="onSubmit2()" v-if="contacto.email!='' && contacto.asunto!=''">Enviar</div>
+            <div class="card-panel flow-text email-button" @click="onSubmit2()" v-if="contacto.email!='' && contacto.asunto!=''">Enviar</div>
           
         </div>
       </div>
@@ -298,33 +298,38 @@ share-link {
 
 /* The Modal (background) */
 .modal {
-  /* display: none;
-  z-index: 1;
-  height: 100vh;
-  width:50%;
-  background-color: rgba(0, 0, 0, 0.4);  */
   position: absolute;
-    top:0;
-    background:rgba(0,0,0,0.6);
-    z-index:5;
-    width:100vw;
-    height:100vh;
-    display:none;
-    padding:10% 0;
-    max-height: 100%;
+  top:0;
+  background:rgba(0,0,0,0.6);
+  z-index:5;
+  width:100vw;
+  height:100vh;
+  display:none;
+  padding:10% 0;
+  max-height: 100%;
 }
 
 /* Modal Content */
 .modal-content {
+  font-family: 'Montserrat', sans-serif;
   background-color: #fefefe;
   margin: auto;
   border: 1px solid #888;
   width: 35%;
   min-height: 60%;
   height: auto;;
-  padding-bottom:50px;
+  padding-bottom:10px;
   border: 2px inset #fca331;
   box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
+}
+
+.modal-content h3{
+  font-family: 'Amatic SC', cursive;
+
+}
+
+.added-friends{
+  background-color: #f0f0f0;
 }
 
 /* The Modal (background) */
@@ -351,16 +356,6 @@ share-link {
 .email-button:hover{
   background-color: rgb(26, 148, 77);
   color:white
-}
-
-.cancel-button{
-  cursor: pointer;
-  background-color: rgb(231, 60, 37);
-}
-
-.cancel-button:hover{
-  background-color: rgb(138, 36, 23);
-  color:white;
 }
 
 /* The Close Button */

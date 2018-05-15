@@ -1,8 +1,8 @@
 <template>
     <div class="inputCont">
         <div class="input-container" style="position: relative;">
-            <div v-on:click="showIcons">😠</div>
-            <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" style="position: absolute; bottom: 100px; left: 20px;" @select="onClick" v-if="salir==true"></picker>
+            <div class="emojis-btn" v-on:click="showIcons">😠</div>
+            <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" @select="onClick" v-if="salir==true"></picker>
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
                 <input id="Texto" type="text" v-on:keyup.enter="writetodB" value="" class="validate" v-model="msg">
@@ -24,6 +24,7 @@ import firebase from "firebase";
 import moment from "moment";
 import { Picker } from 'emoji-mart-vue';
 
+
 export default {
   name: "inputComponent",
   components: {
@@ -39,10 +40,10 @@ export default {
     showIcons: function () {
       this.salir=!this.salir;
     },
+
      onClick: function (emoji, event) {
       console.log(emoji.colons);
       this.msg = this.msg + emoji.native;
-      console.log(this.msg)
     },
     writetodB: function() {
       var privateId = this.cargarUsuario();
@@ -109,13 +110,38 @@ export default {
 }
 
 .emoji-mart{
-position: absolute; 
-bottom: 20px; 
+width: 355px;
+position: absolute;
+bottom: 100px;
 left: 20px;
+z-index: 1;
+}
+
+.emojis-btn{
+  padding:10px;
+  margin:5px;
+  cursor:pointer;
+  border:1px solid rgba(211, 211, 211, 0.856);
+}
+
+.emojis-btn:hover{
+  background-color:rgba(241, 239, 239, 0.856);
+  border:1px solid #fca331;
+}
+
+.emoji-mart-search[data-v-4ad41bb8] {
+  padding:0;
+  width:80%;
+  display:none !important;
 }
 
 .input-field{
   width: 90%
+}
+
+.input-field input{
+  word-break: break-all;
+  overflow: scroll;
 }
 .flex-button {
   display: flex;

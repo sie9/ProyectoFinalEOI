@@ -46,22 +46,6 @@ export default {
   }, 
   created() {
     this.fecha = moment(this.conver.Fecha).fromNow();
-    //this.mensaje= this.conver.Texto;
-    //console.log(this.conver.Texto);
-    /*var re = /\:([^\.]+)\:/;
-    //var match = re.exec(this.conver.Texto);
-    //console.log(match);
-    //var prueba = this.conver.Texto;
-    //var newstr = prueba.replace(re, ``);
-    //this.conver.Texto = prueba.replace(re, `<emoji emoji=":$1:"></emoji>`);
-    this.conver.Texto = this.conver.Texto.replace(/(gorilla)/, '<emoji emoji=":$1:"></emoji>');
-    console.log(this.conver.id);
-    //this.conver.Texto = "pinga";
-    
-    //$('#p').append(`<emoji emoji=":gorilla:"></emoji>`);
-    this.$nextTick(() => {
-      console.log('re-render end')
-    })*/
     
   },
   components: {
