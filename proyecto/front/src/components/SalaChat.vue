@@ -4,8 +4,23 @@
     
     <listaUsuarioOnline class="listaUsuarioOnline"></listaUsuarioOnline>
     
-    <chat-box :dato="lang" class="grid-contentview chatBox"></chat-box>
-    
+    <chat-box :dato="lang" class="grid-contentview chatBox"></chat-box> 
+
+    <div id="Alias" class="modal">
+      <div class="modal-content">
+        <!-- <span class="close" @click="hideRequestAlias()">&times;</span> -->
+        <h3>Elige tu Alias</h3>
+        <div class="input-field col s12" >
+            <input id="Alias" type="text" class="validate" v-model="alias">
+            <label for="email">Alias</label>
+        </div>        
+       
+        <div class="row">
+            <div @click="afterModal()" class="card-panel flow-text email-button">Aceptar</div>
+        </div>
+
+      </div>
+    </div>   
   </div>
   
 </template>
@@ -17,8 +32,6 @@ import chatTitle from "./chatTitle";
 import listaUsuarioOnline from "./listaUsuarioOnline";
 import inputComponent from "./inputComponent";
 import firebase from "firebase";
-
-
 
 export default {
   name: "App",
@@ -33,7 +46,8 @@ export default {
     return {
       lang: "",
       privateId: "",
-      usuarios: []
+      usuarios: [],
+      alias: ""
     };
   },
   methods: {
@@ -107,23 +121,54 @@ export default {
     },
     guardarUsuario: function(key, value) {
       var comoString = JSON.stringify(value);
-
       localStorage.setItem(key, comoString);
+    },
+    showRequestAlias() {
+      var modalAlias = document.getElementById("Alias");
+      modalAlias.style.display = "block";
+    },
+    hideRequestAlias() {
+      var modalAlias = document.getElementById("Alias");
+      modalAlias.style.display = "none";
+    },
+    afterModal() {      
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+
+      var key = this.cargarUsuario('key');
+      var user = this.cargarUsuario('usuario');
+
+      console.log("route: ",route);
+      console.log("res: ",res);
+      console.log("key: ",key);
+      console.log("user: ",user);
+
+
+      firebase.database().ref("Sala" + res).child('usuariosOnline').child(key).set({
+        id: this.alias                 
+      })
+      .then(()=>{
+        this.hideRequestAlias();
+      })
+        
     }
   },
   created() {
-    
     var existeUsuario = this.cargarUsuario("usuario");
+      console.log("existe?", existeUsuario);
+      if (existeUsuario == null) {
+        console.log("entra?");
 
-    console.log("existe?", existeUsuario);
-    if (existeUsuario == null) {
-      console.log("entra?");
-      this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
-      this.guardarUsuario("usuario", this.privateId);
-      existeUsuario = this.privateId;
-    }
+        this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
 
-    this.getUsers(existeUsuario);
+        this.guardarUsuario("usuario", this.privateId);
+        existeUsuario = this.privateId;
+      }
+      this.getUsers(existeUsuario);      
+      
+  },
+  mounted() {
+    this.showRequestAlias();
   },
   destroyed() {}
 };
@@ -134,31 +179,25 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
-
 .subgrid {
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
-
 .col-aside {
   grid-column: 1/2;
 }
 .col-chatbox {
   grid-column: 2/3;
 }
-
 .grid-contentview {
   grid-column: 2/5;
 }
-
 .grid-aside {
   grid-column: 1/2;
 }
-
 .grid-fullview {
   grid-column: 1/5;
 }
-
 .container.maindiv.col.s12 {
   display: flex;
   justify-content: flex-end;
@@ -166,18 +205,15 @@ export default {
 .col.s12 {
   padding: 0px;
 }
-
 .col.s3 {
   padding: 0px;
 }
-
 .col.s9 {
   padding: 0px;
 }
 .chatTitle {
   height: 10vh;
 }
-
 .main-SalaChat {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -185,18 +221,44 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
-  background: url('../assets/img/background.png') no-repeat center center fixed; 
+  background: url("../assets/img/background.png") no-repeat center center fixed;
 }
 
-@media only screen and (min-device-width : 180px) and (max-device-width : 720px){
-  .listaUsuarioOnline{
-    display:none;
+.modal {
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  padding: 10% 0;
+  max-height: 100%;
+}
+/* Modal Content */
+.modal-content {
+  font-family: "Montserrat", sans-serif;
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 35%;
+  min-height: 60%;
+  height: auto;
+  padding-bottom: 10px;
+  border: 2px inset #fca331;
+  box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
+}
+
+.email-button {
+}
+
+@media only screen and (min-device-width: 180px) and (max-device-width: 720px) {
+  .listaUsuarioOnline {
+    display: none;
   }
 
-  .grid-contentview.chatBox{
+  .grid-contentview.chatBox {
     grid-column: 1/5;
   }
-
-
 }
 </style>
