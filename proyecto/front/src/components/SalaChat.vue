@@ -14,6 +14,7 @@
 import navigator from "./navigator";
 import chatBox from "./chatBox";
 import chatTitle from "./chatTitle";
+
 import listaUsuarioOnline from "./listaUsuarioOnline";
 import inputComponent from "./inputComponent";
 import firebase from "firebase";
@@ -111,8 +112,24 @@ export default {
       localStorage.setItem(key, comoString);
     }
   },
+
+  beforeRouteEnter (to, from, next) { 
+    var route = to.fullPath;
+    var res = route.substring(1, route.length);
+    console.log(to.fullPath)
+    firebase
+      .database()
+      .ref("Sala" + res)
+      .once("value", data => {
+        console.log(data.val());
+        if (data.val() == null) {
+          window.location.href=to.fullPath+'/notFound'
+        } else {       
+          next()
+        }
+      });
+  },
   created() {
-    
     var existeUsuario = this.cargarUsuario("usuario");
 
     console.log("existe?", existeUsuario);
