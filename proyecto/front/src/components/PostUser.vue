@@ -42,7 +42,7 @@ export default {
     'conver'(){
       console.log("cambio", this.conver);
 
-  }
+    }
   },
   created() {
     this.fecha = moment(this.conver.Fecha).fromNow();

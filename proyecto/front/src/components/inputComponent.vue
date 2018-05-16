@@ -5,7 +5,7 @@
             <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" @select="onClick" v-if="salir==true"></picker>
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
-                <input id="Texto" type="text" v-on:keyup.enter="writetodB" value="" class="validate" v-model="msg">
+                <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg">
             </div>
             <div class="flex-button">
                 <a class="waves-effect waves-light btn " v-on:click="writetodB">
@@ -36,12 +36,20 @@ export default {
       salir:false 
     };
   },
+  watch: {
+    msg: function() {
+        this.msg=this.jsUcfirst()
+    }
+  },
   methods: {
     showIcons: function () {
       this.salir=!this.salir;
     },
+    jsUcfirst: function (string) {
+      return this.msg.charAt(0).toUpperCase() + this.msg.slice(1);
+    },
 
-     onClick: function (emoji, event) {
+    onClick: function (emoji, event) {
       console.log(emoji.colons);
       this.msg = this.msg + emoji.native;
     },
