@@ -367,7 +367,6 @@ share-link {
   margin: auto;
   border: 1px solid #888;
   width: 35%;
-  min-height: 60%;
   height: auto;
   padding-bottom: 10px;
   border: 2px inset #fca331;
