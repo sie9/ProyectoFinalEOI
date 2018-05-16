@@ -16,10 +16,9 @@ export default {
       link: ""
     };
   },
-  created(){
-     var route = this.$route.path;
-     this.link = 'chatty.com'+route;
-     
+  created() {
+    var route = this.$route.path;
+    this.link = "chatty.com" + route;
   },
 
   methods: {
@@ -68,7 +67,7 @@ textarea.materialize-textarea {
   height: 30px;
   position: unset;
   padding: 0px 5px;
-  margin-left: 5px;
+  margin: 1px 0 0 5px;
 }
 
 .input-group {
@@ -88,7 +87,7 @@ textarea.materialize-textarea {
 }
 
 i {
-  padding: 7px 5px 7px;
+  padding: 25px 5px 7px;
 }
 
 i:hover {
