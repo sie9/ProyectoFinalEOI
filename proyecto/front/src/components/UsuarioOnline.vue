@@ -1,7 +1,7 @@
 <template>
-<div class="userCard">
+<div class="userCard" >
       <div class=" card darken-1 valign-wrapper " >
-      <div class="userimage-border">
+      <div class="userimage-border" :id="conver.id">
       </div>         
         <span>
           Id: {{conver.id}}
@@ -14,8 +14,20 @@
 <script>
 export default {
   name: "UsuarioOnline",
-  props: ["conver"]
-};
+  props: ["conver"],
+  methods:{
+    cargarUsuario: function(key) {
+        var comoString = localStorage.getItem(key);
+        return JSON.parse(comoString);
+      },
+  }, 
+  mounted(){
+      var url = this.conver.photo
+      $('#'+this.conver.id).css("background-image","url("+url+")")
+
+  }
+}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -34,7 +46,6 @@ font-size:1.5rem;
   border:1px solid grey;
   width: 50px;
   height: 50px;
-  background-image: url('https://source.unsplash.com/1600x900/?face');
   background-position:center;
   background-size: cover;
 }

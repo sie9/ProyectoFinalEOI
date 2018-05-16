@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <div class="row" v-bind:class="{'rightMsg': conver.owner== this.cargarUsuario()}" >
-      <div class="userimage-border">
+      <div class="userimage-border" v-bind:style="{ 'background-image': 'url(' + conver.photo + ')' }">
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper" v-bind:class="{'userMsg': conver.owner== this.cargarUsuario()}" >
         <span>
@@ -41,13 +41,22 @@ export default {
   watch:{
     'conver'(){
       console.log("cambio", this.conver);
-    }
 
-  }, 
+  }
+  },
   created() {
     this.fecha = moment(this.conver.Fecha).fromNow();
+      console.log(this.conver.photo)
+      if (typeof this.conver.photo == "undefined") this.conver.photo = 'https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder.jpg'
+  
     
   },
+  // mounted(){
+  //     var url = this.conver.photo
+  //     console.log("url",url)
+  //     $('#'+this.conver.id).css("background-image","url("+url+")")
+
+  // },
   components: {
     Emoji
   },
@@ -100,7 +109,6 @@ export default {
   border: 1px solid grey;
   width: 50px;
   height: 50px;
-  background-image: url('../assets/img/user_ex2.jpg');
   background-position:center;
   background-size: cover;
 }

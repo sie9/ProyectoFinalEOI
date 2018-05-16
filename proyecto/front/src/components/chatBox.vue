@@ -76,6 +76,8 @@ export default {
     var route = this.$route.path;
     var res = route.substring(1, route.length);
     var prueba = true;
+
+
     firebase
       .database()
       .ref("Sala" + res)
@@ -103,19 +105,22 @@ export default {
                 owner: data.val().owner,
                 original: data.val().text,
                 id: data.val().id,
-                cond: true
+                cond: true,
+                photo: data.val().photo
               });
               this.cond = true;
+              if(this.mensajes.length > 0){
+            this.mensajes=this.mensajes.sort(function(a, b) {
+              return a.Fecha - b.Fecha;
+            });
+            console.log('pene');
+            console.log(JSON.parse(JSON.stringify(this.mensajes)));
+          }
           }).catch(err => console.log(err));
 
-          if(this.mensajes.length > 0){
-            this.mensajes=this.mensajes.sort(function(a, b) {
-              var c = new Date(a.time);
-              var d = new Date(b.time);
-              return c - d;
-            });
-            console.log(this.mensajes);
-          }
+          console.log(this.mensajes)
+
+          
       });
       setTimeout(() => { 
         if (prueba == true){

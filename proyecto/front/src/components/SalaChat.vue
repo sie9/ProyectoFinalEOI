@@ -41,7 +41,7 @@ export default {
     changeLang(lang) {
       this.lang = lang;
     },
-    getUsers: function(pepe) {
+    getUsers: function(user) {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
       firebase
@@ -54,37 +54,40 @@ export default {
           if (this.usuarios !== null) {
             var arrayUsers = Object.values(this.usuarios);
 
-            const resultado = arrayUsers.find(usuario => usuario.id === pepe);
-
+            const resultado = arrayUsers.find(usuario => usuario.id === user);
+            console.log(resultado)
+            console.log(user)
             if (typeof resultado === "undefined") {
-              this.writedbOnlineUsers(pepe);
+              this.writedbOnlineUsers(user);
             }
           } else {
-            this.writedbOnlineUsers(pepe);
+            this.writedbOnlineUsers(user);
           }
         });
     },
-    writedbOnlineUsers: function(usuario) {
+    writedbOnlineUsers: function (userPrivateID){
       var route = this.$route.path;
       var res = route.substring(1, route.length);
-
+      var urlPhoto = this.cargarUsuario("photo")
+      console.log("wrdb",urlPhoto)
       var key = firebase
         .database()
         .ref("Sala" + res)
         .child("usuariosOnline")
         .push({
           Conexion: Date(),
-          id: usuario
+          id: userPrivateID,
+          photo: urlPhoto
         }).key;
 
       console.log(key);
 
       var existekey = this.cargarUsuario("key");
-      console.log("existekey?", existekey);
-
+  
       if (existekey == null) {
         this.guardarUsuario("key", key);
       }
+
     },
     updatedbOnlineUsers: function(usuario) {
       var route = this.$route.path;
@@ -131,16 +134,37 @@ export default {
   },
   created() {
     var existeUsuario = this.cargarUsuario("usuario");
+    var existePhoto = this.cargarUsuario("photo");
+    console.log("existepho", existePhoto)
 
-    console.log("existe?", existeUsuario);
-    if (existeUsuario == null) {
-      console.log("entra?");
-      this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
-      this.guardarUsuario("usuario", this.privateId);
-      existeUsuario = this.privateId;
-    }
+    if(existePhoto == null){
+      $.ajax({
+        url: 'https://randomuser.me/api/',
+        dataType: 'json',
+        success: (data)  => {
+          this.guardarUsuario("photo",data.results[0].picture.thumbnail)
+          if (existeUsuario == null) {
+            console.log("entra?");
+            this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
+            this.guardarUsuario("usuario", this.privateId);
+            existeUsuario = this.privateId;
+          }
 
     this.getUsers(existeUsuario);
+        }
+      });
+    }else{
+      if (existeUsuario == null) {
+        console.log("entra?");
+        this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
+        this.guardarUsuario("usuario", this.privateId);
+        existeUsuario = this.privateId;
+      }
+
+    this.getUsers(existeUsuario);
+    }
+  
+    
   },
   destroyed() {}
 };

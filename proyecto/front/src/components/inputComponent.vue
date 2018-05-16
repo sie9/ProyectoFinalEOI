@@ -46,14 +46,14 @@ export default {
       this.msg = this.msg + emoji.native;
     },
     writetodB: function() {
-      var privateId = this.cargarUsuario();
+      var privateId = this.cargarUsuario("usuario");
       if (privateId == null) {
         privateId == "WTF?";
       }
-
+    var url = this.cargarUsuario("photo")
       var route = this.$route.path;
       var res = route.substring(1, route.length);
-      console.log(res);
+
       firebase
         .database()
         .ref("Sala" + res)
@@ -61,8 +61,9 @@ export default {
         .push({
           text: this.msg,
           owner: privateId,
-          time: Date(),
-          id: (this.s4() + "-" + this.s4())
+          time: Date.now(),
+          id: (this.s4() + "-" + this.s4()),
+          photo: url
         });
       this.msg = "";
     },
@@ -77,10 +78,10 @@ export default {
         .ref("audios")
         .push({});
     },
-    cargarUsuario: function() {
-      var comoString = localStorage.getItem("usuario");
+    cargarUsuario: function(key) {
+      var comoString = localStorage.getItem(key);
       return JSON.parse(comoString);
-    }
+    },
   }
 };
 
