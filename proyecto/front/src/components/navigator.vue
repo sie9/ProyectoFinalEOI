@@ -7,7 +7,7 @@
       <share-link></share-link>
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
-        <li><div @click="showLogin()" class="contact nav-btn">Login</div></li>
+        <li><div @click="showLogin()" class="login nav-btn">Login</div></li>
         <li><div @click="show()" class="addUser nav-btn">Add Users</div></li>
         <li><div @click="show3()" class="contact nav-btn">Contact</div></li>
       </ul>
@@ -56,7 +56,7 @@
         
        
         <div class="row">
-            <div class="card-panel flow-text email-button" @click="logIn()">Log in</div>
+            <div class="card-panel flow-text email-button" @click="logIn()" v-if="(usuario != '' && pass != '')">Log in</div>
         </div>
       </div>
     </div>
@@ -116,6 +116,14 @@ $(document).click(function(event) {
   if ($("#myModal3").css("display") == "block") {
     if (!$(event.target).closest(".modal-content,.contact").length) {
       $("#myModal3").hide();
+    }
+  }
+});
+
+$(document).click(function(event) {
+  if ($("#loginModal").css("display") == "block") {
+    if (!$(event.target).closest(".modal-content,.login").length) {
+      $("#loginModal").hide();
     }
   }
 });
