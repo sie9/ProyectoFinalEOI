@@ -100,9 +100,9 @@ export default {
 }
 
 .input-container {
-  padding: 10px 50px 30px 50px;
-  border:1px solid rgb(110, 110, 110);
-  box-shadow:10px 1px 20px 5px rgba(14, 14, 14, 0.815);
+  padding: 30px 50px 30px 50px;
+  border: 1px solid rgb(110, 110, 110);
+  box-shadow: 10px 1px 20px 5px rgba(14, 14, 14, 0.815);
   display:flex;
   justify-content: flex-start;
   align-items: center;
@@ -118,10 +118,10 @@ z-index: 1;
 }
 
 .emojis-btn{
-  padding:10px;
-  margin:5px;
+  padding: 10px;
+  margin: 15px 15px 15px 0;
   cursor:pointer;
-  border:1px solid rgba(211, 211, 211, 0.856);
+  border: 1px solid rgba(211, 211, 211, 0.856);
 }
 
 .emojis-btn:hover{

@@ -295,6 +295,7 @@ export default {
   background: #fca331;
   display: flex;
   flex-wrap: nowrap;
+  z-index: 9999;
   border-bottom: 1px solid rgb(61, 61, 61);
 }
 
@@ -315,10 +316,11 @@ export default {
 }
 
 img {
-  width: 100%;
+  width: 120px;
+  height: auto;
   filter: grayscale(100%);
   transition: filter 0.3s ease-out;
-  padding-top: 5px;
+  /* padding-top: 5px; */
 }
 
 img:hover {

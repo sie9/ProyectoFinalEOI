@@ -131,10 +131,10 @@ a:hover {
   height: 100%;
   top: 0;
   left: 0;
-  background-position: center center;
-  /* background-size: cover; */
+  /* background-position: center center; */
   background-attachment: fixed;
-  background-size: 100% 100%; /* Gecko 2.0 (Firefox 4.0) and other CSS3-compliant browsers */
+  background-size: cover;
+  
 }
 
 .login-box {

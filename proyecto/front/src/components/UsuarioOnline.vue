@@ -25,13 +25,14 @@ export default {
 
 .userCard {
 display:flex;
-font-family: 'Amatic SC', cursive;
-font-weight: 700;
-font-size:1.5rem;
+font-family: "Montserrat", sans-serif;
+font-weight: 500;
+font-size:1rem;
 }
-.userimage-border{
+
+.userimage-border {
   border-radius: 50%;
-  border:1px solid grey;
+  border: 2px solid #fca331;
   width: 50px;
   height: 50px;
   background-image: url('https://source.unsplash.com/1600x900/?face');
@@ -40,10 +41,9 @@ font-size:1.5rem;
 }
 
 .card{
-  padding:15px 5px 10px 5px;
+  padding: 15px 5px 15px 10px;
   margin: 0px;
   border-collapse:collapse;
-  border-radius:0px;
   width:100%;
   display:flex;
   justify-content: flex-start;
@@ -70,9 +70,7 @@ font-size:1.5rem;
 
 span {
   line-height: 30px;
-  margin-bottom:15px;
-  margin-right:50px;
-  margin-left:10px;
+  margin: 0 50px 0 20px;
   word-break:break-all;
   
 }
