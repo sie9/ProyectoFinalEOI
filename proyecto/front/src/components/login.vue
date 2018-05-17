@@ -10,7 +10,7 @@
                         <input id="texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
                   </div>
                 <div>
-                    <router-link v-bind:to="msg">
+                    <router-link v-bind:to="msg" >
                       <alert dato="Esta sala existe" v-if="(aux==false)"></alert>
                         <div class="btn col s12">
                            CREATE A NEW ROOM 

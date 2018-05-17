@@ -143,8 +143,8 @@ export default {
       $('.main-SalaChat').removeClass("blur")
     },
     afterModal() {   
-     
-      var route = this.$route.path;
+      if (this.alias != ''){
+        var route = this.$route.path;
       var res = route.substring(1, route.length);
 
       var key = this.cargarUsuario('key');
@@ -158,6 +158,8 @@ export default {
         this.guardarUsuario("alias", this.alias);
         this.hideRequestAlias();
       })
+      }
+      
         
     }
   },
