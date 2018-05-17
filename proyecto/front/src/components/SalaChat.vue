@@ -125,8 +125,8 @@ export default {
     guardarUsuario: function(key, value) {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
-      var comoString = JSON.stringify(value+res);
-      localStorage.setItem(key, comoString);
+      var comoString = JSON.stringify(value);
+      localStorage.setItem(key+res, comoString);
     },
     showRequestAlias() {
       var modalAlias = document.getElementById("Alias");
