@@ -112,7 +112,9 @@ export default {
         });
     },
     cargarUsuario: function(key) {
-      var comoString = localStorage.getItem(key);
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+      var comoString = localStorage.getItem(key+res);
       return JSON.parse(comoString);
     },
     s4: function() {
@@ -121,7 +123,9 @@ export default {
         .substring(1);
     },
     guardarUsuario: function(key, value) {
-      var comoString = JSON.stringify(value);
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+      var comoString = JSON.stringify(value+res);
       localStorage.setItem(key, comoString);
     },
     showRequestAlias() {

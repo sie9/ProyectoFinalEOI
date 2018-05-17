@@ -5,7 +5,7 @@
             <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" @select="onClick" v-if="salir==true"></picker>
             <div class="input-field grid-input">
                 <label for="Texto">Mensaje</label>
-                <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg">
+                <input id="Texto" type="text" @change="concatena" v-on:keyup.enter="writetodB"  class="validate" v-model="msg">
             </div>
             <div class="flex-button">
                 <a class="waves-effect waves-light btn " v-on:click="writetodB">
@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      msg: "",
+      msg: " ",
       salir:false 
     };
   },
@@ -44,6 +44,8 @@ export default {
   methods: {
     showIcons: function () {
       this.salir=!this.salir;
+    },
+    concatena: function () {
     },
     jsUcfirst: function (string) {
       return this.msg.charAt(0).toUpperCase() + this.msg.slice(1);
@@ -61,7 +63,8 @@ export default {
     var url = this.cargarUsuario("photo")
       var route = this.$route.path;
       var res = route.substring(1, route.length);
-
+      
+      
       firebase
         .database()
         .ref("Sala" + res)
@@ -87,8 +90,20 @@ export default {
         .push({});
     },
     cargarUsuario: function(key) {
-      var comoString = localStorage.getItem(key);
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+      var comoString = localStorage.getItem(key+res);
       return JSON.parse(comoString);
+    },
+    metodoAuxiliar: function (event, self){
+      var speechResult = event.results[0][0].transcript;
+        
+        console.log(self);
+        console.log("resultado:", speechResult);
+        self.msg = speechResult;
+        var texto = $('#Texto').val() + " ";
+        $('#Texto').val(texto + speechResult);
+        $('#Texto').focus();
     },
     voicetospeech: () => {
       var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
@@ -109,24 +124,7 @@ export default {
 
       recognition.start();
 
-      
-      recognition.onresult = function (event) {
-        // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-        // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-        // It has a getter so it can be accessed like an array
-        // The first [0] returns the SpeechRecognitionResult at position 0.
-        // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-        // These also have getters so they can be accessed like arrays.
-        // The second [0] returns the SpeechRecognitionAlternative at position 0.
-        // We then return the transcript property of the SpeechRecognitionAlternative object
-        var speechResult = event.results[0][0].transcript;
-        
-        
-        console.log("resultado:", speechResult);
-        console.log("this",this.msg)
-        var texto = $('#Texto').val() + " ";
-        $('#Texto').val(texto + speechResult);
-      };
+      recognition.onresult = (event) =>  this.a.methods.metodoAuxiliar(event, this) ;
 
       recognition.onspeechend = function() {
         recognition.stop();

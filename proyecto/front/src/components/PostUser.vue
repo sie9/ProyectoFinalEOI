@@ -61,7 +61,9 @@ export default {
   },
   methods: {
     cargarUsuario(key) {
-      var comoString = localStorage.getItem(key);
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+      var comoString = localStorage.getItem(key+res);
       return JSON.parse(comoString);
     },
     undo(id) {
