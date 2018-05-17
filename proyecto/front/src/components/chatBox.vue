@@ -2,19 +2,11 @@
   <div class="maindiv">
       <chatTitle class="chatTitle"></chatTitle>
       <div class="display">
-<<<<<<< HEAD
-        <PostUser v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id"/>
-      </div>
-      
-      <inputComponent></inputComponent>
-
-=======
         <loaders class="loaders" :conver="this.cond"></loaders>
         <PostUser class="postUser" v-for="mensaje in mensajes" :conver="mensaje" :key="mensaje.id" v-if="cond"/>
       </div>      
       <inputComponent class="alinear"></inputComponent>
       
->>>>>>> dev
   </div>
 </template>
 
