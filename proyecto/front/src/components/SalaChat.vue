@@ -4,7 +4,7 @@
     
     <listaUsuarioOnline class="listaUsuarioOnline"></listaUsuarioOnline>
     
-    <chat-box :dato="lang" class="grid-contentview chatBox"></chat-box>
+    <chat-box :dato="lang" class="grid-contentview chatBox" id="chatbox"></chat-box>
     
   </div>
   
@@ -18,8 +18,6 @@ import chatTitle from "./chatTitle";
 import listaUsuarioOnline from "./listaUsuarioOnline";
 import inputComponent from "./inputComponent";
 import firebase from "firebase";
-
-
 
 export default {
   name: "App",
@@ -55,8 +53,8 @@ export default {
             var arrayUsers = Object.values(this.usuarios);
 
             const resultado = arrayUsers.find(usuario => usuario.id === user);
-            console.log(resultado)
-            console.log(user)
+            console.log(resultado);
+            console.log(user);
             if (typeof resultado === "undefined") {
               this.writedbOnlineUsers(user);
             }
@@ -65,11 +63,11 @@ export default {
           }
         });
     },
-    writedbOnlineUsers: function (userPrivateID){
+    writedbOnlineUsers: function(userPrivateID) {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
-      var urlPhoto = this.cargarUsuario("photo")
-      console.log("wrdb",urlPhoto)
+      var urlPhoto = this.cargarUsuario("photo");
+      console.log("wrdb", urlPhoto);
       var key = firebase
         .database()
         .ref("Sala" + res)
@@ -83,11 +81,10 @@ export default {
       console.log(key);
 
       var existekey = this.cargarUsuario("key");
-  
+
       if (existekey == null) {
         this.guardarUsuario("key", key);
       }
-
     },
     updatedbOnlineUsers: function(usuario) {
       var route = this.$route.path;
@@ -116,33 +113,33 @@ export default {
     }
   },
 
-  beforeRouteEnter (to, from, next) { 
+  beforeRouteEnter(to, from, next) {
     var route = to.fullPath;
     var res = route.substring(1, route.length);
-    console.log(to.fullPath)
+    console.log(to.fullPath);
     firebase
       .database()
       .ref("Sala" + res)
       .once("value", data => {
         console.log(data.val());
         if (data.val() == null) {
-          window.location.href=to.fullPath+'/notFound'
-        } else {       
-          next()
+          window.location.href = to.fullPath + "/notFound";
+        } else {
+          next();
         }
       });
   },
   created() {
     var existeUsuario = this.cargarUsuario("usuario");
     var existePhoto = this.cargarUsuario("photo");
-    console.log("existepho", existePhoto)
+    console.log("existepho", existePhoto);
 
-    if(existePhoto == null){
+    if (existePhoto == null) {
       $.ajax({
-        url: 'https://randomuser.me/api/',
-        dataType: 'json',
-        success: (data)  => {
-          this.guardarUsuario("photo",data.results[0].picture.thumbnail)
+        url: "https://randomuser.me/api/",
+        dataType: "json",
+        success: data => {
+          this.guardarUsuario("photo", data.results[0].picture.thumbnail);
           if (existeUsuario == null) {
             console.log("entra?");
             this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
@@ -150,10 +147,10 @@ export default {
             existeUsuario = this.privateId;
           }
 
-    this.getUsers(existeUsuario);
+          this.getUsers(existeUsuario);
         }
       });
-    }else{
+    } else {
       if (existeUsuario == null) {
         console.log("entra?");
         this.privateId = "Guest" + "-" + this.s4() + this.s4() + this.s4();
@@ -161,10 +158,26 @@ export default {
         existeUsuario = this.privateId;
       }
 
-    this.getUsers(existeUsuario);
+      this.getUsers(existeUsuario);
     }
-  
-    
+
+    var route = this.$route.path;
+    var res = route.substring(1, route.length);
+    firebase
+      .database()
+      .ref("Sala" + res)
+      .child("Zumbido")
+      .on("child_changed", data => {
+        console.log("to", data.val());
+        var existeUsuario = this.cargarUsuario("usuario");
+        console.log("existeusuario", existeUsuario);
+        if (data.val().to == existeUsuario) {
+          $("#chatbox").addClass("shake-horizontal shake-constant");
+          setTimeout(() => {
+            $("#chatbox").removeClass("shake-horizontal shake-constant");
+          }, 1000);
+        }
+      });
   },
   destroyed() {}
 };
@@ -227,18 +240,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
-  background: url('../assets/img/background.png') no-repeat center center fixed; 
+  background: url("../assets/img/background.png") no-repeat center center fixed;
 }
 
-@media only screen and (min-device-width : 180px) and (max-device-width : 720px){
-  .listaUsuarioOnline{
-    display:none;
+@media only screen and (min-device-width: 180px) and (max-device-width: 720px) {
+  .listaUsuarioOnline {
+    display: none;
   }
 
-  .grid-contentview.chatBox{
+  .grid-contentview.chatBox {
     grid-column: 1/5;
   }
-
-
 }
 </style>
