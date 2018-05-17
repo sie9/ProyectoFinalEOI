@@ -1,5 +1,9 @@
 <template>
-  <div id="app" class="main-SalaChat grid">    
+  <div id="app" class="main-SalaChat grid"> 
+    <audio id="myAudio">      
+      <source src="../assets/zumbido.mp3" type="audio/mp3">      
+    </audio>
+       
     <navigator @lang='changeLang' class="grid-fullview"></navigator>
     
     <listaUsuarioOnline class="listaUsuarioOnline"></listaUsuarioOnline>
@@ -213,13 +217,15 @@ export default {
       .ref("Sala" + res)
       .child("Zumbido")
       .on("child_changed", data => {
-        
+                
         var existeUsuario = this.cargarUsuario("usuario");
         console.log("existeusuario en firebase", existeUsuario);
         console.log("to firebase", data.val().to);
         if (data.val().to == existeUsuario) {
-          var mySound = new Audio ('../assets/zumbido.mp3');
-          mySound.play();
+
+          var zumbar = document.getElementById("myAudio");
+          zumbar.play();
+
           $("#chatbox").addClass("shake-horizontal shake-constant");
           setTimeout(() => {
             $("#chatbox").removeClass("shake-horizontal shake-constant");
