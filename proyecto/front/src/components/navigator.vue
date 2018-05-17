@@ -19,7 +19,7 @@
 
       <div class="modal-content">
         <span class="close" @click="hide">&times;</span>
-        <h3>Añade a tus amigos a la sala!</h3>
+        <h3>Añade a tus amigos a la sala</h3>
         
         <div id= "Container" class="collection">
           <div class="collection-item added-friends">Amigos añadidos:</div>
@@ -43,7 +43,7 @@
     <div id="loginModal" class="modal">
       <div class="modal-content">
         <span class="close" @click="hideLogin">&times;</span>
-        <h3>Log in</h3>
+        <h3>LOG IN</h3>
         <div class="input-field col s12" >
             <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="usuario" >
             <label for="email">Email</label>
@@ -64,7 +64,7 @@
       <!-- Modal content -->
       <div class="modal-content2">
         <span class="close" @click="hide2">&times;</span>
-        <h3>Se ha enviado tu email!!</h3>
+        <h3>¡¡Se ha enviado tu email!!</h3>
       </div>
     </div>
       <!--------------------------------- The Modal contacto  ---------------------------------------->
@@ -374,7 +374,9 @@ share-link {
 }
 
 .modal-content h3 {
-  font-family: "Amatic SC", cursive;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  text-transform: uppercase;
 }
 
 .added-friends {
@@ -399,11 +401,13 @@ share-link {
 }
 
 .email-button {
+  color: white;
   cursor: pointer;
-  background-color: rgb(37, 231, 118);
+  background-color: #fca331;
 }
+
 .email-button:hover {
-  background-color: rgb(26, 148, 77);
+  background-color: #ce8c35;
   color: white;
 }
 
@@ -426,4 +430,5 @@ share-link {
   color: rgba(175, 11, 11, 0.836);
   cursor: pointer;
 }
+
 </style>
