@@ -41,7 +41,8 @@ export default {
             "https://translation.googleapis.com/language/translate/v2?key=AIzaSyDypMznEtSRccdQG5PwbVRdm_fRLhwvQUQ",
             {
               target: this.dato,
-              q: element.Texto
+              q: element.Texto,
+              format: "text"
             }
           )
           .then(response => {
@@ -66,7 +67,7 @@ export default {
     },
 
     cargarUsuario(key) {
-      
+
     var route = this.$route.path;
       var res = route.substring(1, route.length);
       var comoString = localStorage.getItem(key+res);
