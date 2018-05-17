@@ -2,8 +2,8 @@
 <div class="container">
     <div class="row" v-bind:class="{'rightMsg': conver.owner== this.cargarUsuario('usuario')}" >
       
-      <div class="userimage-border" v-bind:style="{ 'background-image': 'url(' + conver.photo + ')' }" @click="zumbido()">
-        <i class="fas fa-bolt"></i>
+      <div class="userimage-border" title="Shake it!" v-bind:style="{ 'background-image': 'url(' + conver.photo + ')' }" @click="zumbido()">
+        <i class="fas fa-bolt fa-lg"></i>
       </div>         
       <div class=" card darken-1 col s4 valign-wrapper" v-bind:class="{'userMsg': conver.owner== this.cargarUsuario('usuario')}" >
         <span>
@@ -129,6 +129,18 @@ export default {
   height: 50px;
   background-position: center;
   background-size: cover;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  cursor:pointer;
+}
+
+.userimage-border i{
+  color:rgb(190, 190, 190);
+}
+.userimage-border:hover > i{
+  color:#fca331;
+  
 }
 
 .row {
