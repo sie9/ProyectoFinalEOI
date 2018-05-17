@@ -4,7 +4,7 @@
             <div class="emojis-btn" v-on:click="showIcons">😠</div>
             <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" @select="onClick" v-if="salir==true"></picker>
             <div class="input-field grid-input">
-                <label for="Texto">Mensaje</label>
+                <label for="Texto">Message</label>
                 <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg">
             </div>
             <div class="flex-button">
