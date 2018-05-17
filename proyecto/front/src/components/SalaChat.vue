@@ -132,7 +132,7 @@ export default {
       $('.main-SalaChat').removeClass("blur")
     },
     afterModal() {   
-      this.$emit("alias",this.alias);  
+     
       var route = this.$route.path;
       var res = route.substring(1, route.length);
 
