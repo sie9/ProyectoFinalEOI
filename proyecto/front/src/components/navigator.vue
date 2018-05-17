@@ -161,12 +161,15 @@ export default {
       this.$emit("lang", lang);
     },
     onSubmit() {
-      if (this.email.includes("@")) {
-        this.emails.push(this.email);
-        this.email = "";
-        $("#email").val("");
+      if (this.emails.length < 5){
+        if (this.email.includes("@")) {
+          this.emails.push(this.email);
+          this.email = "";
+          $("#email").val("");
         //this.sendMail();
+        }
       }
+      
     },
     onSubmit2() {
       if (this.contacto.email.includes("@")) {
