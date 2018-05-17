@@ -17,7 +17,6 @@
         <div class="row">
             <div @click="afterModal()" class="card-panel flow-text email-button">Aceptar</div>
         </div>
-
       </div>
     </div>   
   </div>
@@ -125,29 +124,27 @@ export default {
     showRequestAlias() {
       var modalAlias = document.getElementById("Alias");
       modalAlias.style.display = "block";
-      $('.main-SalaChat').css("filter","blur(5px)")
+      $('.main-SalaChat').addClass("blur")
     },
     hideRequestAlias() {
       var modalAlias = document.getElementById("Alias");
       modalAlias.style.display = "none";
+      $('.main-SalaChat').removeClass("blur")
     },
-    afterModal() {      
+    afterModal() {   
+      this.$emit("alias",this.alias);  
       var route = this.$route.path;
       var res = route.substring(1, route.length);
 
       var key = this.cargarUsuario('key');
+      console.log("key", key);
       var user = this.cargarUsuario('usuario');
 
-      console.log("route: ",route);
-      console.log("res: ",res);
-      console.log("key: ",key);
-      console.log("user: ",user);
-
-
-      firebase.database().ref("Sala" + res).child('usuariosOnline').child(key).set({
-        id: this.alias                 
+      firebase.database().ref("Sala" + res+"/usuariosOnline/"+key).update({
+        alias: this.alias                 
       })
       .then(()=>{
+        console.log("entre a firebase")
         this.hideRequestAlias();
       })
         
@@ -163,6 +160,7 @@ export default {
 
         this.guardarUsuario("usuario", this.privateId);
         existeUsuario = this.privateId;
+        
       }
       this.getUsers(existeUsuario);      
       
@@ -249,7 +247,8 @@ export default {
   box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
 }
 
-.email-button {
+.blur> *:not(.modal){
+  filter:blur(5px)
 }
 
 @media only screen and (min-device-width: 180px) and (max-device-width: 720px) {

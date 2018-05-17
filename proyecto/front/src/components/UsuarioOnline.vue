@@ -4,7 +4,7 @@
       <div class="userimage-border">
       </div>         
         <span>
-          Id: {{conver.id}}
+          {{conver.alias}}
         </span>     
       </div>    
     </div>
@@ -14,7 +14,10 @@
 <script>
 export default {
   name: "UsuarioOnline",
-  props: ["conver"]
+  props: ["conver"],
+  mounted(){
+    console.log(this.conver.alias)
+    }
 };
 </script>
 
