@@ -19,10 +19,10 @@
 
       <div class="modal-content">
         <span class="close" @click="hide">&times;</span>
-        <h3>Añade a tus amigos a la sala!</h3>
+        <h3>Add friends to your chatroom</h3>
         
         <div id= "Container" class="collection">
-          <div class="collection-item added-friends">Amigos añadidos:</div>
+          <div class="collection-item added-friends">Friends to add:</div>
           <div class="collection-item" v-for="(email,index) in emails">  {{email}} <span @click='borrarEmail(index)' > x </span></div>
         </div>
             
@@ -34,7 +34,7 @@
         </div>
        
         <div class="row" v-if="emails.length>0">
-            <div class="card-panel flow-text email-button" @click="sendMail()">Enviar</div>
+            <div class="card-panel flow-text email-button" @click="sendMail()">Sent</div>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close" @click="hide3">&times;</span>
-        <h3>¿Como podemos ayudarte?</h3>
+        <h3>How can we help you?</h3>
                     
         <div class="row">
           <div class="input-field col s12">
@@ -83,12 +83,12 @@
         <div class="row">
           <div class="input-field col s12">
             <input id="asunto" type="text" class="validate" v-model="contacto.asunto" >
-            <label for="asunto">Asunto</label>
+            <label for="asunto">Subject</label>
           </div>
         </div>
        
         <div class="row">
-            <div class="card-panel flow-text email-button" @click="onSubmit2()" v-if="contacto.email!='' && contacto.asunto!=''">Enviar</div>
+            <div class="card-panel flow-text email-button" @click="onSubmit2()" v-if="contacto.email!='' && contacto.asunto!=''">Sent</div>
           
         </div>
       </div>

@@ -8,10 +8,10 @@
 
     <div id="Alias" class="modal modal-alias">
       <div class="modal-content">
-        <h3>Elige tu Alias</h3>
+        <h3>Choose your nickname</h3>
         <div class="input-field col s12" >
             <input id="Alias" type="text" class="validate" v-model="alias">
-            <label for="email">Alias</label>
+            <label for="email">Nickname</label>
         </div>        
        
         <div class="row">

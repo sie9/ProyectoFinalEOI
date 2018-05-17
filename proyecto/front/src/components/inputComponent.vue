@@ -4,8 +4,13 @@
             <div class="emojis-btn" v-on:click="showIcons">😠</div>
             <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" @select="onClick" v-if="salir==true"></picker>
             <div class="input-field grid-input">
+<<<<<<< HEAD
                 <label for="Texto">Mensaje</label>
                 <input id="Texto" type="text" @change="concatena" v-on:keyup.enter="writetodB"  class="validate" v-model="msg">
+=======
+                <label for="Texto">Message</label>
+                <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg">
+>>>>>>> 2487f148f84dac468a136480c1213b84299750c5
             </div>
             <div class="flex-button">
                 <a class="waves-effect waves-light btn " v-on:click="writetodB">
