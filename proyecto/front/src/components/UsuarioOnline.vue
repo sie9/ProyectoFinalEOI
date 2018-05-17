@@ -4,7 +4,7 @@
       <div class="userimage-border" :id="conver.id">
       </div>         
         <span>
-          Id: {{conver.id}}
+          {{conver.alias}}
         </span>     
       </div>    
     </div>
@@ -15,6 +15,7 @@
 export default {
   name: "UsuarioOnline",
   props: ["conver"],
+<<<<<<< HEAD
   methods:{
     cargarUsuario: function(key) {
         var comoString = localStorage.getItem(key);
@@ -28,6 +29,12 @@ export default {
   }
 }
 
+=======
+  mounted(){
+    console.log(this.conver.alias)
+    }
+};
+>>>>>>> alias
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

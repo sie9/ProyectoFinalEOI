@@ -4,8 +4,21 @@
     
     <listaUsuarioOnline class="listaUsuarioOnline"></listaUsuarioOnline>
     
-    <chat-box :dato="lang" class="grid-contentview chatBox" id="chatbox"></chat-box>
-    
+    <chat-box :dato="lang" class="grid-contentview chatBox"></chat-box> 
+
+    <div id="Alias" class="modal modal-alias">
+      <div class="modal-content">
+        <h3>Elige tu Alias</h3>
+        <div class="input-field col s12" >
+            <input id="Alias" type="text" class="validate" v-model="alias">
+            <label for="email">Alias</label>
+        </div>        
+       
+        <div class="row">
+            <div @click="afterModal()" class="card-panel flow-text email-button">Aceptar</div>
+        </div>
+      </div>
+    </div>   
   </div>
   
 </template>
@@ -32,7 +45,8 @@ export default {
     return {
       lang: "",
       privateId: "",
-      usuarios: []
+      usuarios: [],
+      alias: ""
     };
   },
   methods: {
@@ -108,8 +122,35 @@ export default {
     },
     guardarUsuario: function(key, value) {
       var comoString = JSON.stringify(value);
-
       localStorage.setItem(key, comoString);
+    },
+    showRequestAlias() {
+      var modalAlias = document.getElementById("Alias");
+      modalAlias.style.display = "block";
+      $('.main-SalaChat').addClass("blur")
+    },
+    hideRequestAlias() {
+      var modalAlias = document.getElementById("Alias");
+      modalAlias.style.display = "none";
+      $('.main-SalaChat').removeClass("blur")
+    },
+    afterModal() {   
+     
+      var route = this.$route.path;
+      var res = route.substring(1, route.length);
+
+      var key = this.cargarUsuario('key');
+      console.log("key", key);
+      var user = this.cargarUsuario('usuario');
+
+      firebase.database().ref("Sala" + res+"/usuariosOnline/"+key).update({
+        alias: this.alias                 
+      })
+      .then(()=>{
+        console.log("entre a firebase")
+        this.hideRequestAlias();
+      })
+        
     }
   },
 
@@ -178,6 +219,10 @@ export default {
           }, 1000);
         }
       });
+     
+  },
+  mounted() {
+    this.showRequestAlias();
   },
   destroyed() {}
 };
@@ -188,31 +233,25 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
-
 .subgrid {
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
-
 .col-aside {
   grid-column: 1/2;
 }
 .col-chatbox {
   grid-column: 2/3;
 }
-
 .grid-contentview {
   grid-column: 2/5;
 }
-
 .grid-aside {
   grid-column: 1/2;
 }
-
 .grid-fullview {
   grid-column: 1/5;
 }
-
 .container.maindiv.col.s12 {
   display: flex;
   justify-content: flex-end;
@@ -220,18 +259,15 @@ export default {
 .col.s12 {
   padding: 0px;
 }
-
 .col.s3 {
   padding: 0px;
 }
-
 .col.s9 {
   padding: 0px;
 }
 .chatTitle {
   height: 10vh;
 }
-
 .main-SalaChat {
   font-weight: 300;
   font-family: "Montserrat", sans-serif;
@@ -241,8 +277,42 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   background: url("../assets/img/background.png") no-repeat center center fixed;
+<<<<<<< HEAD
 }
 
+=======
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  padding: 10% 0;
+  max-height: 100%;
+}
+/* Modal Content */
+.modal-content {
+  font-family: "Montserrat", sans-serif;
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 35%;
+  min-height: 60%;
+  height: auto;
+  padding-bottom: 10px;
+  border: 2px inset #fca331;
+  box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
+}
+
+.blur> *:not(.modal){
+  filter:blur(5px)
+}
+
+>>>>>>> alias
 @media only screen and (min-device-width: 180px) and (max-device-width: 720px) {
   .listaUsuarioOnline {
     display: none;

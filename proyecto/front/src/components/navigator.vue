@@ -41,7 +41,6 @@
 
     <!------------------------------------- MODAL LOGIN ---------------------------------->
     <div id="loginModal" class="modal">
-
       <div class="modal-content">
         <span class="close" @click="hideLogin">&times;</span>
         <h3>Log in</h3>
@@ -70,7 +69,6 @@
     </div>
       <!--------------------------------- The Modal contacto  ---------------------------------------->
     <div id="myModal3" class="modal">
-
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close" @click="hide3">&times;</span>
