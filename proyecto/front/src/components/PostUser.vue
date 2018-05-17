@@ -50,10 +50,6 @@ export default {
       this.conver.photo =
         "https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder.jpg";
   },
-  // mounted(){
-  //     var url = this.conver.photo
-  //     console.log("url",url)
-  //     $('#'+this.conver.id).css("background-image","url("+url+")")
 
   // },
   components: {
@@ -154,7 +150,7 @@ export default {
   max-width: 66%;
   min-width: 25%;
   text-align: initial;
-  margin: 0 0 5px 10px;
+  margin: 0 10px 5px 10px;
   width: auto;
 }
 
