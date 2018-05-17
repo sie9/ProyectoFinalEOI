@@ -7,10 +7,10 @@
             </div>
             <div class="cabecera">
                   <div class="login">
-                        <input id="texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
+                        <input id="texto" type="text" class="validate" v-model="msg" @keyup.enter="checkFirebase(msg)"  placeholder="wwww.chatty/name-room.es" maxlength="60">
                   </div>
                 <div>
-                    <router-link v-bind:to="msg">
+                    <router-link v-bind:to="msg" >
                       <alert dato="Esta sala existe" v-if="(aux==false)"></alert>
                         <div class="btn col s12">
                            CREATE A NEW ROOM 
@@ -78,11 +78,13 @@ export default {
     }
   },
   beforeRouteLeave(to, from, next) {
-    firebase
-      .database()
-      .ref("Sala" + this.msg)
-      .once("value", data => {
+
+    this.checkFirebase();
+
+    
+    firebase.database().ref("Sala" + this.msg).once("value", data => {
         console.log(data.val());
+        
         if (data.val() != null) {
           this.aux = false;
           
@@ -91,10 +93,15 @@ export default {
           this.isActive = false;
           console.log("No existe esta sala!");
           next();
-          });
-          
+          });          
         }
       });
+  },
+  methods: {
+    goto() {
+
+      location.href = "/"+this.msg;
+    }
   },
   components: {
     alert

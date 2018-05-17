@@ -14,12 +14,12 @@
       <div class="modal-content">
         <h3>Choose your nickname</h3>
         <div class="input-field col s12" >
-            <input id="Alias" type="text" class="validate" v-model="alias">
+            <input id="Alias" type="text" class="validate" @keyup.enter="afterModal()"  v-model="alias">
             <label for="email">Nickname</label>
         </div>        
        
         <div class="row">
-            <div @click="afterModal()" class="card-panel flow-text email-button">Aceptar</div>
+            <div @click="afterModal()" class="card-panel flow-text button-color color-boton email-button">Accept</div>
         </div>
       </div>
     </div>   
@@ -161,7 +161,6 @@ export default {
         
     }
   },
-
   beforeRouteEnter(to, from, next) {
     var route = to.fullPath;
     var res = route.substring(1, route.length);
@@ -219,8 +218,8 @@ export default {
       .on("child_changed", data => {
                 
         var existeUsuario = this.cargarUsuario("usuario");
-        console.log("existeusuario en firebase", existeUsuario);
-        console.log("to firebase", data.val().to);
+        /* console.log("existeusuario en firebase", existeUsuario);
+        console.log("to firebase", data.val().to); */
         if (data.val().to == existeUsuario) {
 
           var zumbar = document.getElementById("myAudio");
@@ -320,6 +319,10 @@ export default {
   padding-bottom: 10px;
   border: 2px inset #fca331;
   box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
+}
+
+.button-color {
+  background-color: #fca331;
 }
 
 .blur> *:not(.modal){

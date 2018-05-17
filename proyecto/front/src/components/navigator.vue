@@ -16,8 +16,8 @@
     <!--------------------------------- The Modal enviar email ---------------------------------------->
       
     <div id="myModal" class="modal">
-
-      <div class="modal-content">
+      <loaders class="loaders" :conver="this.cond" ></loaders>
+      <div class="modal-content" v-if='cond'>
         <span class="close" @click="hide">&times;</span>
         <h3>Add friends to your chatroom</h3>
         
@@ -34,7 +34,7 @@
         </div>
        
         <div class="row" v-if="emails.length>0">
-            <div class="card-panel flow-text email-button" @click="sendMail()">Sent</div>
+            <div class="card-panel flow-text email-button" @click="sendMail()">Send</div>
         </div>
       </div>
     </div>
@@ -62,9 +62,9 @@
      <!--------------------------------- The Modal exito email ---------------------------------------->
     <div id="myModal2" class="modal">
       <!-- Modal content -->
-      <div class="modal-content2">
-        <span class="close" @click="hide2">&times;</span>
-        <h3>¡¡Se ha enviado tu email!!</h3>
+      <div class="modal-content">
+        <!-- <span class="close" @click="hide2">&times;</span> -->
+        <h3>¡¡Your mail has been sent!!</h3>
       </div>
     </div>
       <!--------------------------------- The Modal contacto  ---------------------------------------->
@@ -88,7 +88,7 @@
         </div>
        
         <div class="row">
-            <div class="card-panel flow-text email-button" @click="onSubmit2()" v-if="contacto.email!='' && contacto.asunto!=''">Sent</div>
+            <div class="card-panel flow-text email-button" @click="onSubmit2()" v-if="contacto.email!='' && contacto.asunto!=''">send</div>
           
         </div>
       </div>
@@ -101,6 +101,7 @@
 import languageChoice from "./languageChoice";
 import shareLink from "./shareLink";
 import firebase from "firebase";
+import loaders from "./loaders";
 
 $(document).click(function(event) {
   if ($("#myModal").css("display") == "block") {
@@ -130,7 +131,8 @@ export default {
   name: "navigator",
   components: {
     languageChoice,
-    shareLink
+    shareLink,
+    loaders
   },
   data() {
     return {
@@ -142,7 +144,8 @@ export default {
         pass: ""
       },
       usuario: "",
-      pass: ""
+      pass: "",
+      cond: true
 
       /* lang:"" */
     };
@@ -164,8 +167,7 @@ export default {
       if (this.email.includes("@")) {
         this.emails.push(this.email);
         this.email = "";
-        $("#email").val("");
-        //this.sendMail();
+        $("#email").val("");        
       }
     },
     onSubmit2() {
@@ -182,11 +184,13 @@ export default {
     show2() {
       var modal = document.getElementById("myModal2");
       modal.style.display = "block";
+      
+      
 
       setTimeout(() => {
         this.hide2();
         this.hide();
-      }, div000);
+      }, 2000);
     },
     show3() {
       var modal = document.getElementById("myModal3");
@@ -241,26 +245,32 @@ export default {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
 
-      let data = {
-        service_id: "pry.chtty@gmail.com",
-        template_id: "chatty",
-        user_id: "user_DeVh4AytZ9lQqdCTn9ODu",
-        template_params: {
-          email: this.email,
-          sala: "http://localhost:8080/#/" + res
-        }
-      };
+      this.cond = false;       
+      this.emails.forEach(correo => {
+        
+        let data = {
+          service_id: "pry.chtty@gmail.com",
+          template_id: "chatty",
+          user_id: "user_DeVh4AytZ9lQqdCTn9ODu",
+          template_params: {
+            email: correo,
+            sala: "http://chatty.biz/" + res
+          }
+        };
 
-      $.ajax("https://api.emailjs.com/api/v1.0/email/send", {
-        type: "POST",
-        data: JSON.stringify(data),
-        contentType: "application/json"
-      })
-        .done(() => {
-          this.show2();
+        $.ajax("https://api.emailjs.com/api/v1.0/email/send", {
+          type: "POST",
+          data: JSON.stringify(data),
+          contentType: "application/json"
         })
-        .fail(function(error) {
-          console.log("Oops... " + JSON.stringify(error));
+          .done(() => { 
+            this.cond = true;                      
+            this.show2();
+          })
+          .fail(function(error) {
+            this.cond = true;
+            console.log("ESTÁ ROMPIENDO POR AQUÍ " + JSON.stringify(error));
+          });
         });
     },
     sendMail2() {
