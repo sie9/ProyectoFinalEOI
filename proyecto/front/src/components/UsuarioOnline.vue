@@ -23,7 +23,7 @@ export default {
   }, 
   mounted(){
       var url = this.conver.photo
-      $('#'+this.conver.id).css("background-image","url("+ur7l+")")
+      $('#'+this.conver.id).css("background-image","url("+url+")")
 
   }
 }
