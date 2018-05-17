@@ -277,10 +277,6 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   background: url("../assets/img/background.png") no-repeat center center fixed;
-<<<<<<< HEAD
-}
-
-=======
 }
 
 .modal {
@@ -312,7 +308,6 @@ export default {
   filter:blur(5px)
 }
 
->>>>>>> alias
 @media only screen and (min-device-width: 180px) and (max-device-width: 720px) {
   .listaUsuarioOnline {
     display: none;

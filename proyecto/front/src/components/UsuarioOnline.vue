@@ -15,7 +15,6 @@
 export default {
   name: "UsuarioOnline",
   props: ["conver"],
-<<<<<<< HEAD
   methods:{
     cargarUsuario: function(key) {
         var comoString = localStorage.getItem(key);
@@ -24,17 +23,11 @@ export default {
   }, 
   mounted(){
       var url = this.conver.photo
-      $('#'+this.conver.id).css("background-image","url("+url+")")
+      $('#'+this.conver.id).css("background-image","url("+ur7l+")")
 
   }
 }
 
-=======
-  mounted(){
-    console.log(this.conver.alias)
-    }
-};
->>>>>>> alias
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
