@@ -18,7 +18,7 @@ export default {
   },
   created() {
     var route = this.$route.path;
-    this.link = "chatty.com" + route;
+    this.link = "chatty.biz" + route;
   },
 
   methods: {
