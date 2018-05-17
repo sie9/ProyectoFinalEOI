@@ -1,5 +1,5 @@
 <template>
-    <div class="row" id="languageChice">
+    <div class="row" id="languageChoice">
        <div class="input-field">
           <select id="drop-select" class="icons" @change="cambiarIdioma(idioma)" v-model="idioma">
             
@@ -38,14 +38,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style>
+
 * {
   font-family: "Montserrat", sans-serif;
 }
 
-.input-field {
+#languageChoice .input-field {
   width: 150px;
   text-align: right;
   /* border-radius: 10px; */
+}
+
+#languageChoice .dropdown-content li > a, .dropdown-content li > span {
+    font-size: 16px;
+    color: #fca331;
+    display: block;
+    line-height: 22px;
+    padding: 14px 16px;
 }
 
 .select-wrapper input.select-dropdown {

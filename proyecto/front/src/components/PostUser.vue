@@ -126,7 +126,7 @@ export default {
 }
 .userimage-border {
   border-radius: 50%;
-  border: 1px solid grey;
+  border: 3px solid #fca331;
   width: 50px;
   height: 50px;
   background-position: center;
@@ -142,7 +142,6 @@ export default {
 }
 .userimage-border:hover > i{
   color:#fca331;
-  
 }
 
 .row {
@@ -155,13 +154,13 @@ export default {
   max-width: 66%;
   min-width: 25%;
   text-align: initial;
-  margin-left: 10px;
+  margin: 0 0 5px 10px;
   width: auto;
 }
 
 .card {
   margin-right: 10px;
-  box-shadow: 7px 7px 5px 0px rgba(94, 94, 94, 0.75);
+  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
   background-color: #ffffffe7;
   border: 1px solid rgba(49, 49, 49, 0.651);
 }
@@ -169,7 +168,7 @@ export default {
 span {
   line-height: 30px;
   margin-bottom: 15px;
-  margin-right: 50px;
+  margin-right: 10px;
   word-break: break-all;
 }
 
@@ -206,6 +205,6 @@ small div:hover {
   background-color: #ff9100c4;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.534);
-  box-shadow: 7px 7px 5px 0px rgba(94, 94, 94, 0.75);
+  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
 }
 </style>
