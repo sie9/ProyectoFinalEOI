@@ -7,7 +7,7 @@
             </div>
             <div class="cabecera">
                   <div class="login">
-                        <input id="texto" type="text" class="validate" v-model="msg" @keyup.enter="checkFirebase(msg)"  placeholder="wwww.chatty/name-room.es" maxlength="60">
+                        <input id="texto" type="text" class="validate" v-model="msg" @keyup.enter=""  placeholder="wwww.chatty/name-room.es" maxlength="60">
                   </div>
                 <div>
                     <router-link v-bind:to="msg" >
@@ -79,7 +79,7 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
 
-    this.checkFirebase();
+    
 
     
     firebase.database().ref("Sala" + this.msg).once("value", data => {
