@@ -6,9 +6,8 @@
     
     <chat-box :dato="lang" class="grid-contentview chatBox"></chat-box> 
 
-    <div id="Alias" class="modal">
+    <div id="Alias" class="modal modal-alias">
       <div class="modal-content">
-        <!-- <span class="close" @click="hideRequestAlias()">&times;</span> -->
         <h3>Elige tu Alias</h3>
         <div class="input-field col s12" >
             <input id="Alias" type="text" class="validate" v-model="alias">
@@ -126,6 +125,7 @@ export default {
     showRequestAlias() {
       var modalAlias = document.getElementById("Alias");
       modalAlias.style.display = "block";
+      $('.main-SalaChat').css("filter","blur(5px)")
     },
     hideRequestAlias() {
       var modalAlias = document.getElementById("Alias");
