@@ -169,6 +169,7 @@ export default {
         this.email = "";
         $("#email").val("");        
       }
+      
     },
     onSubmit2() {
       if (this.contacto.email.includes("@")) {

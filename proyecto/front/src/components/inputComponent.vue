@@ -5,7 +5,7 @@
             <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" @select="onClick" v-if="salir==true"></picker>
             <div class="input-field grid-input">
                 <label for="Texto">Message</label>
-                <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg">
+                <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg" >
             </div>
             <div class="flex-button">
                 <a class="waves-effect waves-light btn " v-on:click="writetodB">
@@ -14,6 +14,7 @@
                 <a class="btn btn2 " v-on:click="voicetospeech">
                     <i class="fas fa-microphone"></i>
                 </a>
+                <small>{{this.tamaño}}/400</small>
             </div>
         </div>
     </div>
@@ -33,12 +34,19 @@ export default {
   data() {
     return {
       msg: " ",
-      salir:false 
+      salir:false,
+      tamaño: 0 
     };
   },
   watch: {
     msg: function() {
-        this.msg=this.jsUcfirst()
+        this.msg=this.jsUcfirst();
+        this.tamaño = this.msg.length;
+        if (this.msg.length > 400){
+          $('.inputCont').css('color','red')
+        }else{
+          $('.inputCont').css('color','black')
+        }
     }
   },
   methods: {
@@ -56,11 +64,13 @@ export default {
       this.msg = this.msg + emoji.native;
     },
     writetodB: function() {
-      var privateId = this.cargarUsuario("usuario");
+      if (this.msg != ''){
+        if (this.tamaño < 400){
+            var privateId = this.cargarUsuario("usuario");
       if (privateId == null) {
         privateId == "WTF?";
       }
-    var url = this.cargarUsuario("photo")
+      var url = this.cargarUsuario("photo")
       var route = this.$route.path;
       var res = route.substring(1, route.length);
       
@@ -77,6 +87,8 @@ export default {
           photo: url
         });
       this.msg = "";
+        }
+      }
     },
     s4: function() {
       return Math.floor((1 + Math.random()) * 0x10000)
@@ -245,5 +257,9 @@ z-index: 1;
 
 .btn2 {
   border-radius: 0 20% 20% 0;
+}
+
+small {
+  margin: 10px 0px 0px 5px;
 }
 </style>
