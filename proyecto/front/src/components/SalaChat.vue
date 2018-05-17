@@ -151,7 +151,7 @@ export default {
         alias: this.alias                 
       })
       .then(()=>{
-        console.log("entre a firebase")
+        this.guardarUsuario("alias", this.alias);
         this.hideRequestAlias();
       })
         
@@ -227,7 +227,12 @@ export default {
      
   },
   mounted() {
-    this.showRequestAlias();
+    var existeAlias = this.cargarUsuario("alias");
+
+    if(existeAlias == null){
+
+      this.showRequestAlias();
+    }
   },
   destroyed() {}
 };
