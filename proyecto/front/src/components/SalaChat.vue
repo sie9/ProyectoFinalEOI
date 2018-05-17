@@ -4,7 +4,7 @@
     
     <listaUsuarioOnline class="listaUsuarioOnline"></listaUsuarioOnline>
     
-    <chat-box :dato="lang" class="grid-contentview chatBox"></chat-box> 
+    <chat-box :dato="lang" class="grid-contentview chatBox" id="chatbox"></chat-box> 
 
     <div id="Alias" class="modal modal-alias">
       <div class="modal-content">
@@ -209,9 +209,10 @@ export default {
       .ref("Sala" + res)
       .child("Zumbido")
       .on("child_changed", data => {
-        console.log("to", data.val());
+        
         var existeUsuario = this.cargarUsuario("usuario");
-        console.log("existeusuario", existeUsuario);
+        console.log("existeusuario en firebase", existeUsuario);
+        console.log("to firebase", data.val().to);
         if (data.val().to == existeUsuario) {
           $("#chatbox").addClass("shake-horizontal shake-constant");
           setTimeout(() => {
