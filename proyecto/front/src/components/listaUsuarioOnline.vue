@@ -35,7 +35,7 @@ export default {
         
 
         function buscaelemento(element) {
-          return element > data.val().id;
+          return element.id == data.val().id;
         }
 
         console.log("usuarios", JSON.stringify(this.usuarios));
