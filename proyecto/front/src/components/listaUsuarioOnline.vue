@@ -24,13 +24,29 @@ export default {
     var route = this.$route.path; 
     var res = route.substring(1, route.length); 
     firebase.database().ref('Sala'+res).child('usuariosOnline').on('child_added', (data) => {
+        
         this.usuarios.push(data.val());
+
+        
         this.cond=true;
     })
          
     firebase.database().ref('Sala'+res).child('usuariosOnline').on('child_changed', (data) => {
-        this.usuarios.push(data.val());
+        
+
+        function buscaelemento(element) {
+          return element > data.val().id;
+        }
+
+        console.log("usuarios", JSON.stringify(this.usuarios));
+        var id=  this.usuarios.findIndex(buscaelemento);
+        console.log("splice", this.usuarios.splice(id, 1, data.val()))
+        //this.usuarios = this.usuarios.splice(id, 0, data.val());
         this.cond=true;
+
+        console.log("usuarios despues", JSON.stringify(this.usuarios));
+        console.log("data.val()", data.val());
+        console.log("id", id);
     })
       
   },
