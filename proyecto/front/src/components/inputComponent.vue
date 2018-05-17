@@ -103,7 +103,7 @@ export default {
       var speechRecognitionList = new SpeechGrammarList();
       speechRecognitionList.addFromString(grammar, 1);
       recognition.grammars = speechRecognitionList;
-      recognition.lang = "es";
+      
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
 
@@ -124,7 +124,8 @@ export default {
         
         console.log("resultado:", speechResult);
         console.log("this",this.msg)
-        $('#Texto').val(speechResult);
+        var texto = $('#Texto').val() + " ";
+        $('#Texto').val(texto + speechResult);
       };
 
       recognition.onspeechend = function() {
