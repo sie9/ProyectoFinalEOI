@@ -218,6 +218,8 @@ export default {
         console.log("existeusuario en firebase", existeUsuario);
         console.log("to firebase", data.val().to);
         if (data.val().to == existeUsuario) {
+          var mySound = new Audio ('../assets/zumbido.mp3');
+          mySound.play();
           $("#chatbox").addClass("shake-horizontal shake-constant");
           setTimeout(() => {
             $("#chatbox").removeClass("shake-horizontal shake-constant");

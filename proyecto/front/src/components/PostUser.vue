@@ -100,6 +100,8 @@ export default {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
 
+      
+
       firebase
         .database()
         .ref("Sala" + res)
