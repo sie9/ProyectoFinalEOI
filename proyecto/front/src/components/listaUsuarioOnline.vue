@@ -22,8 +22,13 @@ export default {
   },
   created() {  
     var route = this.$route.path; 
-    var res = route.substring(1, route.length);    
-    firebase.database().ref('Sala'+res).child('usuariosOnline').once('child_changed', (data) => {
+    var res = route.substring(1, route.length); 
+    firebase.database().ref('Sala'+res).child('usuariosOnline').on('child_added', (data) => {
+        this.usuarios.push(data.val());
+        this.cond=true;
+    })
+         
+    firebase.database().ref('Sala'+res).child('usuariosOnline').on('child_changed', (data) => {
         this.usuarios.push(data.val());
         this.cond=true;
     })
