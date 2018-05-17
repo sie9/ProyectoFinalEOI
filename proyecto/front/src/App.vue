@@ -5,18 +5,31 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'App'
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 0px;
+
+/* *{
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+} */
+
+body{
+font-family: 'Amatic SC', cursive;
+}
+.app {
+  height: 100%;
 }
 </style>

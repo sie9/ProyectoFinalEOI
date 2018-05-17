@@ -1,77 +1,169 @@
 <template>
-<div class="row">
-        <div class="grid--wrapper">
+    <div class="main">
+        <section class="row login-box">
+          <div class="grid--wrapper">
             <div class="logo-chat">
-                <img src="../assets/chat.png" alt="" class="center-block" id="logo">
+                <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
             </div>
-            <div class="grid--quarter-columns">
-                <ul class="lang roundborders large">
-                    <a href="#en">
-                        <li>
-                            <img src="http://i64.tinypic.com/fd60km.png" />
-                        </li>
-                    </a>
-                    <a href="#de">
-                        <li>
-                            <img src="http://i63.tinypic.com/10zmzyb.png" />
-                        </li>
-                    </a>
-                    <a href="#fr">
-                        <li>
-                            <img src="http://i65.tinypic.com/300b30k.png" />
-                        </li>
-                    </a>
-                    <a href="#es">
-                        <li>
-                            <img src="http://i68.tinypic.com/avo5ky.png" />
-                        </li>
-                    </a>
-                    <a href="#it">
-                        <li>
-                            <img src="http://i65.tinypic.com/23jl6bn.png" />
-                        </li>
-                    </a>
-                </ul>
-                <!-- Input -->
-                <div class="login">
-                    <input id="Texto" type="text" onfocus="this.value=''" value="" class="validate" v-model="msg" placeholder="Crea tu cuenta">
-                </div>
-            </div>
-            <div class="grid--quarter-columns">
+            <div class="cabecera">
+                  <div class="login">
+                        <input id="texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
+                  </div>
                 <div>
-
-                </div>
-                <div>
-                  <router-link v-bind:to= "msg">
-                    <a class="waves-effect waves-light btn col s12">
-                        CREATE ROOM
-                    </a>
-                  </router-link>
+                    <router-link v-bind:to="msg">
+                      <alert dato="Esta sala existe" v-if="(aux==false)"></alert>
+                        <div class="btn col s12">
+                           CREATE A NEW ROOM 
+                        </div>
+                    </router-link>
                 </div>
             </div>
-        </div>
+          </div>
+        </section>
+        <section class="row barra">
+          <div class="grid-wrapper">
+            <div class="grid--three-columns texto">
+              <div class="grid--quarter-min-columns">
+                <div class="icono"></div>
+                <div>
+                  <h3>CREATE A ROOM LINK</h3>
+                  <p>It can be whatever you want (like your name or company name)</p>
+                </div>
+              </div>
+              <div class="grid--quarter-min-columns">
+                <div class="icono2"></div>
+                <div>
+                  <h3>SHARE THE LINK</h3>
+                  <p>By email, chat, in Slack. However you'd like really</p>
+                </div>
+              </div>
+              <div class="grid--quarter-min-columns">
+                <div class="icono3"></div>
+                <div>
+                  <h3>... THAT'S IT!</h3>
+                  <p>Guests join instantly in the browser by clicking the link.</p>
+                </div>
+              </div>
+            </div>
+              <div class="links">
+                <a href="http://">Terms of Service</a> 
+                |
+                <a href="http://">Cookies</a> 
+                |
+                <a href="http://">©chatty</a>
+              </div>
+          </div>
+        </section>
     </div>
 </template>
 
 <script>
+import firebase from "firebase";
+import alert from "./alert";
+
 export default {
   name: "login",
   data() {
     return {
-      msg: ""
+      msg: "",
+      aux: true
     };
+  },
+  watch: {
+    msg() {
+      this.msg = this.msg.toLowerCase();
+      if ( this.msg == ""){
+        this.aux=true;
+      }
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    firebase
+      .database()
+      .ref("Sala" + this.msg)
+      .once("value", data => {
+        console.log(data.val());
+        if (data.val() != null) {
+          this.aux = false;
+          
+        } else {
+          firebase.database().ref("Sala" + this.msg).child("creada").set({x:"holita"}).then(()=> {
+          this.isActive = false;
+          console.log("No existe esta sala!");
+          next();
+          });
+          
+        }
+      });
+  },
+  components: {
+    alert
   }
 };
+
 $(document).ready(function() {
   $("select").formSelect();
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+
 <style scoped>
+/* general   */
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: rgb(73, 73, 73);
+}
+
+.main {
+  position: absolute;
+  background-image: url("../assets/img/background3.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* background-position: center center; */
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
+
+.login-box {
+  background-color: white;
+  margin-top: 150px;
+  padding-bottom: 20px;
+  width: 500px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: silver;
+  box-shadow: 2px 2px 5px black;
+}
+
+.barra {
+  background-color: white;
+  /* height: 150px; */
+  width: 100%;
+  height: auto;
+  padding: 0;
+  box-shadow: 0px -6px 9px 0px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: -20px;
+}
 
 .grid--wrapper,
-.grid--quarter-columns {
+.grid--quarter-columns,
+.grid--quarter-min-columns,
+.grid--two-columns,
+.grid--three-columns {
   display: grid;
 }
 
@@ -81,77 +173,84 @@ $(document).ready(function() {
 
 .grid--wrapper > div {
   grid-column: 2;
-  /* margin: 50px auto 50px auto; */
-  width: 100%;
 }
-/* .grid--three-columns {
-  grid-template-columns: repeat(3, calc(100%/3));
-} */
 
 .grid--quarter-columns {
+  grid-template-columns: 90% 10%;
+}
+
+.grid--quarter-min-columns {
+  grid-template-columns: 30% 70%;
+  grid-gap: 10px;
+}
+
+.grid--two-columns {
   grid-template-columns: 10% 90%;
 }
 
-.lang {
-  background-color: silver;
-  display: inline-block;
-  padding: 0;
-  height: 40px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  margin: 0 50px 10px 0;
-  vertical-align: top;
-  text-align: center;
+.grid--three-columns {
+  grid-template-columns: repeat(3, calc(100%/3));
+  margin: 20px 20px 0px 20px;
 }
 
-.lang:hover {
-  /* don't forget the 1px border */
-  height: 81px;
+/* imagenes */
+
+.logo-chat img {
+  height: 200px;
+  min-height: 50px;
 }
 
-.lang li {
-  display: block;
-  padding: 0px 20px;
-  line-height: 40px;
-  border-top: 1px solid #eee;
+.icono,
+.icono2,
+.icono3 {
+  padding: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.lang li:hover {
-  background-color: #eee;
+.icono {
+  background-size: 80% 90%;
+  background-image: url("../assets/img/icon.jpg");
 }
 
-.lang a:first-child li {
-  border: none;
-  background: silver;
+.icono2 {
+  background-size: 65% 90%;
+  background-image: url("../assets/img/icon2.png");
 }
 
-.lang li img {
-  margin-right: 5px;
+.icono3 {
+  background-size: 60% 90%;
+  background-image: url("../assets/img/icon7.png");
 }
 
-.roundborders {
-  border-radius: 5px;
-}
-
-.large:hover {
-  height: 245px;
-}
+/* botones */
 
 .btn {
-  margin: 0px;
-  border-radius: 10px;
-  background-color: limegreen;
+  border-radius: 5px;
+  background-color: #fca331;
+  color: white;
+  font-size: 1.3em;
 }
 
 .btn:hover {
-  background-color: lime;
+  background-color: #ce8c35;
+  color: white;
 }
 
-.logo-chat {
-  margin:0;
+.btn-copy {
+  background-color: silver;
+  box-shadow: none;
+  height: 40px;
 }
-.logo-chat img {
-  display: block;
-  height: 200px;
+
+h3 {
+  font-size: 1.5em;
+  margin: 0px;
+}
+
+.links {
+  text-align: center;
+  background-color: #fca331;
+  border-top: solid 1px black;
 }
 </style>
