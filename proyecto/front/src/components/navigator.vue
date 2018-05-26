@@ -23,7 +23,7 @@
         
         <div id= "Container" class="collection">
           <div class="collection-item added-friends">Friends to add:</div>
-          <div class="collection-item" v-for="(email,index) in emails">  {{email}} <span @click='borrarEmail(index)' > x </span></div>
+          <div class="collection-item" v-for="(email,index) in emails" v-bind="key">  {{email}} <span @click='borrarEmail(index)' > x </span></div>
         </div>
             
         <div class="row">
