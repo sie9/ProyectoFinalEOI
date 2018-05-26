@@ -3,11 +3,11 @@
         <section class="row login-box">
           <div class="grid--wrapper">
             <div class="logo-chat">
-                <img src="../assets/img/chat2.png" alt="" class="center-block" id="logo">
+                <img src="../assets/img/chat3.png" alt="" class="center-block" id="logo">
             </div>
             <div class="cabecera">
                   <div class="login">
-                        <input id="texto" type="text" class="validate" v-model="msg" placeholder="wwww.chatty/name-room.es" maxlength="60">
+                        <input id="texto" type="text" class="validate" v-model="msg" placeholder="name-room" maxlength="60">
                   </div>
                 <div>
                     <router-link v-bind:to="msg">
@@ -25,21 +25,21 @@
             <div class="grid--three-columns texto">
               <div class="grid--quarter-min-columns">
                 <div class="icono"></div>
-                <div>
+                <div class="texto">
                   <h3>CREATE A ROOM LINK</h3>
                   <p>It can be whatever you want (like your name or company name)</p>
                 </div>
               </div>
               <div class="grid--quarter-min-columns">
                 <div class="icono2"></div>
-                <div>
+                <div class="texto">
                   <h3>SHARE THE LINK</h3>
                   <p>By email, chat, in Slack. However you'd like really</p>
                 </div>
               </div>
               <div class="grid--quarter-min-columns">
                 <div class="icono3"></div>
-                <div>
+                <div class="texto">
                   <h3>... THAT'S IT!</h3>
                   <p>Guests join instantly in the browser by clicking the link.</p>
                 </div>
@@ -72,8 +72,8 @@ export default {
   watch: {
     msg() {
       this.msg = this.msg.toLowerCase();
-      if ( this.msg == ""){
-        this.aux=true;
+      if (this.msg == "") {
+        this.aux = true;
       }
     }
   },
@@ -85,14 +85,17 @@ export default {
         console.log(data.val());
         if (data.val() != null) {
           this.aux = false;
-          
         } else {
-          firebase.database().ref("Sala" + this.msg).child("creada").set({x:"holita"}).then(()=> {
-          this.isActive = false;
-          console.log("No existe esta sala!");
-          next();
-          });
-          
+          firebase
+            .database()
+            .ref("Sala" + this.msg)
+            .child("creada")
+            .set({ x: "holita" })
+            .then(() => {
+              this.isActive = false;
+              console.log("No existe esta sala!");
+              next();
+            });
         }
       });
   },
@@ -110,7 +113,7 @@ $(document).ready(function() {
 
 <style scoped>
 /* general   */
-* {
+h3, p, a {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -134,7 +137,6 @@ a:hover {
   /* background-position: center center; */
   background-attachment: fixed;
   background-size: cover;
-  
 }
 
 .login-box {
@@ -144,19 +146,23 @@ a:hover {
   width: 500px;
   border-radius: 10px;
   border-style: solid;
-  border-color: silver;
+  border-color: #fca331;
   box-shadow: 2px 2px 5px black;
 }
 
 .barra {
   background-color: white;
-  /* height: 150px; */
   width: 100%;
-  height: auto;
-  padding: 0;
   box-shadow: 0px -6px 9px 0px rgba(0, 0, 0, 0.5);
-  position: absolute;
+  position: fixed;
   bottom: -20px;
+}
+
+section .row .barra {
+  position: fixed;
+}
+.texto {
+  margin: 0 10px 0 10px;
 }
 
 .grid--wrapper,
@@ -189,7 +195,7 @@ a:hover {
 }
 
 .grid--three-columns {
-  grid-template-columns: repeat(3, calc(100%/3));
+  grid-template-columns: repeat(3, calc(100% / 3));
   margin: 20px 20px 0px 20px;
 }
 
@@ -205,21 +211,22 @@ a:hover {
 .icono3 {
   padding: 50px;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: right;
+  min-height: 10%;
 }
 
 .icono {
-  background-size: 80% 90%;
+  background-size: auto 90%;
   background-image: url("../assets/img/icon.jpg");
 }
 
 .icono2 {
-  background-size: 65% 90%;
+  background-size: auto 90%;
   background-image: url("../assets/img/icon2.png");
 }
 
 .icono3 {
-  background-size: 60% 90%;
+  background-size: auto 90%;
   background-image: url("../assets/img/icon7.png");
 }
 
@@ -253,4 +260,6 @@ h3 {
   background-color: #fca331;
   border-top: solid 1px black;
 }
+
+
 </style>
