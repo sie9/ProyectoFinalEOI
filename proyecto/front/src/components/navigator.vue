@@ -8,7 +8,7 @@
       <language-choice @lang="changeLang" class="language-choice"></language-choice>
       <ul id="nav" class="right hide-on-med-and-down">
         <li><div @click="showLogin()" class="login nav-btn">Login</div></li>
-        <li><div @click="show()" class="addUser nav-btn">Add Users</div></li>
+        <li class="person_add"><div @click="show()" class="addUser nav-btn">Add Users</div></li>
         <li><div @click="show3()" class="contact nav-btn">Contact</div></li>
       </ul>
     
@@ -19,8 +19,7 @@
       <loaders class="loaders" :conver="this.cond" ></loaders>
       <div class="modal-content" v-if='cond'>
         <span class="close" @click="hide">&times;</span>
-        <h3>Add friends to your chatroom</h3>
-        
+        <h3>ADD FRIENDS TO YOUR CHATROOM</h3>
         <div id= "Container" class="collection">
           <div class="collection-item added-friends">Friends to add:</div>
           <div class="collection-item" v-for="(email,index) in emails" v-bind="key">  {{email}} <span @click='borrarEmail(index)' > x </span></div>
@@ -28,8 +27,8 @@
             
         <div class="row">
           <div class="input-field col s12" >
-            <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="email" >
-            <label for="email">Email</label>
+            <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="email" placeholder="Email">
+            <!-- <label for="email">Email</label> -->
           </div>
         </div>
        
@@ -45,12 +44,10 @@
         <span class="close" @click="hideLogin">&times;</span>
         <h3>LOG IN</h3>
         <div class="input-field col s12" >
-            <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="usuario" >
-            <label for="email">Email</label>
+            <input id="email" type="email" class="validate" @keyup.enter="onSubmit()" v-model="usuario" placeholder="Email">
           </div>
           <div class="input-field col s12" >
-            <input id="pass" type="password" class="validate" @keyup.enter="onSubmit()" v-model="pass" >
-            <label for="pass">Password</label>
+            <input id="pass" type="password" class="validate" @keyup.enter="onSubmit()" v-model="pass" placeholder="Password" >
           </div>
         
        
@@ -64,7 +61,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <!-- <span class="close" @click="hide2">&times;</span> -->
-        <h3>¡¡Your mail has been sent!!</h3>
+        <h3>YOUR MAIL HAS BEEN SENT</h3>
       </div>
     </div>
       <!--------------------------------- The Modal contacto  ---------------------------------------->
@@ -72,18 +69,15 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close" @click="hide3">&times;</span>
-        <h3>How can we help you?</h3>
+        <h3>HOW CAN WE HELP YOU?</h3>
                     
-        <div class="row">
           <div class="input-field col s12">
-            <input id="email" type="email" class="validate"  v-model="contacto.email" >
-            <label for="email">Email</label>
+            <input id="email" type="email" class="validate"  v-model="contacto.email" placeholder="Email">
+            <!-- <label for="email">Email</label> -->
           </div>
-        </div>
-        <div class="row">
           <div class="input-field col s12">
-            <input id="asunto" type="text" class="validate" v-model="contacto.asunto" >
-            <label for="asunto">Subject</label>
+            <input id="asunto" type="text" class="validate" v-model="contacto.asunto" placeholder="Subject" >
+            <!-- <label for="asunto">Subject</label> -->
           </div>
         </div>
        
@@ -376,12 +370,14 @@ share-link {
   font-family: "Montserrat", sans-serif;
   background-color: #fefefe;
   margin: auto;
-  border: 1px solid #888;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #fca331;
   width: 35%;
+  /* min-height: 60%; */
   height: auto;
-  padding-bottom: 10px;
-  border: 2px inset #fca331;
-  box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
+  padding-bottom: 5px;
+  box-shadow: 2px 2px 5px black;
 }
 
 .modal-content h3 {
@@ -426,6 +422,7 @@ share-link {
 .close {
   color: #aaaaaa;
   float: right;
+  margin:-15px 0 0 0;
   font-size: 28px;
   font-weight: bold;
 }
@@ -440,6 +437,10 @@ share-link {
 .collection-item span {
   color: rgba(175, 11, 11, 0.836);
   cursor: pointer;
+}
+
+::placeholder {
+  color: #fca43196;
 }
 
 </style>

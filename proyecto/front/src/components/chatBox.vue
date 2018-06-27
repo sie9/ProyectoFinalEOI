@@ -117,7 +117,6 @@ export default {
             this.mensajes=this.mensajes.sort(function(a, b) {
               return a.Fecha - b.Fecha;
             });
-            console.log('pene');
             console.log(JSON.parse(JSON.stringify(this.mensajes)));
           }
           }).catch(err => console.log(err));

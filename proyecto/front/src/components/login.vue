@@ -1,59 +1,60 @@
 <template>
     <div class="main">
-        <section class="row login-box">
+      <section class="container">
+        <div class="row login-box">
           <div class="grid--wrapper">
             <div class="logo-chat">
                 <img src="../assets/img/chat3.png" alt="" class="center-block" id="logo">
             </div>
             <div class="cabecera">
                   <div class="login">
-                        <input id="texto" type="text" class="validate" v-model="msg" placeholder="name-room" maxlength="60">
+                        <input id="texto" type="text" v-on:keyup.enter="writetodB" class="validate" v-model="msg" placeholder="Name-room" maxlength="60">
                   </div>
                 <div>
                     <router-link v-bind:to="msg" >
                       <alert dato="Esta sala existe" v-if="(aux==false)"></alert>
-                        <div class="btn col s12">
+                        <button class="btn col s12">
                            CREATE A NEW ROOM 
-                        </div>
+                        </button>
                     </router-link>
                 </div>
             </div>
           </div>
-        </section>
-        <section class="row barra">
-          <div class="grid-wrapper">
-            <div class="grid--three-columns texto">
-              <div class="grid--quarter-min-columns">
-                <div class="icono"></div>
-                <div class="texto">
-                  <h3>CREATE A ROOM LINK</h3>
-                  <p>It can be whatever you want (like your name or company name)</p>
-                </div>
-              </div>
-              <div class="grid--quarter-min-columns">
-                <div class="icono2"></div>
-                <div class="texto">
-                  <h3>SHARE THE LINK</h3>
-                  <p>By email, chat, in Slack. However you'd like really</p>
-                </div>
-              </div>
-              <div class="grid--quarter-min-columns">
-                <div class="icono3"></div>
-                <div class="texto">
-                  <h3>... THAT'S IT!</h3>
-                  <p>Guests join instantly in the browser by clicking the link.</p>
-                </div>
-              </div>
+        </div>
+      </section>
+        
+      <section class="barra">
+        <div class="grid--three-columns instrucciones">
+          <div class="grid--two-columns columns">
+            <div class="icono"></div>
+            <div class="texto">
+                <h3>CREATE A ROOM LINK</h3>
+                <p>It can be whatever you want.</p>
             </div>
-              <div class="links">
-                <a href="http://">Terms of Service</a> 
-                |
-                <a href="http://">Cookies</a> 
-                |
-                <a href="http://">©chatty</a>
-              </div>
           </div>
-        </section>
+          <div class="grid--two-columns columns">
+            <div class="icono2"></div>
+            <div class="texto">
+              <h3>SHARE THE LINK</h3>
+              <p>By email or chat. However you'd like really</p>
+            </div>
+          </div>
+          <div class="grid--two-columns columns">
+            <div class="icono3"></div>
+            <div class="texto">
+              <h3>... THAT'S IT!</h3>
+              <p>Guests join instantly in the browser by clicking the link.</p>
+            </div>
+          </div>
+        </div>
+        <div class="links">
+          <a href="http://">Terms of Service</a> 
+          |
+          <a href="http://">Cookies</a> 
+          |
+          <a href="http://">©chatty</a>
+        </div>
+      </section>
     </div>
 </template>
 
@@ -78,13 +79,12 @@ export default {
     }
   },
   beforeRouteLeave(to, from, next) {
-
-    
-
-    
-    firebase.database().ref("Sala" + this.msg).once("value", data => {
+    firebase
+      .database()
+      .ref("Sala" + this.msg)
+      .once("value", data => {
         console.log(data.val());
-        
+
         if (data.val() != null) {
           this.aux = false;
         } else {
@@ -103,10 +103,26 @@ export default {
   },
   methods: {
     goto() {
-
-      location.href = "/"+this.msg;
-    }
+      location.href = "/" + this.msg;
+    },
+    writetodB: function() {
+      if (this.msg != ''){
+        if (this.tamaño < 400){s
+        
+            var privateId = this.cargarUsuario("usuario");
+      if (privateId == null) {
+        privateId == "WTF?";
+      }
+      
+      firebase
+        .database()
+        .ref("Sala" + res)
+      this.msg = "";
+        }
+      }
+    },
   },
+    
   components: {
     alert
   }
@@ -121,8 +137,9 @@ $(document).ready(function() {
 
 <style scoped>
 /* general   */
-h3, p, a {
-  font-family: "Montserrat", sans-serif;
+h3,
+p {
+  margin: 0;
 }
 
 a {
@@ -136,13 +153,12 @@ a:hover {
 
 .main {
   position: absolute;
-  background-image: url("../assets/img/background3.jpg");
+  background-image: url("../assets/img/fondo.jpg");
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  /* background-position: center center; */
   background-attachment: fixed;
   background-size: cover;
 }
@@ -156,23 +172,37 @@ a:hover {
   border-style: solid;
   border-color: #fca331;
   box-shadow: 2px 2px 5px black;
+  opacity: 0.9;
 }
 
 .barra {
+  margin: 150px 0 0 0;
   background-color: white;
   width: 100%;
   box-shadow: 0px -6px 9px 0px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+  border-top: solid #fca331;
   position: fixed;
-  bottom: -20px;
+  bottom: 0;
 }
 
-section .row .barra {
-  position: fixed;
-}
 .texto {
-  margin: 0 10px 0 10px;
+  margin: 0 20px 0 20px;
 }
 
+.columns {
+  float: left;
+  min-width: 50%;
+  display: block;
+}
+
+@media all and (max-width: 1200px) {
+    .grid--two-columns {
+        display: inline-block;
+        padding:0px 6px;
+        margin:0px 4px;
+    }
+}
 .grid--wrapper,
 .grid--quarter-columns,
 .grid--quarter-min-columns,
@@ -193,13 +223,8 @@ section .row .barra {
   grid-template-columns: 90% 10%;
 }
 
-.grid--quarter-min-columns {
-  grid-template-columns: 30% 70%;
-  grid-gap: 10px;
-}
-
 .grid--two-columns {
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 30% 70%;
 }
 
 .grid--three-columns {
@@ -217,10 +242,13 @@ section .row .barra {
 .icono,
 .icono2,
 .icono3 {
-  padding: 50px;
+  /* padding: 50px; */
   background-repeat: no-repeat;
-  background-position: right;
   min-height: 10%;
+  height: 100px;
+  min-height: 50px;
+  width: auto;
+  background-position: right;
 }
 
 .icono {
@@ -268,6 +296,4 @@ h3 {
   background-color: #fca331;
   border-top: solid 1px black;
 }
-
-
 </style>

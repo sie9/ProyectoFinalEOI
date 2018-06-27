@@ -34,7 +34,7 @@ h1 {
     color:#fff;
     margin:0px;
     padding-top:20px;
-    padding-bottom:20px;
+    padding-bottom:26px;
     background-color: rgba(105, 105, 105, 0.795);
 }
 

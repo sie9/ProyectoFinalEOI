@@ -12,14 +12,14 @@
 
     <div id="Alias" class="modal modal-alias">
       <div class="modal-content">
-        <h3>Choose your nickname</h3>
+        <h3>CHOOSE YOUR NICKNAME</h3>
         <div class="input-field col s12" >
-            <input id="Alias" type="text" class="validate" @keyup.enter="afterModal()"  v-model="alias">
-            <label for="email">Nickname</label>
+            <input id="Alias" type="text" class="validate" @keyup.enter="afterModal()"  v-model="alias" placeholder="Nick-Name">
+            <!-- <label for="email">Nickname</label> -->
         </div>        
        
         <div class="row">
-            <div @click="afterModal()" class="card-panel flow-text button-color color-boton email-button">Accept</div>
+            <div @click="afterModal()" class="card-panel flow-text button-color email-button">Accept</div>
         </div>
       </div>
     </div>   
@@ -118,7 +118,7 @@ export default {
     cargarUsuario: function(key) {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
-      var comoString = localStorage.getItem(key+res);
+      var comoString = localStorage.getItem(key + res);
       return JSON.parse(comoString);
     },
     s4: function() {
@@ -130,37 +130,38 @@ export default {
       var route = this.$route.path;
       var res = route.substring(1, route.length);
       var comoString = JSON.stringify(value);
-      localStorage.setItem(key+res, comoString);
+      localStorage.setItem(key + res, comoString);
     },
     showRequestAlias() {
       var modalAlias = document.getElementById("Alias");
       modalAlias.style.display = "block";
-      $('.main-SalaChat').addClass("blur")
+      $(".main-SalaChat").addClass("blur");
     },
     hideRequestAlias() {
       var modalAlias = document.getElementById("Alias");
       modalAlias.style.display = "none";
-      $('.main-SalaChat').removeClass("blur")
+      $(".main-SalaChat").removeClass("blur");
     },
-    afterModal() {   
-      if (this.alias != ''){
+    afterModal() {
+      if (this.alias != "") {
         var route = this.$route.path;
-      var res = route.substring(1, route.length);
+        var res = route.substring(1, route.length);
 
-      var key = this.cargarUsuario('key');
-      console.log("key", key);
-      var user = this.cargarUsuario('usuario');
+        var key = this.cargarUsuario("key");
+        console.log("key", key);
+        var user = this.cargarUsuario("usuario");
 
-      firebase.database().ref("Sala" + res+"/usuariosOnline/"+key).update({
-        alias: this.alias                 
-      })
-      .then(()=>{
-        this.guardarUsuario("alias", this.alias);
-        this.hideRequestAlias();
-      })
+        firebase
+          .database()
+          .ref("Sala" + res + "/usuariosOnline/" + key)
+          .update({
+            alias: this.alias
+          })
+          .then(() => {
+            this.guardarUsuario("alias", this.alias);
+            this.hideRequestAlias();
+          });
       }
-      
-        
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -218,12 +219,10 @@ export default {
       .ref("Sala" + res)
       .child("Zumbido")
       .on("child_changed", data => {
-                
         var existeUsuario = this.cargarUsuario("usuario");
         /* console.log("existeusuario en firebase", existeUsuario);
         console.log("to firebase", data.val().to); */
         if (data.val().to == existeUsuario) {
-
           var zumbar = document.getElementById("myAudio");
           zumbar.play();
 
@@ -233,13 +232,11 @@ export default {
           }, 1000);
         }
       });
-     
   },
   mounted() {
     var existeAlias = this.cargarUsuario("alias");
 
-    if(existeAlias == null){
-
+    if (existeAlias == null) {
       this.showRequestAlias();
     }
   },
@@ -275,7 +272,7 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
-.col.s12 {
+/* .col.s12 {
   padding: 0px;
 }
 .col.s3 {
@@ -283,52 +280,65 @@ export default {
 }
 .col.s9 {
   padding: 0px;
-}
+} */
+
 .chatTitle {
   height: 10vh;
 }
+
 .main-SalaChat {
-  font-weight: 300;
+  font-weight: 100;
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
-  background: url("../assets/img/background.png") no-repeat center center fixed;
+  background: url("../assets/img/background.png") no-repeat;
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 5;
-  width: 100vw;
-  height: 100vh;
+  width: auto;
+  height: 100%;
   display: none;
   padding: 10% 0;
   max-height: 100%;
 }
+
+::placeholder {
+  color: #fca43196;
+}
+
 /* Modal Content */
 .modal-content {
   font-family: "Montserrat", sans-serif;
   background-color: #fefefe;
   margin: auto;
-  border: 1px solid #888;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #fca331;
   width: 35%;
-  min-height: 60%;
+  /* min-height: 60%; */
   height: auto;
-  padding-bottom: 10px;
-  border: 2px inset #fca331;
-  box-shadow: 0px 10px 20px 5px rgb(85, 85, 85);
+  padding-bottom: 5px;
+  box-shadow: 2px 2px 5px black;
 }
 
 .button-color {
   background-color: #fca331;
+  color: white;
 }
 
-.blur> *:not(.modal){
-  filter:blur(5px)
+.button-color:hover {
+  background-color: #ce8c35;
+}
+
+.blur > *:not(.modal) {
+  filter: blur(5px);
 }
 
 @media only screen and (min-device-width: 180px) and (max-device-width: 720px) {

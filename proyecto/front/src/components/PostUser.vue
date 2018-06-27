@@ -122,7 +122,7 @@ export default {
 }
 .userimage-border {
   border-radius: 50%;
-  border: 3px solid #fca331;
+  border: 2px solid #fca331;
   width: 50px;
   height: 50px;
   background-position: center;
@@ -158,7 +158,7 @@ export default {
   margin-right: 10px;
   box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
   background-color: #ffffffe7;
-  border: 1px solid rgba(49, 49, 49, 0.651);
+  border: 1px solid #fca331 ;
 }
 
 span {

@@ -1,11 +1,11 @@
 <template>
     <div class="inputCont">
         <div class="input-container" style="position: relative;">
-            <div class="emojis-btn" v-on:click="showIcons">😠</div>
+            <div class="emojis-btn" v-on:click="showIcons">🙂</div>
             <picker set="twitter" title="Chattys" emoji="woman-with-bunny-ears-partying" @select="onClick" v-if="salir==true"></picker>
             <div class="input-field grid-input">
-                <label for="Texto">Message</label>
-                <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg" >
+                <!-- <label for="Texto">Message</label> -->
+                <input id="Texto" type="text" v-on:keyup.enter="writetodB"  class="validate" v-model="msg" placeholder="Message">
             </div>
             <div class="flex-button">
                 <a class="waves-effect waves-light btn " v-on:click="writetodB">
@@ -180,10 +180,24 @@ export default {
   }
 };
 
+$(document).click(function(event) {
+  if ($(".input-container").css("display") == "block") {
+    if (!$(event.target).closest(".inputCont, .input-content").length) {
+      $(".input-container").hide();
+    }
+  }
+});
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+::placeholder {
+  color: #fca43196;
+}
+
+
 .inputCont{
   background: #fff;
 }
@@ -198,7 +212,7 @@ export default {
 .input-container {
   padding: 30px 50px 30px 50px;
   border: 1px solid rgb(110, 110, 110);
-  box-shadow: 10px 1px 20px 5px rgba(14, 14, 14, 0.815);
+  box-shadow: 6px 0px 10px 0px rgba(0,0,0,0.75);
   display:flex;
   justify-content: flex-start;
   align-items: center;
@@ -239,6 +253,7 @@ z-index: 1;
   word-break: break-all;
   overflow: scroll;
 }
+
 .flex-button {
   display: flex;
   justify-content: flex-end;
